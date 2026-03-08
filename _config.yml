@@ -1,0 +1,20 @@
+title: Blog
+description: Personal blog
+baseurl: "/blog"
+url: ""
+
+permalink: /:title/
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+exclude:
+  - scripts/
+  - .post-mapping.json
+  - .media-mapping.json
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - .gitignore

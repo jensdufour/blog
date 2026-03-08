@@ -1,0 +1,47 @@
+name: Sync posts to WordPress
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "_posts/**"
+      - "media/**"
+
+  workflow_dispatch:
+
+jobs:
+  sync-to-wp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Detect changed post files
+        id: changes
+        run: |
+          CHANGED=$(git diff --name-only HEAD~1 HEAD -- '_posts/*.md' || true)
+          echo "files=$CHANGED" >> "$GITHUB_OUTPUT"
+
+      - name: Sync to WordPress
+        env:
+          WP_URL: ${{ secrets.WP_URL }}
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+          CHANGED_FILES: ${{ steps.changes.outputs.files }}
+        run: python scripts/sync_to_wp.py
+
+      - name: Commit updated mapping files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .post-mapping.json .media-mapping.json
+          git diff --cached --quiet || git commit -m "chore: update mappings after sync to WP"
+          git push
