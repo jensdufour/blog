@@ -74,8 +74,8 @@ def update_post_references(post_path: Path, slug: str, renames: dict[str, str]) 
     original = content
 
     for old_name, new_name in renames.items():
-        old_ref = f"media/{slug}/{old_name}"
-        new_ref = f"media/{slug}/{new_name}"
+        old_ref = f"../media/{slug}/{old_name}"
+        new_ref = f"../media/{slug}/{new_name}"
         content = content.replace(old_ref, new_ref)
 
     if content != original:

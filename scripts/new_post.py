@@ -69,7 +69,7 @@ focus_keyphrase: ''
 Write your introduction here.
 
 <!-- Screenshots: save Greenshot captures to media/{slug}/ -->
-<!-- Reference: ![alt text](media/{slug}/{slug}-01.png) -->
+<!-- Reference: ![alt text](../media/{slug}/{slug}-01.png) -->
 """
 
     # Create post file and media directory

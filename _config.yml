@@ -13,7 +13,6 @@ kramdown:
 exclude:
   - scripts/
   - .post-mapping.json
-  - .media-mapping.json
   - README.md
   - Gemfile
   - Gemfile.lock

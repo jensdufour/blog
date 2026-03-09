@@ -27,7 +27,7 @@ Save Greenshot captures directly into the `media/<slug>/` folder — **any filen
 Reference images in your Markdown:
 
 ```markdown
-![Description of the screenshot](media/my-article-title/my-article-title-01.png)
+![Description of the screenshot](../media/my-article-title/my-article-title-01.png)
 ```
 
 ### 4. Publish
@@ -38,18 +38,17 @@ git commit -m "Add article: My Article Title"
 git push
 ```
 
-The GitHub Actions workflow will convert your Markdown to HTML, upload images to WordPress, and publish the post.
+The GitHub Actions workflow will convert your Markdown to HTML and publish the post. Images are served directly from GitHub — nothing is uploaded to WordPress.
 
 ## How it works
 
 | Direction | Trigger | What happens |
 |---|---|---|
-| **GitHub → WordPress** | Push to `main` (changes in `_posts/` or `media/`) | Markdown is converted to HTML, local images are uploaded to WP Media Library, and posts are published/updated via the WP REST API |
+| **GitHub → WordPress** | Push to `main` (changes in `_posts/` or `media/`) | Markdown is converted to HTML with image paths rewritten to GitHub raw URLs, and posts are published/updated via the WP REST API |
 | **GitHub → GitHub Pages** | Push to `main` | Jekyll builds the site and deploys to GitHub Pages |
 
 Mapping files track sync state:
 - `.post-mapping.json` — slug ↔ WordPress post ID and content hashes
-- `.media-mapping.json` — WordPress media URL ↔ local file path (created automatically on first push)
 
 ## Repo structure
 
@@ -96,7 +95,7 @@ tags:
 
 Your Markdown content here.
 
-![Screenshot](media/my-post-title/my-post-title-01.png)
+![Screenshot](../media/my-post-title/my-post-title-01.png)
 ```
 
 ### Frontmatter fields
@@ -109,7 +108,7 @@ Your Markdown content here.
 | `seo_title` | No | Yoast SEO title override |
 | `meta_description` | No | Yoast meta description |
 | `focus_keyphrase` | No | Yoast focus keyphrase |
-| `featured_image` | No | Relative path to the featured image in `media/` |
+| `featured_image` | No | Relative path to the featured image in `media/` (e.g. `../media/slug/slug-01.png`) |
 | `categories` | No | List of category names |
 | `tags` | No | List of tag names |
 

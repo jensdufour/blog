@@ -1,11 +1,10 @@
 """Sync Markdown posts from the GitHub repo to WordPress via the REST API.
 
-Uploads local media files to WordPress and rewrites local paths to WP URLs
-in the published HTML content.
+Rewrites local media paths to GitHub raw URLs so images are served from
+the public repository — no media is uploaded to WordPress.
 """
 
 import json
-import mimetypes
 import os
 import re
 import sys
@@ -21,9 +20,9 @@ POSTS_DIR = ROOT_DIR / "_posts"
 
 # Regex to parse Jekyll post filenames: YYYY-MM-DD-slug.md
 POST_FILENAME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}-(.+)$")
-MEDIA_DIR = ROOT_DIR / "media"
 MAPPING_FILE = ROOT_DIR / ".post-mapping.json"
-MEDIA_MAPPING_FILE = ROOT_DIR / ".media-mapping.json"
+
+GITHUB_RAW_BASE = "https://raw.githubusercontent.com/jensdufour/blog/main"
 
 WP_URL = os.environ["WP_URL"].rstrip("/")
 WP_USER = os.environ["WP_USER"]
@@ -69,76 +68,18 @@ def get_or_create_terms(taxonomy: str, names: list[str]) -> list[int]:
     return ids
 
 
-def upload_media(local_path: str, media_mapping: dict) -> str:
-    """Upload a local media file to WordPress and return the WP URL.
-
-    Uses the media mapping to avoid re-uploading files already on the server.
-    The mapping is keyed by local path → WP URL.
-    """
-    # Check reverse mapping (local_path → wp_url)
-    reverse = {v: k for k, v in media_mapping.items()}
-    if local_path in reverse:
-        return reverse[local_path]
-
-    full_path = ROOT_DIR / local_path
-    if not full_path.exists():
-        print(f"    Warning: media file not found: {local_path}", file=sys.stderr)
-        return local_path
-
-    mime_type = mimetypes.guess_type(str(full_path))[0] or "application/octet-stream"
-    filename = full_path.name
-
-    with open(full_path, "rb") as f:
-        resp = requests.post(
-            f"{API_BASE}/media",
-            headers={
-                "Content-Disposition": f'attachment; filename="{filename}"',
-                "Content-Type": mime_type,
-            },
-            data=f,
-            auth=(WP_USER, WP_APP_PASSWORD),
-            timeout=120,
-        )
-    resp.raise_for_status()
-    data = resp.json()
-    wp_url = data["source_url"]
-    media_mapping[wp_url] = local_path
-    print(f"    Uploaded {local_path} → {wp_url}")
-    return wp_url
-
-
-def rewrite_local_media_in_html(html: str, media_mapping: dict) -> str:
-    """Find local media paths in HTML src attributes and upload them to WP."""
-    pattern = re.compile(r'(src=["\'])(media/[^"\']+)(["\'])')
+def rewrite_local_media_in_html(html: str) -> str:
+    """Rewrite local media paths to GitHub raw URLs."""
+    pattern = re.compile(r'(src=["\'])(?:\.\./)?(media/[^"\']+)(["\'])')
 
     def replace_match(match: re.Match) -> str:
         prefix = match.group(1)
         local_path = match.group(2)
         suffix = match.group(3)
-        wp_url = upload_media(local_path, media_mapping)
-        return f"{prefix}{wp_url}{suffix}"
+        raw_url = f"{GITHUB_RAW_BASE}/{local_path}"
+        return f"{prefix}{raw_url}{suffix}"
 
     return pattern.sub(replace_match, html)
-
-
-def resolve_featured_image(local_path: str, media_mapping: dict) -> int | None:
-    """Upload the featured image and return its WP media ID."""
-    wp_url = upload_media(local_path, media_mapping)
-    if wp_url == local_path:
-        return None  # Upload failed
-
-    # Find the media ID from the URL
-    resp = requests.get(
-        f"{API_BASE}/media",
-        params={"search": Path(local_path).stem, "per_page": 10},
-        auth=(WP_USER, WP_APP_PASSWORD),
-        timeout=30,
-    )
-    if resp.ok:
-        for item in resp.json():
-            if item["source_url"] == wp_url:
-                return item["id"]
-    return None
 
 
 def slug_from_filename(stem: str) -> str:
@@ -147,15 +88,15 @@ def slug_from_filename(stem: str) -> str:
     return match.group(1) if match else stem
 
 
-def sync_post(filepath: Path, mapping: dict, media_mapping: dict) -> None:
+def sync_post(filepath: Path, mapping: dict) -> None:
     post = frontmatter.load(str(filepath))
     slug = slug_from_filename(filepath.stem)
 
     md_body = post.content
     html_body = markdown.markdown(md_body, extensions=["extra", "codehilite", "toc"])
 
-    # Upload local media and rewrite paths to WP URLs in the HTML
-    html_body = rewrite_local_media_in_html(html_body, media_mapping)
+    # Upload local media and rewrite paths to GitHub raw URLs in the HTML
+    html_body = rewrite_local_media_in_html(html_body)
 
     title = post.metadata.get("title", slug.replace("-", " ").title())
     status = post.metadata.get("status", "draft")
@@ -177,13 +118,6 @@ def sync_post(filepath: Path, mapping: dict, media_mapping: dict) -> None:
         payload["categories"] = get_or_create_terms("categories", categories)
     if tags:
         payload["tags"] = get_or_create_terms("tags", tags)
-
-    # Handle featured image
-    featured_image = post.metadata.get("featured_image")
-    if featured_image:
-        media_id = resolve_featured_image(featured_image, media_mapping)
-        if media_id:
-            payload["featured_media"] = media_id
 
     # Yoast SEO meta fields
     yoast_meta = {}
@@ -236,7 +170,6 @@ def main() -> None:
     changed_files_env = os.environ.get("CHANGED_FILES", "")
 
     mapping = load_json(MAPPING_FILE)
-    media_mapping = load_json(MEDIA_MAPPING_FILE)
 
     if changed_files_env:
         files = [
@@ -261,12 +194,11 @@ def main() -> None:
                 del mapping[slug]
             continue
         try:
-            sync_post(filepath, mapping, media_mapping)
+            sync_post(filepath, mapping)
         except Exception as exc:
             print(f"  Error syncing {filepath.name}: {exc}", file=sys.stderr)
 
     save_json(MAPPING_FILE, mapping)
-    save_json(MEDIA_MAPPING_FILE, media_mapping)
     print("Done.")
 
 

@@ -67,37 +67,37 @@ This setup bridges the gap between endpoint security and operational responsiven
 
 In my demo environment I want to enable all the people for the “Mark 8 Project Team” to be able to open Wireshark as an elevated user. For this I will create a “Elevation Rules Policy”, I am assuming here that EPM was already configured beforehand.
 
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-01.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-02.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-03.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-04.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-05.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-01.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-02.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-03.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-04.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-05.png)
 
 I start of in [Microsoft Intune](https://intune.microsoft.com/), where I navigate myself to the “Endpoint security”-blade. It is here we will find “Endpoint Privilege Management”. Where we will go to “Policies” and have the option to create a new “Elevation rules policy”.
 
 After going through the basics, we will have to fill in more detailed information about the package we are going to add to the rule. This information can be collected using the “EpmTools.dll”.
 
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-06.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-07.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-06.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-07.png)
 
 Using this tool it is even possible to extract the publisher certificates out of the file. These can be added to the reusable library.
 
 Finally, we will fill in all the necessary details about the file.
 
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-08.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-09.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-10.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-08.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-09.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-10.png)
 
 You can easily check if everything was configured correctly by checking it from a demo device. From the end-user perspective the “Run with elevated access”-option should be visible. After which, the elevation request should open.
 
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-11.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-12.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-13.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-14.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-11.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-12.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-13.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-14.png)
 
 For the Intune administrator the request should come into the “Elevation requests”-tab almost immediately.
 
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-15.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-15.png)
 
 This concludes the basic setup of EPM within this article. This is all we need to verify that there is date being picked up by the GraphAPI. To consume this data we will create an “App registration” in the next step.
 
@@ -107,28 +107,28 @@ First of all, we want to make sure that our data is being picked up in the Graph
 
 Through the [Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer), you can easily check the date under “deviceManagement/elevationRequests”.
 
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-16.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-16.png)
 
 Be aware to check that you are using the beta version of the api and that “DeviceManagementConfiguration.Read.All” has been granted to the Graph Explorer. Otherwise it will return a permission error.
 
 Creating an app registration is quite easy, but will allow us to grant these permissions there and not have to worry about authentication in our EPMChatbot.
 
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-17.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-18.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-19.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-17.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-18.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-19.png)
 
 Once this is done, we will configure the API permissions. As said above, the only permission we need is the “DeviceManagementConfiguration.Read.All”.
 
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-20.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-21.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-22.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-20.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-21.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-22.png)
 
 Make sure to also “Grant admin consent for <yourOrganisation>”.
 
 Our final step is to create the Client secret that can be used by our Azure Logic App.
 
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-23.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-24.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-23.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-24.png)
 
 Make sure to take note of the value and secret, as these will be redacted after the creation.
 
@@ -140,13 +140,13 @@ Finally, we will create an Azure Logic App that will poll the GraphAPI at a recu
 
 First things first, creating the Logic app. This is done through the [Azure Portal](https://portal.azure.com).
 
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-25.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-26.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-25.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-26.png)
 
 We will opt for a Consumption-based Logic App to create our MVP.
 
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-27.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-28.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-27.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-28.png)
 
 At last, we will use the Logic app designer. Here we will start by adding a trigger. Here we chose to go with a recurring moment. You can specify the time between this however you want.
 
@@ -154,18 +154,18 @@ Afterwards, we will collect the data from the GraphAPI. Using the information we
 
 Afterwards, we will Parse the JSON that is in the Body of our HTTP request. Here you can use the “Use sample payload to generate schema” option. Creating the schema for the JSON can be tedious task. By using the example output from our Graph Explorer test, we can do this in a heartbeat. Finally, we will use the “Post message in a chat or channel”-option from the Teams connector. You can see there are quite a few options like the UserPrincipalName, file name and so on. We have just used a minimum in this demo to make sure everything works as it should.
 
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-29.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-30.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-31.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-32.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-33.png)
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-34.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-29.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-30.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-31.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-32.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-33.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-34.png)
 
 ### The result!
 
 After all of these steps, the following message should appear within your Teams channel of choice, with a link that can send you straight to Intune portal.
 
-![](media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-35.png)
+![](../media/automating-epm-approvals-with-teams-and-azure-logic-apps/automating-epm-approvals-with-teams-and-azure-logic-apps-35.png)
 
 ## Conclusion
 
