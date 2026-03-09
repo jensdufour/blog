@@ -29,11 +29,11 @@ By default Microsoft Intune will create several restore points for each and ever
 
 The amount of restore points will never change and is two bi-weekly restore points and ten restore points you can adapt the recurrence of, this is done through a “User Setting”:
 
-![](media/2025/04/2025-04-07-13_01_06-usersetting-1024x587.png)
+![](media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-01.png)
 
 Once you are here, you can adapt the recurrence.
 
-![](media/2025/04/2025-04-07-13_02_42-usersetting-1024x585.png)
+![](media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-02.png)
 
 ## What about Storage Accounts?
 
@@ -60,21 +60,21 @@ There a few requirements to be met when creating a Storage Account for the Resto
 * **Networking**
   + **Network access**: **Enable public access from all networks**
 
-![](media/2025/04/2025-04-07-12_14_41-storageaccount.png)
-![](media/2025/04/2025-04-07-12_15_35-storageaccount-1024x586.png)
-![](media/2025/04/2025-04-07-12_17_09-storageaccount-1024x585.png)
-![](media/2025/04/2025-04-07-12_19_09-storageaccount-1024x585.png)
-![](media/2025/04/2025-04-07-12_20_03-storageaccount-1024x587.png)
-![](media/2025/04/2025-04-07-12_23_32-storageaccount-1024x586.png)
-![](media/2025/04/2025-04-07-12_24_50-storageaccount-1024x585.png)
-![](media/2025/04/2025-04-07-12_26_55-storageaccount-1024x586.png)
-![](media/2025/04/2025-04-07-12_27_29-storageaccount-1024x587.png)
+![](media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-03.png)
+![](media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-04.png)
+![](media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-05.png)
+![](media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-06.png)
+![](media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-07.png)
+![](media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-08.png)
+![](media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-09.png)
+![](media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-10.png)
+![](media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-11.png)
 
 ## Creating a manual Restore Point in Microsoft Intune
 
 Once the Storage Account has been set up, you have the option to create a manual restore point in Microsoft Intune.
 
-![](media/2025/04/2025-04-07-12_48_22-manualrestore-1024x585.png)
+![](media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-12.png)
 
 If this option is not visible, verify the requirements above as the Storage Account will not be visible if it does not meet these.
 
