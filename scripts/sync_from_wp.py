@@ -95,6 +95,31 @@ def get_featured_image_url(media_id: int) -> str | None:
     return None
 
 
+def fix_lazy_loaded_html(html: str) -> str:
+    """Fix lazy-loaded img tags by replacing data-src/data-srcset with src/srcset.
+
+    Many WordPress themes (e.g. Smush) replace src with a tiny SVG placeholder
+    and put the actual URL in data-src. This function reverses that.
+    """
+    def fix_img(match: re.Match) -> str:
+        tag = match.group(0)
+        # Replace data-src with src (removing old placeholder src first)
+        if "data-src=" in tag:
+            # Remove the placeholder src="data:image/svg+xml;..."
+            tag = re.sub(r'\s+src="data:image/svg\+xml[^"]*"', "", tag)
+            # Rename data-src to src
+            tag = tag.replace("data-src=", "src=")
+        # Replace data-srcset with srcset
+        if "data-srcset=" in tag:
+            tag = tag.replace("data-srcset=", "srcset=")
+        # Replace data-sizes with sizes
+        if "data-sizes=" in tag:
+            tag = tag.replace("data-sizes=", "sizes=")
+        return tag
+
+    return re.sub(r"<img[^>]+>", fix_img, html)
+
+
 def download_media(url: str, media_mapping: dict) -> str:
     """Download a media file and return its relative path from the repo root.
 
@@ -106,15 +131,19 @@ def download_media(url: str, media_mapping: dict) -> str:
             return local_path
 
     parsed = urlparse(url)
+    url_path = parsed.path
     # Preserve the WP uploads path structure: media/2026/03/image.jpg
-    wp_path = parsed.path
-    # Strip leading /wp-content/uploads/ if present
     uploads_prefix = "/wp-content/uploads/"
-    if uploads_prefix in wp_path:
-        relative = wp_path.split(uploads_prefix, 1)[1]
+    if uploads_prefix in url_path:
+        relative = url_path.split(uploads_prefix, 1)[1]
+    elif ".blob.core.windows.net/" in url:
+        # Azure Blob Storage: strip container prefix, keep date/file structure
+        # e.g. /blobjensdufourcfe713064b/2025/12/image.png → 2025/12/image.png
+        parts = url_path.lstrip("/").split("/", 1)
+        relative = parts[1] if len(parts) > 1 else parts[0]
     else:
         # Fallback: use the last path segment
-        relative = Path(wp_path).name
+        relative = Path(url_path).name
 
     local_path = f"media/{relative}"
     full_path = ROOT_DIR / local_path
@@ -125,8 +154,13 @@ def download_media(url: str, media_mapping: dict) -> str:
 
     full_path.parent.mkdir(parents=True, exist_ok=True)
 
-    resp = requests.get(url, timeout=60)
-    resp.raise_for_status()
+    try:
+        resp = requests.get(url, timeout=60)
+        resp.raise_for_status()
+    except requests.RequestException as exc:
+        print(f"    SKIP (download failed): {url[:100]} — {exc}")
+        return url  # Return original URL unchanged
+
     full_path.write_bytes(resp.content)
 
     media_mapping[url] = local_path
@@ -135,33 +169,27 @@ def download_media(url: str, media_mapping: dict) -> str:
 
 
 def rewrite_image_urls(html: str, media_mapping: dict) -> str:
-    """Find all image URLs in HTML and download them, rewriting to local paths."""
-    img_pattern = re.compile(r'(src|srcset)=["\']([^"\']+)["\']')
+    """Find all image URLs in HTML and download them, rewriting to local paths.
+
+    Only processes src attributes (not srcset) since Markdown only needs one
+    image per reference, not responsive variants.
+    """
+    # Remove srcset and sizes attributes entirely — not needed for Markdown
+    html = re.sub(r'\s+srcset="[^"]*"', "", html)
+    html = re.sub(r'\s+sizes="[^"]*"', "", html)
+
+    img_pattern = re.compile(r'src=["\']([^"\']+)["\']')
 
     def replace_url(match: re.Match) -> str:
-        attr = match.group(1)
-        url = match.group(2)
-        # Only process URLs from the WP site
-        if not url.startswith(WP_URL) and not url.startswith("/wp-content/"):
+        url = match.group(1)
+        # Skip data URIs and non-HTTP(S) URLs
+        if not url.startswith(("http://", "https://")):
             return match.group(0)
-        if url.startswith("/"):
-            url = WP_URL + url
-        # For srcset, individual entries may have width descriptors
-        if attr == "srcset":
-            parts = []
-            for entry in url.split(","):
-                entry = entry.strip()
-                pieces = entry.split()
-                img_url = pieces[0]
-                if img_url.startswith(WP_URL) or img_url.startswith("/wp-content/"):
-                    if img_url.startswith("/"):
-                        img_url = WP_URL + img_url
-                    local = download_media(img_url, media_mapping)
-                    pieces[0] = local
-                parts.append(" ".join(pieces))
-            return f'{attr}="{", ".join(parts)}"'
+        # Skip known non-downloadable URLs (e.g. VS Code internal resources)
+        if "vscode-resource" in url or "vscode-cdn.net" in url:
+            return match.group(0)
         local_path = download_media(url, media_mapping)
-        return f'{attr}="{local_path}"'
+        return f'src="{local_path}"'
 
     return img_pattern.sub(replace_url, html)
 
@@ -173,10 +201,10 @@ def rewrite_md_image_urls(md_text: str, media_mapping: dict) -> str:
     def replace_url(match: re.Match) -> str:
         alt_part = match.group(1)
         url = match.group(2)
-        if not url.startswith(WP_URL) and not url.startswith("/wp-content/"):
+        if not url.startswith(("http://", "https://")):
             return match.group(0)
-        if url.startswith("/"):
-            url = WP_URL + url
+        if "vscode-resource" in url or "vscode-cdn.net" in url:
+            return match.group(0)
         local_path = download_media(url, media_mapping)
         return f"{alt_part}({local_path})"
 
@@ -191,6 +219,9 @@ def wp_post_to_markdown(wp_post: dict, media_mapping: dict) -> tuple[str, str]:
     """
     slug = wp_post["slug"]
     html_content = wp_post["content"]["rendered"]
+
+    # Fix lazy-loaded images: swap data-src → src so real URLs are discovered
+    html_content = fix_lazy_loaded_html(html_content)
 
     # Download images referenced in the HTML before converting to Markdown
     html_content = rewrite_image_urls(html_content, media_mapping)
