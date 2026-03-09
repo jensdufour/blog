@@ -20,13 +20,7 @@ This creates:
 
 ### 2. Add screenshots
 
-Save Greenshot captures directly into the `media/<slug>/` folder using the naming convention:
-
-```
-media/my-article-title/my-article-title-01.png
-media/my-article-title/my-article-title-02.png
-...
-```
+Save Greenshot captures directly into the `media/<slug>/` folder — **any filename works**. The GitHub Actions workflow will automatically rename them to follow the convention (`<slug>-01.png`, `<slug>-02.png`, ...) and update your markdown references on push.
 
 ### 3. Write the post
 
@@ -70,6 +64,7 @@ blog/
 │       └── my-post-02.png
 ├── scripts/
 │   ├── new_post.py      # Scaffold a new post + media directory
+│   ├── rename_media.py  # Auto-rename images to <slug>-NN convention
 │   ├── sync_to_wp.py    # GitHub → WordPress sync
 │   └── requirements.txt
 ├── .github/workflows/
