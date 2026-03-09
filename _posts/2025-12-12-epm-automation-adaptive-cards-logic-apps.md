@@ -12,6 +12,9 @@ tags:
 - Logic Apps
 - Teams
 title: EPM Automation with Adaptive Cards
+seo_title: 'EPM Automation with Adaptive Cards and Logic Apps'
+meta_description: 'Build EPM automation with Adaptive Cards in Microsoft Teams. Approve or deny Intune elevation requests directly from Teams using Azure Logic Apps.'
+focus_keyphrase: 'EPM automation Adaptive Cards'
 ---
 
 ## Introduction

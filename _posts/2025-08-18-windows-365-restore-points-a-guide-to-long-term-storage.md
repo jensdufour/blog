@@ -11,6 +11,9 @@ tags:
 - Microsoft
 - Modern Device Management
 title: 'Windows 365 Restore Points: A Guide to Long-Term Storage'
+seo_title: 'Windows 365 Restore Points: Long-Term Storage with Azure'
+meta_description: 'Configure Windows 365 restore points and store them long-term with Azure Storage Accounts. A complete guide for Cloud PC backup management.'
+focus_keyphrase: 'Windows 365 restore points'
 ---
 
 Windows 365 is a service that provides a Windows Cloud experience, allowing users to access a Windows desktop from anywhere. One of the key features of Windows 365 is the ability to create restore points, which are snapshots of the system at a specific point in time. Let’s take a look at what those mean!

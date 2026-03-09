@@ -12,6 +12,9 @@ tags:
 - Microsoft
 - Modern Device Management
 title: 'Entra ID: The Magic Wand for Ubuntu 23.04 Authentication'
+seo_title: 'Entra ID Authentication for Ubuntu 23.04: Setup Guide'
+meta_description: 'Set up Microsoft Entra ID authentication on Ubuntu 23.04 with Intune enrollment. Covers app registration, authentication scripts, and device management.'
+focus_keyphrase: 'Entra ID Ubuntu authentication'
 ---
 
 ## Introduction

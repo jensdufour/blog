@@ -11,6 +11,9 @@ tags:
 - IAM
 - Microsoft
 title: Automating Ubuntu 24.04 LTS Entra ID Authentication
+seo_title: 'Automated Ubuntu Entra ID Authentication with Autoinstall'
+meta_description: 'Automate Ubuntu 24.04 LTS Entra ID authentication with autoinstall. Replace manual AuthD setup using a web-based configurator for zero-touch deployment.'
+focus_keyphrase: 'automated Ubuntu Entra ID authentication'
 ---
 
 ## Introduction to Automated Ubuntu Entra ID Authentication

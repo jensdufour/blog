@@ -16,6 +16,9 @@ tags:
 - Microsoft
 - Modern Device Management
 title: '[Update] Part 1: Entra ID Authentication with AuthD'
+seo_title: 'Entra ID Authentication with AuthD on Ubuntu 24.04 LTS'
+meta_description: 'Configure Entra ID authentication on Ubuntu 24.04 LTS using AuthD. Covers Azure app registration, MFA support, and offline credential caching.'
+focus_keyphrase: 'Entra ID authentication AuthD'
 ---
 
 ## Introduction to Entra ID Authentication

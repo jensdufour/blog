@@ -11,6 +11,9 @@ tags:
 - Microsoft
 - Modern Device Management
 title: Automating EPM Approvals with Teams and Azure Logic Apps
+seo_title: 'Automating EPM Approvals with Teams and Azure Logic Apps'
+meta_description: 'Automate EPM approvals using Azure Logic Apps and Microsoft Teams. Build a real-time notification and approval workflow for elevation requests.'
+focus_keyphrase: 'EPM approvals Logic Apps'
 ---
 
 ## Introduction

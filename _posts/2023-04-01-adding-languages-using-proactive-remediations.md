@@ -11,6 +11,9 @@ tags:
 - Microsoft
 - Modern Device Management
 title: Adding a language pack using Proactive remediations
+seo_title: 'Adding Language Packs Using Intune Proactive Remediations'
+meta_description: 'Learn how to add language packs to Windows devices using Intune Proactive Remediations. Step-by-step guide with detection and installation scripts.'
+focus_keyphrase: 'proactive remediations language pack'
 ---
 
 One of the features of Intune is Proactive Remediation. This allows administrators to create scripts that automatically fix issues on devices before users even notice them. Adding a language pack using Proactive Remediation script is a straightforward process. I will guide you through the steps in this article.
