@@ -15,7 +15,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
+
+      - name: Save base commit
+        id: base
+        run: echo "sha=$(git rev-parse HEAD~1)" >> "$GITHUB_OUTPUT"
 
       - uses: actions/setup-python@v5
         with:
@@ -24,10 +28,21 @@ jobs:
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
 
+      - name: Rename media to follow naming convention
+        run: python scripts/rename_media.py
+
+      - name: Commit renamed media
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _posts/ media/
+          git diff --cached --quiet || git commit -m "chore: rename media to follow naming convention"
+          git push
+
       - name: Detect changed post files
         id: changes
         run: |
-          CHANGED=$(git diff --name-only HEAD~1 HEAD -- '_posts/*.md' || true)
+          CHANGED=$(git diff --name-only ${{ steps.base.outputs.sha }} HEAD -- '_posts/*.md' || true)
           echo "files=$CHANGED" >> "$GITHUB_OUTPUT"
 
       - name: Sync to WordPress
