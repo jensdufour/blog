@@ -1,50 +1,42 @@
 {
-  "ubuntu-entra-id-authentication-authd-intune-guide": {
-    "wp_id": 821,
-    "content_hash": "e9345a1cd411f1be8579f11cafb6c6a6a515a9891214f0d7ed7c6e82a546cce2",
-    "source": "wordpress",
-    "wp_modified": "2026-02-04T14:05:21"
-  },
-  "ubuntu-intune-enrollment": {
-    "wp_id": 808,
-    "content_hash": "612e93b199b98c18d071fd0d69db205c716a950f225dee715ab60f4d8922fdb6",
-    "source": "wordpress",
-    "wp_modified": "2026-01-02T11:36:09"
-  },
-  "automated-ubuntu-entra-id-authentication": {
-    "wp_id": 826,
-    "content_hash": "d83ae785b4d6d9b49367b496d9c512bcd0000d04b5a5e4497d30c73bb4583ac3",
-    "source": "wordpress",
-    "wp_modified": "2026-01-02T11:36:02"
-  },
-  "epm-automation-adaptive-cards-logic-apps": {
-    "wp_id": 779,
-    "content_hash": "34331884bae942086284bcb84ffdb5e9558e3414cf6a3d1c03c6c15f0e0c3502",
-    "source": "wordpress",
-    "wp_modified": "2025-12-15T16:16:28"
-  },
-  "windows-365-restore-points-a-guide-to-long-term-storage": {
-    "wp_id": 619,
-    "content_hash": "d1fb9e1904c84d4f5cec4c53b3948a47f7a9eb612335cfbe0264c9be70d054bd",
-    "source": "wordpress",
-    "wp_modified": "2025-12-12T12:21:06"
-  },
-  "automating-epm-approvals-with-teams-and-azure-logic-apps": {
-    "wp_id": 676,
-    "content_hash": "64ba47fecf0e6143b8854aa787b56dbdf1ee622d6f29f5081185e8f51ccfbf17",
-    "source": "wordpress",
-    "wp_modified": "2025-12-15T16:18:42"
-  },
-  "entra-id-the-magic-wand-for-ubuntu-23-04-authentication": {
-    "wp_id": 226,
-    "content_hash": "020827a3b5b0109f6908978eec13e11a8979cdf8757787df25499e3de515aa42",
-    "source": "wordpress",
-    "wp_modified": "2025-12-12T11:47:16"
-  },
-  "adding-languages-using-proactive-remediations": {
-    "wp_id": 198,
-    "content_hash": "2da3aa3d572abac353a76707ee23bc2eb241dca623445485ca0177d26afdb038",
-    "source": "wordpress",
-    "wp_modified": "2025-12-12T11:36:20"
-  }
+    "ubuntu-entra-id-authentication-authd-intune-guide": {
+        "wp_id": 821,
+        "content_hash": "e9345a1cd411f1be8579f11cafb6c6a6a515a9891214f0d7ed7c6e82a546cce2",
+        "source": "github"
+    },
+    "ubuntu-intune-enrollment": {
+        "wp_id": 808,
+        "content_hash": "612e93b199b98c18d071fd0d69db205c716a950f225dee715ab60f4d8922fdb6",
+        "source": "github"
+    },
+    "automated-ubuntu-entra-id-authentication": {
+        "wp_id": 826,
+        "content_hash": "d83ae785b4d6d9b49367b496d9c512bcd0000d04b5a5e4497d30c73bb4583ac3",
+        "source": "github"
+    },
+    "epm-automation-adaptive-cards-logic-apps": {
+        "wp_id": 779,
+        "content_hash": "34331884bae942086284bcb84ffdb5e9558e3414cf6a3d1c03c6c15f0e0c3502",
+        "source": "github"
+    },
+    "windows-365-restore-points-a-guide-to-long-term-storage": {
+        "wp_id": 619,
+        "content_hash": "d1fb9e1904c84d4f5cec4c53b3948a47f7a9eb612335cfbe0264c9be70d054bd",
+        "source": "github"
+    },
+    "automating-epm-approvals-with-teams-and-azure-logic-apps": {
+        "wp_id": 676,
+        "content_hash": "64ba47fecf0e6143b8854aa787b56dbdf1ee622d6f29f5081185e8f51ccfbf17",
+        "source": "github"
+    },
+    "entra-id-the-magic-wand-for-ubuntu-23-04-authentication": {
+        "wp_id": 226,
+        "content_hash": "020827a3b5b0109f6908978eec13e11a8979cdf8757787df25499e3de515aa42",
+        "source": "github"
+    },
+    "adding-languages-using-proactive-remediations": {
+        "wp_id": 198,
+        "content_hash": "2da3aa3d572abac353a76707ee23bc2eb241dca623445485ca0177d26afdb038",
+        "source": "github"
+    }
 }
