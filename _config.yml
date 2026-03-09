@@ -12,6 +12,7 @@ kramdown:
 
 exclude:
   - scripts/
+  - theme/
   - .post-mapping.json
   - README.md
   - Gemfile
