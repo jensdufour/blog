@@ -79,14 +79,7 @@ def rewrite_local_media_in_html(html: str) -> str:
         raw_url = f"{GITHUB_RAW_BASE}/{local_path}"
         return f"{prefix}{raw_url}{suffix}"
 
-    html = pattern.sub(replace_match, html)
-    # Center all images
-    html = re.sub(
-        r'<img ',
-        '<img style="display:block;margin:0 auto;" ',
-        html,
-    )
-    return html
+    return pattern.sub(replace_match, html)
 
 
 def slug_from_filename(stem: str) -> str:
