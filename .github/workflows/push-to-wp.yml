@@ -31,12 +31,15 @@ jobs:
       - name: Rename media to follow naming convention
         run: python scripts/rename_media.py
 
-      - name: Commit renamed media
+      - name: Optimize images to WebP
+        run: python scripts/optimize_media.py
+
+      - name: Commit renamed and optimized media
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add _posts/ media/
-          git diff --cached --quiet || git commit -m "chore: rename media to follow naming convention"
+          git diff --cached --quiet || git commit -m "chore: rename and optimize media"
           git push
 
       - name: Detect changed post files

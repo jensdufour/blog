@@ -20,14 +20,14 @@ This creates:
 
 ### 2. Add screenshots
 
-Save Greenshot captures directly into the `media/<slug>/` folder — **any filename works**. The GitHub Actions workflow will automatically rename them to follow the convention (`<slug>-01.png`, `<slug>-02.png`, ...) and update your markdown references on push.
+Save Greenshot captures directly into the `media/<slug>/` folder — **any filename works**. The GitHub Actions workflow will automatically rename them to follow the convention (`<slug>-01.png`, `<slug>-02.png`, ...), convert them to WebP for smaller file sizes, and update your markdown references on push.
 
 ### 3. Write the post
 
 Reference images in your Markdown:
 
 ```markdown
-![Description of the screenshot](../media/my-article-title/my-article-title-01.png)
+![Description of the screenshot](../media/my-article-title/my-article-title-01.webp)
 ```
 
 ### 4. Publish
@@ -59,10 +59,11 @@ blog/
 ├── _layouts/            # Jekyll HTML layouts
 ├── media/               # All images, organized per article
 │   └── my-post/
-│       ├── my-post-01.png
-│       └── my-post-02.png
+│       ├── my-post-01.webp
+│       └── my-post-02.webp
 ├── scripts/
 │   ├── new_post.py      # Scaffold a new post + media directory
+│   ├── optimize_media.py # Convert images to WebP
 │   ├── rename_media.py  # Auto-rename images to <slug>-NN convention
 │   ├── sync_to_wp.py    # GitHub → WordPress sync
 │   └── requirements.txt
@@ -95,7 +96,7 @@ tags:
 
 Your Markdown content here.
 
-![Screenshot](../media/my-post-title/my-post-title-01.png)
+![Screenshot](../media/my-post-title/my-post-title-01.webp)
 ```
 
 ### Frontmatter fields

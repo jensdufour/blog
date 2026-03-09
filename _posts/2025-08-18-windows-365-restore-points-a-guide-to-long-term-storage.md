@@ -32,11 +32,11 @@ By default Microsoft Intune will create several restore points for each and ever
 
 The amount of restore points will never change and is two bi-weekly restore points and ten restore points you can adapt the recurrence of, this is done through a “User Setting”:
 
-![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-01.png)
+![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-01.webp)
 
 Once you are here, you can adapt the recurrence.
 
-![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-02.png)
+![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-02.webp)
 
 ## What about Storage Accounts?
 
@@ -63,21 +63,21 @@ There a few requirements to be met when creating a Storage Account for the Resto
 * **Networking**
   + **Network access**: **Enable public access from all networks**
 
-![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-03.png)
-![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-04.png)
-![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-05.png)
-![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-06.png)
-![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-07.png)
-![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-08.png)
-![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-09.png)
-![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-10.png)
-![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-11.png)
+![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-03.webp)
+![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-04.webp)
+![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-05.webp)
+![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-06.webp)
+![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-07.webp)
+![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-08.webp)
+![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-09.webp)
+![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-10.webp)
+![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-11.webp)
 
 ## Creating a manual Restore Point in Microsoft Intune
 
 Once the Storage Account has been set up, you have the option to create a manual restore point in Microsoft Intune.
 
-![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-12.png)
+![](../media/windows-365-restore-points-a-guide-to-long-term-storage/windows-365-restore-points-a-guide-to-long-term-storage-12.webp)
 
 If this option is not visible, verify the requirements above as the Storage Account will not be visible if it does not meet these.
 
