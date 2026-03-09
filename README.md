@@ -83,6 +83,9 @@ blog/
 title: 'My Post Title'
 date: '2026-03-09'
 status: draft
+seo_title: 'My Post Title - A Complete Guide'
+meta_description: 'Learn how to do X with step-by-step instructions.'
+focus_keyphrase: 'my post title'
 categories:
 - Tech
 - Tutorial
@@ -103,6 +106,9 @@ Your Markdown content here.
 | `title` | No | Post title (defaults to slug if omitted) |
 | `date` | No | Publish date in `YYYY-MM-DD` or ISO 8601 format |
 | `status` | No | `draft` or `publish` (defaults to `draft`) |
+| `seo_title` | No | Yoast SEO title override |
+| `meta_description` | No | Yoast meta description |
+| `focus_keyphrase` | No | Yoast focus keyphrase |
 | `featured_image` | No | Relative path to the featured image in `media/` |
 | `categories` | No | List of category names |
 | `tags` | No | List of tag names |

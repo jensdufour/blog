@@ -185,6 +185,20 @@ def sync_post(filepath: Path, mapping: dict, media_mapping: dict) -> None:
         if media_id:
             payload["featured_media"] = media_id
 
+    # Yoast SEO meta fields
+    yoast_meta = {}
+    seo_title = post.metadata.get("seo_title")
+    if seo_title:
+        yoast_meta["_yoast_wpseo_title"] = seo_title
+    meta_description = post.metadata.get("meta_description")
+    if meta_description:
+        yoast_meta["_yoast_wpseo_metadesc"] = meta_description
+    focus_keyphrase = post.metadata.get("focus_keyphrase")
+    if focus_keyphrase:
+        yoast_meta["_yoast_wpseo_focuskw"] = focus_keyphrase
+    if yoast_meta:
+        payload["meta"] = yoast_meta
+
     entry = mapping.get(slug, {})
     new_hash = content_hash(filepath.read_text(encoding="utf-8"))
 

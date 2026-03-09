@@ -59,6 +59,9 @@ def main() -> None:
 title: '{args.title}'
 date: '{today}'
 status: {args.status}
+seo_title: ''
+meta_description: ''
+focus_keyphrase: ''
 {categories_yaml}{tags_yaml}---
 
 ## Introduction
