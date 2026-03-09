@@ -1,13 +1,12 @@
 <?php
 /**
- * Theme setup and enqueue styles.
+ * Theme setup for FSE block theme.
  */
 
 function jdm_setup() {
-    add_theme_support('title-tag');
-    add_theme_support('post-thumbnails');
-    add_theme_support('html5', ['search-form', 'comment-form', 'comment-list', 'gallery', 'caption']);
-    add_theme_support('custom-logo');
+    add_theme_support('wp-block-styles');
+    add_theme_support('editor-styles');
+    add_editor_style('style.css');
 }
 add_action('after_setup_theme', 'jdm_setup');
 
@@ -67,11 +66,3 @@ remove_action('wp_head', 'rsd_link');
 remove_action('wp_head', 'wp_shortlink_wp_head');
 remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
-
-/* Remove block library CSS if not using blocks */
-function jdm_dequeue_block_styles() {
-    wp_dequeue_style('wp-block-library');
-    wp_dequeue_style('wp-block-library-theme');
-    wp_dequeue_style('global-styles');
-}
-add_action('wp_enqueue_scripts', 'jdm_dequeue_block_styles', 100);

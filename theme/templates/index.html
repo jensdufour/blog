@@ -1,0 +1,35 @@
+<!-- wp:template-part {"slug":"header","area":"header"} /-->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"constrained","contentSize":"48rem"},"style":{"spacing":{"padding":{"top":"2rem","bottom":"2rem"}}}} -->
+<main class="wp-block-group" style="padding-top:2rem;padding-bottom:2rem">
+
+  <!-- wp:query {"queryId":1,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","inherit":true}} -->
+  <div class="wp-block-query">
+
+    <!-- wp:post-template -->
+      <!-- wp:group {"style":{"spacing":{"padding":{"top":"1rem","bottom":"1rem"}},"border":{"bottom":{"color":"var(--wp--preset--color--border)","width":"1px"}}}} -->
+      <div class="wp-block-group" style="border-bottom-color:var(--wp--preset--color--border);border-bottom-width:1px;padding-top:1rem;padding-bottom:1rem">
+        <!-- wp:post-title {"isLink":true,"style":{"typography":{"fontSize":"1.2rem","fontWeight":"600"},"elements":{"link":{"color":{"text":"var(--wp--preset--color--text)"},":hover":{"color":{"text":"var(--wp--preset--color--accent)"}}}}}} /-->
+        <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"0.5rem"},"typography":{"fontSize":"0.9rem"}},"textColor":"muted"} -->
+        <div class="wp-block-group has-muted-color has-text-color" style="font-size:0.9rem">
+          <!-- wp:post-date {"format":"F j, Y"} /-->
+          <!-- wp:post-terms {"term":"category","separator":", ","prefix":"· "} /-->
+        </div>
+        <!-- /wp:group -->
+      </div>
+      <!-- /wp:group -->
+    <!-- /wp:post-template -->
+
+    <!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"2rem"}}}} -->
+      <!-- wp:query-pagination-previous {"label":"← Prev"} /-->
+      <!-- wp:query-pagination-numbers /-->
+      <!-- wp:query-pagination-next {"label":"Next →"} /-->
+    <!-- /wp:query-pagination -->
+
+  </div>
+  <!-- /wp:query -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","area":"footer"} /-->
