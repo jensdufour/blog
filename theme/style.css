@@ -209,6 +209,11 @@ th {
   color: var(--accent);
 }
 
+/* ── Sessionize embed: hide its generated heading (theme already shows page title) ── */
+.wp-block-post-content .sz-sessions--heading:first-child {
+  display: none;
+}
+
 /* ── Footer ── */
 .site-footer {
   position: relative;
