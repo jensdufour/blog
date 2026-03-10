@@ -234,9 +234,96 @@ header.wp-block-template-part {
   color: var(--accent);
 }
 
-/* ── Sessionize embed: hide its generated heading (theme already shows page title) ── */
+/* ── Sessionize embed: restyle as timeline ── */
 .wp-block-post-content .sz-caption {
   display: none;
+}
+
+.wp-block-post-content .sz-powered-by {
+  display: none;
+}
+
+.wp-block-post-content .sz-group {
+  position: relative;
+  padding-left: 2rem;
+  margin: 1.5rem 0;
+}
+
+.wp-block-post-content .sz-group::before {
+  content: "";
+  position: absolute;
+  left: 0.45rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: var(--border);
+}
+
+.wp-block-post-content .sz-group__title {
+  position: relative;
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  padding-top: 0.35rem;
+}
+
+.wp-block-post-content .sz-group__title::before {
+  content: "";
+  position: absolute;
+  left: calc(-2rem + 0.45rem + 1px);
+  transform: translateX(-50%);
+  top: 0.35rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.wp-block-post-content .sz-group__title:first-of-type::before {
+  box-shadow: 0 0 0 2px var(--accent), 0 0 0 5px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.wp-block-post-content .sz-item {
+  margin: 0 0 1.5rem 0;
+}
+
+.wp-block-post-content .sz-item__title {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  margin-bottom: 0.15rem;
+}
+
+.wp-block-post-content .sz-item__title:hover {
+  color: var(--accent);
+}
+
+.wp-block-post-content .sz-item__meta {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .wp-block-post-content .sz-group {
+    padding-left: 1.5rem;
+  }
+
+  .wp-block-post-content .sz-group__title::before {
+    left: calc(-1.5rem + 0.45rem + 1px);
+    width: 8px;
+    height: 8px;
+  }
+
+  .wp-block-post-content .sz-group::before {
+    left: 0.45rem;
+  }
 }
 
 /* ── Footer ── */
