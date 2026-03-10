@@ -75,6 +75,8 @@ Advising enterprise customers on modern device management and security. Leading 
 - Nerdio Valued Professional (NVP)
 - ITIL v4 Foundation, AXELOS (2019)
 
+For the most up-to-date list of my certifications, check my [LinkedIn profile](https://linkedin.com/in/JensDuFour).
+
 ## Speaking and Community
 
 I regularly speak at community events and conferences about device management, cloud security, and modern workplace topics. Check out my [Events](/events) page for upcoming and past sessions. Some highlights:
