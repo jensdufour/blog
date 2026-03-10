@@ -447,19 +447,21 @@ header.wp-block-template-part {
   align-items: center !important;
   justify-content: center !important;
   gap: 2rem !important;
-  text-align: center !important;
+  width: auto !important;
 }
 
-.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item {
-  display: flex !important;
-  justify-content: center !important;
-  width: 100% !important;
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content .wp-block-navigation-item {
+  display: block !important;
+  text-align: center !important;
+  width: auto !important;
 }
 
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item a {
   font-size: 1.5rem !important;
   font-weight: 600 !important;
   color: var(--text) !important;
+  display: inline-block !important;
+  text-align: center !important;
 }
 
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item a:hover {
@@ -481,6 +483,14 @@ header.wp-block-template-part {
   background: transparent !important;
   color: var(--text) !important;
   cursor: pointer !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+}
+
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-close svg {
+  display: block !important;
+  margin: 0 auto !important;
 }
 
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-close:hover {
