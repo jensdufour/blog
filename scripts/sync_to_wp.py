@@ -27,7 +27,7 @@ GITHUB_RAW_BASE = "https://raw.githubusercontent.com/jensdufour/blog/main"
 # Bump this version whenever the sync output format changes (e.g. Gutenberg
 # block conversion) so all posts are re-synced even if the source files haven't
 # changed.
-SYNC_FORMAT_VERSION = "2"
+SYNC_FORMAT_VERSION = "3"
 
 WP_URL = os.environ["WP_URL"].rstrip("/")
 WP_USER = os.environ["WP_USER"]
@@ -98,6 +98,65 @@ _TOP_LEVEL_RE = re.compile(
 )
 
 
+def _normalize_list_indent(md: str) -> str:
+    """Normalise list-item indentation so the Markdown library recognises
+    nesting.  Python-Markdown requires 4-space indentation for nested
+    lists, but the posts use 3-space indentation.  This function
+    re-indents every indented list line to 4-space multiples."""
+    lines = md.split("\n")
+    out: list[str] = []
+    for line in lines:
+        m = re.match(r"^( +)([-*+]|\d+[.)]) ", line)
+        if m:
+            spaces = len(m.group(1))
+            # Round up to the nearest multiple of 4
+            new_indent = ((spaces + 3) // 4) * 4
+            line = " " * new_indent + line.lstrip()
+        out.append(line)
+    return "\n".join(out)
+
+
+def _wrap_list_items(html: str) -> str:
+    """Wrap each <li>…</li> in <!-- wp:list-item --> comments.
+
+    Handles nested lists inside <li> elements.  WordPress Gutenberg expects
+    every list item (including ones that contain nested sub-lists) to be
+    wrapped in its own list-item block comment pair."""
+    result: list[str] = []
+    pos = 0
+    li_open = re.compile(r"<li[\s>]", re.IGNORECASE)
+
+    while pos < len(html):
+        m = li_open.search(html, pos)
+        if not m:
+            result.append(html[pos:])
+            break
+
+        # Text before this <li>
+        result.append(html[pos:m.start()])
+
+        # Find the matching </li>, respecting nested <li> tags
+        end = _find_closing_tag(html, "li", m.end())
+        li_html = html[m.start():end]
+
+        # Recursively wrap any nested <ul>/<ol> inside this <li>
+        inner_list = re.search(r"<[uo]l[\s>]", li_html)
+        if inner_list:
+            inner_start = inner_list.start()
+            # Find the nested list tag
+            nested_tag = "ul" if li_html[inner_list.start() + 1] == "u" else "ol"
+            nested_end = _find_closing_tag(li_html, nested_tag, inner_list.end())
+            nested_html = li_html[inner_start:nested_end]
+            # Wrap the nested list with its own wp:list block
+            wrapped_nested = _wrap_block(nested_tag, nested_html)
+            li_html = li_html[:inner_start] + "\n" + wrapped_nested + "\n" + li_html[nested_end:]
+
+        result.append(f"<!-- wp:list-item -->\n{li_html}\n<!-- /wp:list-item -->")
+        pos = end
+
+    return "".join(result)
+
+
 def _find_closing_tag(html: str, tag: str, start: int) -> int:
     """Return the end position of the matching closing tag for *tag*,
     correctly handling same-tag nesting (e.g. nested <ul> lists)."""
@@ -144,10 +203,12 @@ def _wrap_block(tag: str, el: str) -> str:
         return f'<!-- wp:heading {{"level":{level}}} -->\n{clean}\n<!-- /wp:heading -->'
 
     if tag == "ul":
-        return f"<!-- wp:list -->\n{el}\n<!-- /wp:list -->"
+        wrapped = _wrap_list_items(el)
+        return f"<!-- wp:list -->\n{wrapped}\n<!-- /wp:list -->"
 
     if tag == "ol":
-        return '<!-- wp:list {"ordered":true} -->\n' + el + "\n<!-- /wp:list -->"
+        wrapped = _wrap_list_items(el)
+        return '<!-- wp:list {"ordered":true} -->\n' + wrapped + "\n<!-- /wp:list -->"
 
     if tag == "blockquote":
         return f"<!-- wp:quote -->\n{el}\n<!-- /wp:quote -->"
@@ -223,6 +284,7 @@ def sync_post(filepath: Path, mapping: dict) -> None:
     slug = slug_from_filename(filepath.stem)
 
     md_body = post.content
+    md_body = _normalize_list_indent(md_body)
     html_body = markdown.markdown(md_body, extensions=["extra", "codehilite", "toc"])
 
     # Upload local media and rewrite paths to GitHub raw URLs in the HTML
