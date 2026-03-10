@@ -12,8 +12,7 @@ tags:
 - Entra ID
 - MDM
 - Compliance
-title: '[Update] Part 2: Enrolling Ubuntu 24.04 LTS in Microsoft Intune for Device
-  Management'
+title: 'Enrolling Ubuntu 24.04 LTS in Microsoft Intune for Device Management'
 seo_title: 'Enrolling Ubuntu 24.04 LTS in Microsoft Intune'
 meta_description: 'Enroll Ubuntu 24.04 LTS in Microsoft Intune for enterprise device management. Updated guide with registration, compliance, and management setup.'
 focus_keyphrase: 'Ubuntu Intune enrollment'
