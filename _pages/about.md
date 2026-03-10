@@ -79,13 +79,15 @@ For the most up-to-date list of my certifications, check my [LinkedIn profile](h
 
 ## Speaking and Community
 
-I regularly speak at community events and conferences about device management, cloud security, and modern workplace topics. Check out my [Events](/events) page for upcoming and past sessions. Some highlights:
+I regularly speak at community events and conferences about device management, cloud security, and modern workplace topics. Some highlights:
 
 - AVD Tech Fest 2025, Berlin, Germany
 - Workplace Ninjas UK 2025, Edinburgh, United Kingdom
 - Experts Live Netherlands 2024, Nieuwegein, The Netherlands
 - Techorama 2024, Antwerpen, Belgium
 - European MCT Summit 2024, Rijswijk, The Netherlands
+
+For all upcoming and past sessions, check out my [Events](/events) page.
 
 ## Education
 
