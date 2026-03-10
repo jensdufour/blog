@@ -25,8 +25,6 @@ I speak at community events and conferences across Europe about endpoint managem
 - Admin Bouncers: How Endpoint Privilege Management Keeps Your Local Admin Party Exclusive!
 - EPM Chatbot: Get Notified in Teams When a Request Comes In!
 
-<script type="text/javascript" src="https://sessionize.com/api/speaker/events/a3c1ddee-32d3-4f18-b0f9-d5c73952720f/0x1x3fb393x"></script>
-
 <script type="text/javascript" src="https://sessionize.com/api/speaker/events/kmcvwui9c0/0x1x3fb393x"></script>
 
 Interested in having me speak at your event? Head over to my [Contact](/contact) page.
