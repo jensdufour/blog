@@ -17,10 +17,12 @@ import requests
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 POSTS_DIR = ROOT_DIR / "_posts"
+PAGES_DIR = ROOT_DIR / "_pages"
 
 # Regex to parse Jekyll post filenames: YYYY-MM-DD-slug.md
 POST_FILENAME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}-(.+)$")
 MAPPING_FILE = ROOT_DIR / ".post-mapping.json"
+PAGE_MAPPING_FILE = ROOT_DIR / ".page-mapping.json"
 
 GITHUB_RAW_BASE = "https://raw.githubusercontent.com/jensdufour/blog/main"
 
@@ -398,6 +400,95 @@ def cleanup_stale_mappings(mapping: dict, current_slugs: set[str]) -> None:
         del mapping[slug]
 
 
+def sync_page(filepath: Path, mapping: dict) -> None:
+    """Sync a single Markdown page to WordPress as a Page."""
+    page = frontmatter.load(str(filepath))
+    slug = filepath.stem  # pages use filename directly as slug
+
+    md_body = page.content
+    md_body = _normalize_list_indent(md_body)
+    html_body = markdown.markdown(md_body, extensions=["extra", "codehilite", "toc"])
+    html_body = rewrite_local_media_in_html(html_body)
+    html_body = html_to_gutenberg_blocks(html_body)
+
+    title = page.metadata.get("title", slug.replace("-", " ").title())
+    status = page.metadata.get("status", "draft")
+    meta_description = page.metadata.get("meta_description", "")
+
+    payload = {
+        "title": title,
+        "content": html_body,
+        "slug": slug,
+        "status": status,
+        "excerpt": meta_description,
+    }
+
+    # Yoast SEO meta fields
+    yoast_meta = {}
+    seo_title = page.metadata.get("seo_title")
+    if seo_title:
+        yoast_meta["_yoast_wpseo_title"] = seo_title
+    if meta_description:
+        yoast_meta["_yoast_wpseo_metadesc"] = meta_description
+    focus_keyphrase = page.metadata.get("focus_keyphrase")
+    if focus_keyphrase:
+        yoast_meta["_yoast_wpseo_focuskw"] = focus_keyphrase
+    if yoast_meta:
+        payload["meta"] = yoast_meta
+
+    entry = mapping.get(slug, {})
+    new_hash = content_hash(SYNC_FORMAT_VERSION + filepath.read_text(encoding="utf-8"))
+
+    if entry.get("content_hash") == new_hash and entry.get("source") == "github":
+        print(f"  Skipping page {slug} (unchanged)")
+        return
+
+    page_id = entry.get("wp_id")
+
+    if page_id:
+        resp = requests.post(
+            f"{API_BASE}/pages/{page_id}", json=payload,
+            auth=(WP_USER, WP_APP_PASSWORD), timeout=30,
+        )
+    else:
+        resp = requests.post(
+            f"{API_BASE}/pages", json=payload,
+            auth=(WP_USER, WP_APP_PASSWORD), timeout=30,
+        )
+
+    resp.raise_for_status()
+    data = resp.json()
+
+    mapping[slug] = {
+        "wp_id": data["id"],
+        "content_hash": new_hash,
+        "source": "github",
+        "wp_modified": data["modified"],
+    }
+    action = "Updated" if page_id else "Created"
+    print(f"  {action} page '{title}' (ID: {data['id']})")
+
+
+def cleanup_stale_pages(mapping: dict, current_slugs: set[str]) -> None:
+    """Delete WordPress pages whose source files were removed or renamed."""
+    stale_slugs = [s for s in mapping if s not in current_slugs]
+    for slug in stale_slugs:
+        wp_id = mapping[slug].get("wp_id")
+        if wp_id:
+            print(f"  Deleting orphaned WP page: {slug} (ID: {wp_id})")
+            try:
+                resp = requests.delete(
+                    f"{API_BASE}/pages/{wp_id}",
+                    params={"force": True},
+                    auth=(WP_USER, WP_APP_PASSWORD),
+                    timeout=30,
+                )
+                resp.raise_for_status()
+            except Exception as exc:
+                print(f"  Warning: could not delete WP page {wp_id}: {exc}", file=sys.stderr)
+        del mapping[slug]
+
+
 def main() -> None:
     mapping = load_json(MAPPING_FILE)
 
@@ -405,22 +496,40 @@ def main() -> None:
 
     if not files:
         print("No posts to sync.")
-        return
+    else:
+        current_slugs = {slug_from_filename(f.stem) for f in files}
 
-    current_slugs = {slug_from_filename(f.stem) for f in files}
+        # Remove mapping entries (and WP posts) for deleted/renamed files
+        cleanup_stale_mappings(mapping, current_slugs)
 
-    # Remove mapping entries (and WP posts) for deleted/renamed files
-    cleanup_stale_mappings(mapping, current_slugs)
+        print(f"Syncing {len(files)} post(s) to WordPress...")
 
-    print(f"Syncing {len(files)} post(s) to WordPress...")
+        for filepath in files:
+            try:
+                sync_post(filepath, mapping)
+            except Exception as exc:
+                print(f"  Error syncing {filepath.name}: {exc}", file=sys.stderr)
 
-    for filepath in files:
-        try:
-            sync_post(filepath, mapping)
-        except Exception as exc:
-            print(f"  Error syncing {filepath.name}: {exc}", file=sys.stderr)
+        save_json(MAPPING_FILE, mapping)
 
-    save_json(MAPPING_FILE, mapping)
+    # Sync pages
+    page_mapping = load_json(PAGE_MAPPING_FILE)
+    page_files = sorted(PAGES_DIR.glob("*.md")) if PAGES_DIR.exists() else []
+
+    if page_files:
+        current_page_slugs = {f.stem for f in page_files}
+        cleanup_stale_pages(page_mapping, current_page_slugs)
+
+        print(f"Syncing {len(page_files)} page(s) to WordPress...")
+
+        for filepath in page_files:
+            try:
+                sync_page(filepath, page_mapping)
+            except Exception as exc:
+                print(f"  Error syncing page {filepath.name}: {exc}", file=sys.stderr)
+
+        save_json(PAGE_MAPPING_FILE, page_mapping)
+
     print("Done.")
 
 
