@@ -7,6 +7,7 @@ function jdm_setup() {
     add_theme_support('wp-block-styles');
     add_theme_support('editor-styles');
     add_editor_style('style.css');
+    add_theme_support('comments');
 }
 add_action('after_setup_theme', 'jdm_setup');
 

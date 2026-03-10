@@ -4,7 +4,7 @@ Theme URI: https://github.com/jensdufour/blog
 Author: Jens Du Four
 Author URI: https://jensdufour.be
 Description: A minimalist FSE blog theme with dark/light mode toggle.
-Version: 2.1.0
+Version: 2.2.0
 Requires at least: 6.2
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -87,6 +87,16 @@ a {
 a:hover {
   color: var(--accent);
   text-decoration: underline;
+}
+
+/* ── Accent highlight for post titles ── */
+.wp-block-post-title a:hover,
+.wp-block-heading a:hover {
+  color: var(--accent);
+}
+
+.wp-block-post-date {
+  color: var(--muted);
 }
 
 /* ── Header ── */
@@ -200,6 +210,98 @@ th {
 }
 
 /* ── Footer ── */
+.site-footer {
+  position: relative;
+}
+
+.footer-accent-bar {
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), #a371f7, var(--accent));
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
 .cert-grid {
   opacity: 0.9;
+}
+
+.site-footer a:hover {
+  color: var(--accent) !important;
+}
+
+/* ── Comments ── */
+.wp-block-comments {
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.wp-block-comment-template li {
+  list-style: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.wp-block-comment-template li:last-child {
+  border-bottom: none;
+}
+
+.wp-block-avatar img {
+  border-radius: 50%;
+}
+
+.comment-reply-link {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.wp-block-post-comments-form textarea {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 0.75rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+
+.wp-block-post-comments-form textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.wp-block-post-comments-form input[type="text"],
+.wp-block-post-comments-form input[type="email"],
+.wp-block-post-comments-form input[type="url"] {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 0.5rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+
+.wp-block-post-comments-form input[type="text"]:focus,
+.wp-block-post-comments-form input[type="email"]:focus,
+.wp-block-post-comments-form input[type="url"]:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.wp-block-post-comments-form .form-submit input[type="submit"] {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.wp-block-post-comments-form .form-submit input[type="submit"]:hover {
+  opacity: 0.85;
 }

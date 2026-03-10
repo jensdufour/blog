@@ -24,6 +24,40 @@
     </div>
     <!-- /wp:group -->
 
+    <!-- wp:comments {"style":{"spacing":{"margin":{"top":"2.5rem"}}}} -->
+    <div class="wp-block-comments" style="margin-top:2.5rem">
+
+        <!-- wp:heading {"level":2,"style":{"typography":{"fontSize":"1.2rem","fontWeight":"600"},"spacing":{"margin":{"bottom":"1rem"}}}} -->
+        <h2 class="wp-block-heading" style="font-size:1.2rem;font-weight:600;margin-bottom:1rem">Comments</h2>
+        <!-- /wp:heading -->
+
+        <!-- wp:comment-template -->
+            <!-- wp:group {"style":{"spacing":{"padding":{"top":"0.75rem","bottom":"0.75rem"},"margin":{"bottom":"0"}}}} -->
+            <div class="wp-block-group" style="padding-top:0.75rem;padding-bottom:0.75rem;margin-bottom:0">
+                <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap"},"style":{"spacing":{"blockGap":"0.5rem"}}} -->
+                <div class="wp-block-group">
+                    <!-- wp:avatar {"size":32,"style":{"border":{"radius":"50%"}}} /-->
+                    <!-- wp:comment-author-name {"style":{"typography":{"fontWeight":"600","fontSize":"0.9rem"}}} /-->
+                    <!-- wp:comment-date {"style":{"typography":{"fontSize":"0.8rem"}},"textColor":"muted"} /-->
+                </div>
+                <!-- /wp:group -->
+                <!-- wp:comment-content {"style":{"typography":{"fontSize":"0.95rem"},"spacing":{"margin":{"top":"0.35rem"}}}} /-->
+                <!-- wp:comment-reply-link {"style":{"typography":{"fontSize":"0.8rem"}}} /-->
+            </div>
+            <!-- /wp:group -->
+        <!-- /wp:comment-template -->
+
+        <!-- wp:comments-pagination {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"1rem"}}}} -->
+            <!-- wp:comments-pagination-previous /-->
+            <!-- wp:comments-pagination-numbers /-->
+            <!-- wp:comments-pagination-next /-->
+        <!-- /wp:comments-pagination -->
+
+        <!-- wp:post-comments-form /-->
+
+    </div>
+    <!-- /wp:comments -->
+
 </main>
 <!-- /wp:group -->
 
