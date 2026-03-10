@@ -14,11 +14,11 @@ My role sits between customers and the product teams at Microsoft. I help custom
 
 ## What I Do
 
-- **Device management and security**: Helping organizations enroll, configure, and protect their devices from the cloud, replacing traditional on-premises infrastructure
-- **Identity and access**: Setting up secure sign-in experiences and access policies so the right people get access to the right resources
-- **Customer workshops**: Running hands-on sessions where I help teams design a solution that fits their specific needs and constraints
-- **Prototyping and automation**: Building quick proofs of concept and automating repetitive tasks using PowerShell, Azure Automation, and Copilot Studio
-- **Listening and improving**: Collecting feedback from real-world deployments and working with product teams to turn that into better products and documentation
+- **Device management and security**: Organizations move from legacy on-premises tools to cloud-based device management, gaining better security and lower operational overhead
+- **Identity and access**: Users get seamless, secure sign-in experiences while the right access policies keep company resources protected
+- **Customer workshops**: Teams walk away with a concrete solution design tailored to their specific needs and constraints
+- **Prototyping and automation**: Customers see working proofs of concept quickly, so they can make confident decisions before committing to a full rollout
+- **Product feedback loop**: Real-world deployment lessons feed directly into better products and documentation for the broader community
 
 ## Experience
 
@@ -29,11 +29,10 @@ My role sits between customers and the product teams at Microsoft. I help custom
 <div class="timeline-title">Cloud Endpoint Solution Engineer</div>
 <div class="timeline-subtitle">Microsoft, Zaventem, Belgium</div>
 <div class="timeline-content">
-Advising enterprise customers on modern device management and security. Leading workshops, resolving deployment challenges, and turning lessons from the field into guidance and product improvements.
 <ul>
-<li><strong>Retail (27,000 frontline workers)</strong>: Led a large project to move a retail organization from legacy on-premises tools to a fully cloud-based setup for device management, security, and virtual desktops. Created a playbook and workaround catalogue that removed recurring blockers and helped the customer move forward with confidence.</li>
-<li><strong>Defense (global, highly regulated)</strong>: Worked with a defense organization operating under strict regulations. Designed and validated an approach using supported tools that was later accepted by Microsoft engineering as an officially supported method.</li>
-<li><strong>Rapid prototyping</strong>: Built working demos using AI tools and automation scripts so customers could quickly evaluate whether a solution would work for them before committing to a full rollout.</li>
+<li><strong>Retail (27,000 frontline workers)</strong>: Enabled a retail organization to fully transition from legacy on-premises tools to cloud-based device management, security, and virtual desktops. A playbook and workaround catalogue removed recurring blockers and unblocked the rollout.</li>
+<li><strong>Defense (global, highly regulated)</strong>: Delivered a validated approach for a defense organization under strict regulations that was accepted by Microsoft engineering as an officially supported method.</li>
+<li><strong>Rapid prototyping</strong>: Customers evaluate working proofs of concept quickly, allowing confident go/no-go decisions before committing to full rollouts.</li>
 </ul>
 </div>
 </div>
@@ -42,42 +41,42 @@ Advising enterprise customers on modern device management and security. Leading 
 <div class="timeline-date">Jan 2017 to Present</div>
 <div class="timeline-title">Teacher</div>
 <div class="timeline-subtitle">CodeFever, Aalst, Belgium</div>
-<div class="timeline-content">Teaching children aged 8 to 15 across multiple locations in Flanders. Using interactive games to explain computer logic, algorithms, and computational thinking. Creating a playful learning environment that encourages experimentation and growth.</div>
+<div class="timeline-content">Children aged 8 to 15 across Flanders learn computational thinking through interactive games, building tangible programming skills in a playful environment that encourages experimentation.</div>
 </div>
 
 <div class="timeline-item">
 <div class="timeline-date">May 2021 to Jun 2021</div>
 <div class="timeline-title">System Engineer</div>
 <div class="timeline-subtitle">ESC, Nazareth, Belgium</div>
-<div class="timeline-content">Delivered infrastructure projects for small and medium-sized businesses, including networking, business applications, and custom solutions.</div>
+<div class="timeline-content">Small and medium-sized businesses received end-to-end infrastructure solutions covering networking, business applications, and custom integrations.</div>
 </div>
 
 <div class="timeline-item">
 <div class="timeline-date">Jun 2020 to Jun 2021</div>
 <div class="timeline-title">General Manager</div>
 <div class="timeline-subtitle">Ident-IT, Ghent, Belgium</div>
-<div class="timeline-content">Managed a provider of network solutions for both fixed and temporary projects, from small WiFi setups to secure business networks with video surveillance. Delivered customized solutions tailored to each client's needs.</div>
+<div class="timeline-content">Clients received customized network solutions ranging from small WiFi setups to secure business networks with video surveillance, for both fixed and temporary projects.</div>
 </div>
 
 <div class="timeline-item">
 <div class="timeline-date">Sep 2019 to May 2021</div>
 <div class="timeline-title">On-Site Support Analyst</div>
 <div class="timeline-subtitle">Danone (via Axxes), Brussels, Belgium</div>
-<div class="timeline-content">Led the Windows 10 migration across Western Europe and helped move device management from older tools (Workspace ONE, Altiris) to Microsoft Intune.</div>
+<div class="timeline-content">Western European offices successfully migrated to Windows 10 and transitioned device management from legacy tools (Workspace ONE, Altiris) to Microsoft Intune.</div>
 </div>
 
 <div class="timeline-item">
 <div class="timeline-date">Aug 2019 to May 2021</div>
 <div class="timeline-title">IT Consultant</div>
 <div class="timeline-subtitle">Axxes, Antwerp, Belgium</div>
-<div class="timeline-content">Completed an intensive training program covering Windows Server, PowerShell, ITIL, Linux, VMWare, Office 365, Azure, networking, SCCM, and Apple device management. Deployed as a consultant to support enterprise clients with infrastructure and endpoint solutions.</div>
+<div class="timeline-content">Enterprise clients received infrastructure and endpoint support, backed by a broad foundation across Windows Server, PowerShell, ITIL, Linux, VMWare, Office 365, Azure, networking, SCCM, and Apple device management.</div>
 </div>
 
 <div class="timeline-item">
 <div class="timeline-date">Feb 2019 to May 2019</div>
 <div class="timeline-title">Trainee</div>
 <div class="timeline-subtitle">delaware, Harbin, China</div>
-<div class="timeline-content">Supported multiple offices in China and external clients as part of the internal IT team. Configured software for end-users, troubleshot network issues, managed Windows servers, and maintained virtual machines.</div>
+<div class="timeline-content">Multiple offices across China and external clients stayed operational through end-user software configuration, network troubleshooting, Windows server management, and virtual machine maintenance.</div>
 </div>
 
 </div>
