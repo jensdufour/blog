@@ -5,7 +5,7 @@
     "title": "Timeline",
     "category": "widgets",
     "description": "A vertical timeline displaying items with dates, titles, subtitles, and content.",
-    "textdomain": "jdm-theme",
+    "textdomain": "minimalist-blog",
     "attributes": {
         "items": {
             "type": "array",
