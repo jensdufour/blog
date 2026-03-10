@@ -344,6 +344,44 @@ header.wp-block-template-part {
   opacity: 0.85;
 }
 
+/* ── Navigation overlay (mobile hamburger → full-page centered) ── */
+.wp-block-navigation__responsive-container.is-menu-open {
+  background: var(--bg) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+}
+
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation__responsive-container-content {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 2rem !important;
+}
+
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation-item a {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: var(--text) !important;
+}
+
+.wp-block-navigation__responsive-container.is-menu-open
+  .wp-block-navigation-item a:hover {
+  color: var(--accent) !important;
+}
+
+.wp-block-navigation__responsive-container-close {
+  color: var(--text) !important;
+}
+
+.wp-block-navigation__responsive-container-open {
+  color: var(--text) !important;
+}
+
 /* ── Mobile responsive ── */
 @media (max-width: 600px) {
   .is-position-sticky {
