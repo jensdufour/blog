@@ -26,7 +26,7 @@ My role sits between customers and the product teams at Microsoft. I help custom
 
 <div class="timeline-item current">
 <div class="timeline-date">Jul 2021 to Present</div>
-<div class="timeline-title">Cloud Endpoint Technical Specialist</div>
+<div class="timeline-title">Cloud Endpoint Solution Engineer</div>
 <div class="timeline-subtitle">Microsoft, Zaventem, Belgium</div>
 <div class="timeline-content">
 Advising enterprise customers on modern device management and security. Leading workshops, resolving deployment challenges, and turning lessons from the field into guidance and product improvements.
@@ -38,11 +38,25 @@ Advising enterprise customers on modern device management and security. Leading 
 </div>
 </div>
 
+<div class="timeline-item current">
+<div class="timeline-date">Jan 2017 to Present</div>
+<div class="timeline-title">Teacher</div>
+<div class="timeline-subtitle">CodeFever, Aalst, Belgium</div>
+<div class="timeline-content">Teaching children aged 8 to 15 across multiple locations in Flanders. Using interactive games to explain computer logic, algorithms, and computational thinking. Creating a playful learning environment that encourages experimentation and growth.</div>
+</div>
+
 <div class="timeline-item">
 <div class="timeline-date">May 2021 to Jun 2021</div>
 <div class="timeline-title">System Engineer</div>
 <div class="timeline-subtitle">ESC, Nazareth, Belgium</div>
 <div class="timeline-content">Delivered infrastructure projects for small and medium-sized businesses, including networking, business applications, and custom solutions.</div>
+</div>
+
+<div class="timeline-item">
+<div class="timeline-date">Jun 2020 to Jun 2021</div>
+<div class="timeline-title">General Manager</div>
+<div class="timeline-subtitle">Ident-IT, Ghent, Belgium</div>
+<div class="timeline-content">Managed a provider of network solutions for both fixed and temporary projects, from small WiFi setups to secure business networks with video surveillance. Delivered customized solutions tailored to each client's needs.</div>
 </div>
 
 <div class="timeline-item">
@@ -54,14 +68,16 @@ Advising enterprise customers on modern device management and security. Leading 
 
 <div class="timeline-item">
 <div class="timeline-date">Aug 2019 to May 2021</div>
-<div class="timeline-title">ICT Consultant</div>
+<div class="timeline-title">IT Consultant</div>
 <div class="timeline-subtitle">Axxes, Antwerp, Belgium</div>
+<div class="timeline-content">Completed an intensive training program covering Windows Server, PowerShell, ITIL, Linux, VMWare, Office 365, Azure, networking, SCCM, and Apple device management. Deployed as a consultant to support enterprise clients with infrastructure and endpoint solutions.</div>
 </div>
 
 <div class="timeline-item">
 <div class="timeline-date">Feb 2019 to May 2019</div>
 <div class="timeline-title">Trainee</div>
 <div class="timeline-subtitle">delaware, Harbin, China</div>
+<div class="timeline-content">Supported multiple offices in China and external clients as part of the internal IT team. Configured software for end-users, troubleshot network issues, managed Windows servers, and maintained virtual machines.</div>
 </div>
 
 </div>
@@ -72,6 +88,8 @@ Advising enterprise customers on modern device management and security. Leading 
 - Azure Virtual Desktop Specialty, Microsoft (2022)
 - Microsoft 365 Enterprise Administrator Expert, Microsoft (2021)
 - Microsoft Certified Trainer (2020)
+- Cloud Endpoint TS Elite, Microsoft
+- Security, Compliance, and Identity Fundamentals (SC-900), Microsoft
 - Nerdio Valued Professional (NVP)
 - ITIL v4 Foundation, AXELOS (2019)
 
