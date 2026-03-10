@@ -200,6 +200,8 @@ h1.wp-block-heading a:hover {
 
 /* ── Sticky header ── */
 .is-position-sticky {
+  position: sticky;
+  top: 0;
   background: var(--bg);
   z-index: 100;
 }
