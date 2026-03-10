@@ -1,17 +1,23 @@
-<!-- wp:group {"layout":{"type":"constrained","contentSize":"48rem"},"style":{"spacing":{"padding":{"bottom":"1rem"}},"border":{"bottom":{"color":"var(--wp--preset--color--border)","width":"1px"}}}} -->
+<!-- wp:group {"layout":{"type":"constrained","contentSize":"48rem"},"style":{"spacing":{"padding":{"top":"1.5rem","bottom":"1.5rem"}},"border":{"bottom":{"color":"var(--wp--preset--color--border)","width":"1px"}}}} -->
 <div class="wp-block-group"
-  style="border-bottom-color:var(--wp--preset--color--border);border-bottom-width:1px;padding-bottom:1rem">
+  style="border-bottom-color:var(--wp--preset--color--border);border-bottom-width:1px;padding-top:1.5rem;padding-bottom:1.5rem">
 
-  <!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"nowrap"}} -->
+  <!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between","verticalAlignment":"center","flexWrap":"nowrap"}} -->
   <div class="wp-block-group">
 
-    <!-- wp:site-title {"style":{"typography":{"fontSize":"1.5rem","fontWeight":"600"},"elements":{"link":{"color":{"text":"var(--wp--preset--color--text)"},":hover":{"typography":{"textDecoration":"none"}}}}}} /-->
+    <!-- wp:group {"layout":{"type":"flex","orientation":"vertical"},"style":{"spacing":{"blockGap":"0"}}} -->
+    <div class="wp-block-group">
+      <!-- wp:heading {"level":1,"style":{"typography":{"fontSize":"1.4rem","fontWeight":"700","lineHeight":"1.2"},"elements":{"link":{"color":{"text":"var(--wp--preset--color--text)"},":hover":{"color":{"text":"var(--wp--preset--color--accent)"},"typography":{"textDecoration":"none"}}}}}} -->
+      <h1 class="wp-block-heading" style="font-size:1.4rem;font-weight:700;line-height:1.2"><a href="/">Jens Du Four</a></h1>
+      <!-- /wp:heading -->
+      <!-- wp:site-tagline {"style":{"typography":{"fontSize":"0.8rem"},"color":{"text":"var(--wp--preset--color--muted)"}}} /-->
+    </div>
+    <!-- /wp:group -->
 
-    <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right"},"style":{"spacing":{"blockGap":"1.5rem"}}} -->
+    <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"right","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"1.25rem"}}} -->
     <div class="wp-block-group">
 
-      <!-- wp:navigation {"layout":{"type":"flex","justifyContent":"right"},"style":{"typography":{"fontSize":"0.95rem"},"spacing":{"blockGap":"1.5rem"}}} -->
-      <!-- wp:navigation-link {"label":"Blog","url":"/","kind":"custom","isTopLevelLink":true} /-->
+      <!-- wp:navigation {"layout":{"type":"flex","justifyContent":"right"},"style":{"typography":{"fontSize":"0.9rem","fontWeight":"500"},"spacing":{"blockGap":"1.5rem"}}} -->
       <!-- wp:navigation-link {"label":"Events","url":"/events","kind":"custom","isTopLevelLink":true} /-->
       <!-- /wp:navigation -->
 
