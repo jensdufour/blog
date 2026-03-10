@@ -24,6 +24,11 @@ MAPPING_FILE = ROOT_DIR / ".post-mapping.json"
 
 GITHUB_RAW_BASE = "https://raw.githubusercontent.com/jensdufour/blog/main"
 
+# Bump this version whenever the sync output format changes (e.g. Gutenberg
+# block conversion) so all posts are re-synced even if the source files haven't
+# changed.
+SYNC_FORMAT_VERSION = "2"
+
 WP_URL = os.environ["WP_URL"].rstrip("/")
 WP_USER = os.environ["WP_USER"]
 WP_APP_PASSWORD = os.environ["WP_APP_PASSWORD"]
@@ -264,7 +269,7 @@ def sync_post(filepath: Path, mapping: dict) -> None:
         payload["meta"] = yoast_meta
 
     entry = mapping.get(slug, {})
-    new_hash = content_hash(filepath.read_text(encoding="utf-8"))
+    new_hash = content_hash(SYNC_FORMAT_VERSION + filepath.read_text(encoding="utf-8"))
 
     if entry.get("content_hash") == new_hash and entry.get("source") == "github":
         print(f"  Skipping {slug} (unchanged)")
