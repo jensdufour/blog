@@ -210,7 +210,7 @@ th {
 }
 
 /* ── Sessionize embed: hide its generated heading (theme already shows page title) ── */
-.wp-block-post-content .sz-sessions--heading:first-child {
+.wp-block-post-content .sz-caption {
   display: none;
 }
 
