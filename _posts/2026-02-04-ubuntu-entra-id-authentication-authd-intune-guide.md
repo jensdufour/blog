@@ -4,7 +4,7 @@ categories:
 - Microsoft
 - Technology
 date: '2026-02-04T14:05:21'
-status: draft
+status: publish
 tags:
 - Entra ID
 - AuthD
@@ -219,7 +219,7 @@ Add the required Microsoft Graph permissions:
    * `User.Read`: Read user profile
    * `offline_access`: Refresh tokens for offline access
    * `openid`: OpenID Connect authentication
-   * `profile:` Read user profile information
+   * `profile`: Read user profile information
 4. Click **Grant admin consent** for your organization
 
 ### Step 3: Enable Public Client Flow
@@ -310,15 +310,6 @@ sudo chmod 700 /etc/authd/brokers.d
 # Copy broker declaration from the snap package
 sudo cp /snap/authd-msentraid/current/conf/authd/msentraid.conf /etc/authd/brokers.d/
 sudo chmod 600 /etc/authd/brokers.d/msentraid.conf
-
-# Edit the real broker config (tenant + client ID)
-sudo nano /var/snap/authd-msentraid/current/broker.conf
-sudo chmod 600 /var/snap/authd-msentraid/current/broker.conf
-sudo chmod 700 /var/snap/authd-msentraid/current
-
-# Restart services
-sudo systemctl restart authd
-sudo snap restart authd-msentraid
 ```
 
 ### Step 2: Configure the Broker
@@ -381,6 +372,10 @@ LOGIN_TIMEOUT 120
 Apply the configuration:
 
 ```
+# Secure the broker configuration
+sudo chmod 600 /var/snap/authd-msentraid/current/broker.conf
+sudo chmod 700 /var/snap/authd-msentraid/current
+
 # Restart AuthD service
 sudo systemctl restart authd
 
@@ -515,13 +510,14 @@ Always maintain emergency access:
 3. **Create Recovery Script**
 
 ```
-sudo tee /root/emergency-recovery.sh > /dev/null << 'EOF' 
-#!/bin/bash 
-# Emergency recovery script - Run from recovery mode 
-mount -o remount,rw / passwd -u localadmin 
-cp /etc/pam.d/common-auth.backup /etc/pam.d/common-auth 
-echo "Recovery complete. Reboot normally." 
-EOF 
+sudo tee /root/emergency-recovery.sh > /dev/null << 'EOF'
+#!/bin/bash
+# Emergency recovery script - Run from recovery mode
+mount -o remount,rw /
+passwd -u localadmin
+cp /etc/pam.d/common-auth.backup /etc/pam.d/common-auth
+echo "Recovery complete. Reboot normally."
+EOF
 sudo chmod 700 /root/emergency-recovery.sh
 ```
 
@@ -727,7 +723,7 @@ fi
    * ALLOWED\_USERS=”ALL”
    * DISABLE\_LOCAL\_LOGIN=”false”
 3. **Run the script**:
-   * `chmod +x setup-authd.sh sudo ./setup-authd.sh`
+   * `chmod +x setup-authd.sh && sudo ./setup-authd.sh`
 4. **Complete post-script steps**:
    * Reboot the system
    * Test Entra ID authentication
