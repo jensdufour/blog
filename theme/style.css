@@ -199,9 +199,15 @@ h1.wp-block-heading a:hover {
 }
 
 /* ── Sticky header ── */
-.is-position-sticky {
-  position: sticky;
-  top: 0;
+html,
+body,
+.wp-site-blocks {
+  overflow: visible !important;
+}
+
+header.wp-block-template-part {
+  position: sticky !important;
+  top: 0 !important;
   background: var(--bg);
   z-index: 100;
 }
