@@ -485,7 +485,7 @@ header.wp-block-template-part {
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-close {
   position: static !important;
   order: 99 !important;
-  margin: 2rem auto 0 !important;
+  margin: 0 auto 3rem !important;
   width: 3rem !important;
   height: 3rem !important;
   border-radius: 50% !important;
