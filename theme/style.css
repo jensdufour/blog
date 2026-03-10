@@ -187,6 +187,17 @@ th {
   opacity: 1;
 }
 
+/* ── Site heading link ── */
+h1.wp-block-heading a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+h1.wp-block-heading a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
 /* ── Navigation links (dark mode aware) ── */
 .wp-block-navigation a {
   color: var(--text);
