@@ -234,6 +234,21 @@ th {
   color: var(--accent) !important;
 }
 
+/* ── Social links icons ── */
+.site-footer .wp-block-social-links .wp-social-link {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  opacity: 0.85;
+}
+
+.site-footer .wp-block-social-links .wp-social-link:hover {
+  transform: scale(1.15);
+  opacity: 1;
+}
+
+.site-footer .wp-block-social-links .wp-social-link:hover svg {
+  fill: var(--accent);
+}
+
 /* ── Comments ── */
 .wp-block-comments {
   border-top: 1px solid var(--border);
