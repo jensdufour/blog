@@ -12,8 +12,11 @@ I speak at community events and conferences across Europe about endpoint managem
 
 ### Topics I Cover
 
-- **Windows 365**: Deployment models (Enterprise, Frontline Shared, Frontline Dedicated), when to choose AVD vs. Windows 365, and real-world trade-offs
+- **Windows 365 and AVD**: Deployment models (Enterprise, Frontline Shared, Frontline Dedicated), when to choose AVD vs. Windows 365, and real-world trade-offs
+- **Microsoft Intune**: Device management strategies, migration from legacy tools, and modern endpoint configuration
+- **Identity and access**: Entra ID, conditional access, and Zero Trust approaches for securing the modern workplace
 - **Endpoint security**: Endpoint Privilege Management and App Control for Business, how they work together and where they differ
+- **Virtualization and Nerdio**: Cloud-based virtual desktop solutions, Nerdio Manager for Enterprise, and optimizing AVD and Windows 365 deployments
 - **Automation**: Building chatbots for endpoint management notifications in Teams using Copilot Studio and Power Automate
 
 ### Available Sessions
@@ -24,8 +27,12 @@ I speak at community events and conferences across Europe about endpoint managem
 - **Admin Bouncers: How Endpoint Privilege Management Keeps Your Local Admin Party Exclusive!**
 - **EPM Chatbot: Get Notified in Teams When a Request Comes In!**
 
-### Upcoming and Past Events
+### Upcoming Events
 
 <script type="text/javascript" src="https://sessionize.com/api/speaker/events/a3c1ddee-32d3-4f18-b0f9-d5c73952720f/0x1x3fb393x"></script>
+
+### Past Events
+
+<script type="text/javascript" src="https://sessionize.com/api/speaker/events/kmcvwui9c0/0x1x3fb393x"></script>
 
 Interested in having me speak at your event? Head over to my [Contact](/contact) page.
