@@ -27,7 +27,7 @@ GITHUB_RAW_BASE = "https://raw.githubusercontent.com/jensdufour/blog/main"
 # Bump this version whenever the sync output format changes (e.g. Gutenberg
 # block conversion) so all posts are re-synced even if the source files haven't
 # changed.
-SYNC_FORMAT_VERSION = "4"
+SYNC_FORMAT_VERSION = "5"
 
 WP_URL = os.environ["WP_URL"].rstrip("/")
 WP_USER = os.environ["WP_USER"]
@@ -211,7 +211,22 @@ def _wrap_block(tag: str, el: str) -> str:
         return '<!-- wp:list {"ordered":true} -->\n' + wrapped + "\n<!-- /wp:list -->"
 
     if tag == "blockquote":
-        return f"<!-- wp:quote -->\n{el}\n<!-- /wp:quote -->"
+        # WordPress expects wp-block-quote class and inner paragraphs wrapped
+        # in <!-- wp:paragraph --> block comments.
+        inner = re.search(r"<blockquote>(.*)</blockquote>", el, re.DOTALL)
+        inner_html = inner.group(1).strip() if inner else el
+        # Wrap each <p>…</p> inside the blockquote in paragraph block comments
+        inner_html = re.sub(
+            r"(<p>.*?</p>)",
+            r"<!-- wp:paragraph -->\n\1\n<!-- /wp:paragraph -->",
+            inner_html,
+            flags=re.DOTALL,
+        )
+        return (
+            "<!-- wp:quote -->\n"
+            f'<blockquote class="wp-block-quote">{inner_html}</blockquote>\n'
+            "<!-- /wp:quote -->"
+        )
 
     if tag == "table":
         return (
