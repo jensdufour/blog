@@ -353,8 +353,7 @@ header.wp-block-template-part {
   padding: 0 !important;
 }
 
-.wp-block-navigation__responsive-container.is-menu-open
-  .wp-block-navigation__responsive-container-content {
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
@@ -362,15 +361,13 @@ header.wp-block-template-part {
   gap: 2rem !important;
 }
 
-.wp-block-navigation__responsive-container.is-menu-open
-  .wp-block-navigation-item a {
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item a {
   font-size: 1.5rem !important;
   font-weight: 600 !important;
   color: var(--text) !important;
 }
 
-.wp-block-navigation__responsive-container.is-menu-open
-  .wp-block-navigation-item a:hover {
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item a:hover {
   color: var(--accent) !important;
 }
 
@@ -400,5 +397,99 @@ header.wp-block-template-part {
   .cert-badge img {
     width: 56px;
     height: 56px;
+  }
+}
+
+/* -- Timeline -- */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin: 1.5rem 0;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.45rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -1.55rem;
+  top: 0.35rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
+.timeline-item.current::before {
+  box-shadow: 0 0 0 2px var(--accent), 0 0 0 5px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.timeline-date {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.15rem;
+}
+
+.timeline-subtitle {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.timeline-content {
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.timeline-content ul {
+  margin: 0.5rem 0 0 1rem;
+  padding: 0;
+}
+
+.timeline-content li {
+  margin-bottom: 0.4rem;
+}
+
+@media (max-width: 600px) {
+  .timeline {
+    padding-left: 1.5rem;
+  }
+
+  .timeline-item::before {
+    left: -1.05rem;
+    width: 8px;
+    height: 8px;
+  }
+
+  .timeline::before {
+    left: 0.45rem;
   }
 }

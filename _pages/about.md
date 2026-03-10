@@ -22,25 +22,49 @@ My role sits between customers and the product teams at Microsoft. I help custom
 
 ## Experience
 
-### Microsoft, Cloud Endpoint Technical Specialist (Jul 2021 to Present)
+<div class="timeline">
 
+<div class="timeline-item current">
+<div class="timeline-date">Jul 2021 to Present</div>
+<div class="timeline-title">Cloud Endpoint Technical Specialist</div>
+<div class="timeline-subtitle">Microsoft, Zaventem, Belgium</div>
+<div class="timeline-content">
 Advising enterprise customers on modern device management and security. Leading workshops, resolving deployment challenges, and turning lessons from the field into guidance and product improvements.
+<ul>
+<li><strong>Retail (27,000 frontline workers)</strong>: Led a large project to move a retail organization from legacy on-premises tools to a fully cloud-based setup for device management, security, and virtual desktops. Created a playbook and workaround catalogue that removed recurring blockers and helped the customer move forward with confidence.</li>
+<li><strong>Defense (global, highly regulated)</strong>: Worked with a defense organization operating under strict regulations. Designed and validated an approach using supported tools that was later accepted by Microsoft engineering as an officially supported method.</li>
+<li><strong>Rapid prototyping</strong>: Built working demos using AI tools and automation scripts so customers could quickly evaluate whether a solution would work for them before committing to a full rollout.</li>
+</ul>
+</div>
+</div>
 
-- **Retail (27,000 frontline workers)**: Led a large project to move a retail organization from legacy on-premises tools to a fully cloud-based setup for device management, security, and virtual desktops. Created a playbook and workaround catalogue that removed recurring blockers and helped the customer move forward with confidence.
-- **Defense (global, highly regulated)**: Worked with a defense organization operating under strict regulations. Designed and validated an approach using supported tools that was later accepted by Microsoft engineering as an officially supported method.
-- **Rapid prototyping**: Built working demos using AI tools and automation scripts so customers could quickly evaluate whether a solution would work for them before committing to a full rollout.
+<div class="timeline-item">
+<div class="timeline-date">May 2021 to Jun 2021</div>
+<div class="timeline-title">System Engineer</div>
+<div class="timeline-subtitle">ESC, Nazareth, Belgium</div>
+<div class="timeline-content">Delivered infrastructure projects for small and medium-sized businesses, including networking, business applications, and custom solutions.</div>
+</div>
 
-### ESC, System Engineer (May 2021 to Jun 2021)
+<div class="timeline-item">
+<div class="timeline-date">Sep 2019 to May 2021</div>
+<div class="timeline-title">On-Site Support Analyst</div>
+<div class="timeline-subtitle">Danone (via Axxes), Brussels, Belgium</div>
+<div class="timeline-content">Led the Windows 10 migration across Western Europe and helped move device management from older tools (Workspace ONE, Altiris) to Microsoft Intune.</div>
+</div>
 
-Delivered infrastructure projects for small and medium-sized businesses, including networking, business applications, and custom solutions.
+<div class="timeline-item">
+<div class="timeline-date">Aug 2019 to May 2021</div>
+<div class="timeline-title">ICT Consultant</div>
+<div class="timeline-subtitle">Axxes, Antwerp, Belgium</div>
+</div>
 
-### Danone, On-Site Support Analyst via Axxes (Sep 2019 to May 2021)
+<div class="timeline-item">
+<div class="timeline-date">Feb 2019 to May 2019</div>
+<div class="timeline-title">Trainee</div>
+<div class="timeline-subtitle">delaware, Harbin, China</div>
+</div>
 
-Led the Windows 10 migration across Western Europe and helped move device management from older tools (Workspace ONE, Altiris) to Microsoft Intune.
-
-### Axxes, ICT Consultant (Aug 2019 to May 2021)
-
-### delaware, Trainee (Feb 2019 to May 2019), Harbin, China
+</div>
 
 ## Certifications
 
