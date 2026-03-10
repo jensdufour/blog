@@ -1,50 +1,50 @@
 {
   "automated-ubuntu-entra-id-authentication": {
     "wp_id": 826,
-    "content_hash": "7462db5f177a1ea5cabfa1573418bd5f056fa0774224a56a69ed13e6252b485e",
+    "content_hash": "de94e89f773f6369fe155205d012cf6c76307a21aa8d619b43c309bc3de4a7bd",
     "source": "github",
-    "wp_modified": "2026-03-10T20:46:01"
+    "wp_modified": "2026-03-10T20:55:01"
   },
   "epm-automation-adaptive-cards-logic-apps": {
     "wp_id": 779,
-    "content_hash": "1fe8203dcddffd75aa23db231ade4f7c5f469ff81ac350c4c75713aa327f1917",
+    "content_hash": "c1c19ef2fcbebd5bd2cb1a07db0fc3a9dc583286466f0f7afe704a4cfa77160a",
     "source": "github",
-    "wp_modified": "2026-03-10T20:45:57"
+    "wp_modified": "2026-03-10T20:54:55"
   },
   "windows-365-restore-points-a-guide-to-long-term-storage": {
     "wp_id": 619,
-    "content_hash": "1e6c2d6b5f608dc587d025253f244290edb90f463781250ba0e13d5dd420d73d",
+    "content_hash": "03a478649d5bc9a1eb39a07d7b582ee129e132c8932ab1727eefbf03a1a47070",
     "source": "github",
-    "wp_modified": "2026-03-10T20:45:54"
+    "wp_modified": "2026-03-10T20:54:51"
   },
   "automating-epm-approvals-with-teams-and-azure-logic-apps": {
     "wp_id": 676,
-    "content_hash": "36cbc421235ec1083e68b6d45c5e715633da6babe92f6d3923e3cf7cc2be83ae",
+    "content_hash": "52a470242927ed253181c4af5f74148697648857b1f2c204721a49b87074acdb",
     "source": "github",
-    "wp_modified": "2026-03-10T20:45:50"
+    "wp_modified": "2026-03-10T20:54:45"
   },
   "entra-id-the-magic-wand-for-ubuntu-23-04-authentication": {
     "wp_id": 226,
-    "content_hash": "affeb42374fea6f0767d8e4abddc51993dcc7a05c4ab3956768d2c517a12c06b",
+    "content_hash": "e5e3dc98fe0ed58e03e5bd2dceadb9362d94266087ef0d3b22251c692a999608",
     "source": "github",
-    "wp_modified": "2026-03-10T20:45:45"
+    "wp_modified": "2026-03-10T20:54:40"
   },
   "adding-languages-using-proactive-remediations": {
     "wp_id": 198,
-    "content_hash": "633943a7b8f599727c12533e5cd40676bd9056cee957be0f1c8057a0256a5680",
+    "content_hash": "3f34c54231ce3994333777f80e8f5966d2a1552c7cc6baf3a3d3e682b3224f6d",
     "source": "github",
-    "wp_modified": "2026-03-10T20:45:41"
+    "wp_modified": "2026-03-10T20:54:34"
   },
   "enrolling-ubuntu-intune-device-management": {
     "wp_id": 967,
-    "content_hash": "233fa3ab74a36057b37cad958297bb798d3833279977f697c5ea3fa35309f8b8",
+    "content_hash": "bdbd7c13fefe64445785d8ad48c64821fd357f689b6b72157848bdd1f2753782",
     "source": "github",
-    "wp_modified": "2026-03-10T20:46:06"
+    "wp_modified": "2026-03-10T20:55:08"
   },
   "entra-id-authentication-with-authd": {
     "wp_id": 968,
-    "content_hash": "a7ce91f881fcdfa52c5bfe553f67a5c5823be27982c74ed1e5680f9b5e64f180",
+    "content_hash": "1c0cfc5a0fd6341596af16a8d39458507a213a1c5c9edf4f32ce22ab066a996f",
     "source": "github",
-    "wp_modified": "2026-03-10T20:46:11"
+    "wp_modified": "2026-03-10T20:55:15"
   }
 }
