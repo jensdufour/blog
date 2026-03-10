@@ -230,13 +230,6 @@ h1.wp-block-heading a:hover {
   position: relative;
 }
 
-.footer-accent-bar {
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), #a371f7, var(--accent));
-  border-radius: 2px;
-  margin-bottom: 0.5rem;
-}
-
 .cert-grid {
   opacity: 0.9;
 }
