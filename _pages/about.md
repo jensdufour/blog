@@ -104,7 +104,7 @@ I regularly speak at community events and conferences about device management, c
 - Techorama 2024, Antwerpen, Belgium
 - European MCT Summit 2024, Rijswijk, The Netherlands
 
-For all upcoming and past sessions, check out my [Events](/events) page.
+For all upcoming and past sessions, check out my [Speaking](/speaking) page.
 
 ## Education
 
@@ -116,4 +116,4 @@ Dutch (native), English (C2), French (B1)
 
 ## Get In Touch
 
-You can find me on [LinkedIn](https://linkedin.com/in/JensDuFour), [GitHub](https://github.com/jensdufour), [Bluesky](https://bsky.app/profile/jensdufour.be), or reach out via [email](mailto:jensdufour@outlook.com).
+You can find me on my [Contact](/contact) page, or connect directly via [LinkedIn](https://linkedin.com/in/JensDuFour), [GitHub](https://github.com/jensdufour), [Bluesky](https://bsky.app/profile/jensdufour.be), or [email](mailto:jensdufour@outlook.com).
