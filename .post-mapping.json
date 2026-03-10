@@ -1,9 +1,9 @@
 {
   "ubuntu-entra-id-authentication-authd-intune-guide": {
     "wp_id": 821,
-    "content_hash": "03fe4c59e5841b286c59f989593d3dbde06f75cf249ea54c8a2b1129fe2baf53",
+    "content_hash": "0cf6b44215d5f11388c3025d864507bef294756b6cbe7e5781edc8ff474980be",
     "source": "github",
-    "wp_modified": "2026-03-10T10:37:52"
+    "wp_modified": "2026-03-10T11:04:54"
   },
   "ubuntu-intune-enrollment": {
     "wp_id": 808,
