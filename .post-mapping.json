@@ -46,5 +46,17 @@
     "content_hash": "3c4b39cb7c1ab125a7c1f1439894706690418495ee3edb47603a30d3f2b9e0fd",
     "source": "github",
     "wp_modified": "2026-03-10T13:24:27"
+  },
+  "enrolling-ubuntu-intune-device-management": {
+    "wp_id": 967,
+    "content_hash": "6d08ce08ee2ae0deb4f6cce759eb2be0f37ea38a6ad4aeb37171d8b84bbb8805",
+    "source": "github",
+    "wp_modified": "2026-01-02T11:36:09"
+  },
+  "entra-id-authentication-with-authd": {
+    "wp_id": 968,
+    "content_hash": "debd4492424310983f53125eeca168459968c8a4b0a950fa237c9e73b7528e93",
+    "source": "github",
+    "wp_modified": "2026-02-04T14:05:21"
   }
 }
