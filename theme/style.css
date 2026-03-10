@@ -448,12 +448,26 @@ header.wp-block-template-part {
   justify-content: center !important;
   gap: 2rem !important;
   width: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 2rem !important;
 }
 
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-content .wp-block-navigation-item {
   display: block !important;
   text-align: center !important;
   width: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation-item a {
