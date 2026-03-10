@@ -30,6 +30,12 @@ Text Domain: jensdufour-minimal
     --muted: #8b949e;
     --border: #30363d;
     --code-bg: #161b22;
+    --wp--preset--color--text: #c9d1d9;
+    --wp--preset--color--background: #0d1117;
+    --wp--preset--color--accent: #58a6ff;
+    --wp--preset--color--muted: #8b949e;
+    --wp--preset--color--border: #30363d;
+    --wp--preset--color--code-bg: #161b22;
   }
 }
 
@@ -40,6 +46,12 @@ Text Domain: jensdufour-minimal
   --muted: #8b949e;
   --border: #30363d;
   --code-bg: #161b22;
+  --wp--preset--color--text: #c9d1d9;
+  --wp--preset--color--background: #0d1117;
+  --wp--preset--color--accent: #58a6ff;
+  --wp--preset--color--muted: #8b949e;
+  --wp--preset--color--border: #30363d;
+  --wp--preset--color--code-bg: #161b22;
 }
 
 [data-theme="light"] {
@@ -49,6 +61,12 @@ Text Domain: jensdufour-minimal
   --muted: #586069;
   --border: #e1e4e8;
   --code-bg: #f6f8fa;
+  --wp--preset--color--text: #1a1a1a;
+  --wp--preset--color--background: #fafafa;
+  --wp--preset--color--accent: #0366d6;
+  --wp--preset--color--muted: #586069;
+  --wp--preset--color--border: #e1e4e8;
+  --wp--preset--color--code-bg: #f6f8fa;
 }
 
 /* ── Base ── */
