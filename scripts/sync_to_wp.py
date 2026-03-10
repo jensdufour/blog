@@ -180,6 +180,53 @@ def _find_closing_tag(html: str, tag: str, start: int) -> int:
     return pos
 
 
+import json as _json
+
+_TIMELINE_ITEM_RE = re.compile(
+    r'<div\s+class="timeline-item(?:\s+current)?"[^>]*>(.*?)</div>\s*(?=<div\s+class="timeline-item|</div>\s*$)',
+    re.DOTALL,
+)
+_TL_DATE_RE = re.compile(r'<div\s+class="timeline-date">(.*?)</div>', re.DOTALL)
+_TL_TITLE_RE = re.compile(r'<div\s+class="timeline-title">(.*?)</div>', re.DOTALL)
+_TL_SUBTITLE_RE = re.compile(r'<div\s+class="timeline-subtitle">(.*?)</div>', re.DOTALL)
+_TL_CONTENT_RE = re.compile(r'<div\s+class="timeline-content">(.*?)</div>', re.DOTALL)
+
+
+def _convert_timeline_to_block(el: str) -> str:
+    """Parse a <div class="timeline"> into a theme/timeline Gutenberg block."""
+    items: list[dict] = []
+    # Split on each timeline-item div
+    item_re = re.compile(
+        r'<div\s+class="timeline-item(\s+current)?"[^>]*>',
+        re.DOTALL,
+    )
+    positions = [m.start() for m in item_re.finditer(el)]
+    # Add end sentinel
+    closing = el.rfind("</div>")
+    for i, start in enumerate(positions):
+        end = positions[i + 1] if i + 1 < len(positions) else closing
+        chunk = el[start:end]
+        current = "current" in (item_re.match(chunk).group(1) or "")
+        date_m = _TL_DATE_RE.search(chunk)
+        title_m = _TL_TITLE_RE.search(chunk)
+        subtitle_m = _TL_SUBTITLE_RE.search(chunk)
+        content_m = _TL_CONTENT_RE.search(chunk)
+        item: dict = {}
+        if date_m:
+            item["date"] = date_m.group(1).strip()
+        if title_m:
+            item["title"] = title_m.group(1).strip()
+        if subtitle_m:
+            item["subtitle"] = subtitle_m.group(1).strip()
+        if content_m:
+            item["content"] = content_m.group(1).strip()
+        if current:
+            item["current"] = True
+        items.append(item)
+    attrs = _json.dumps({"items": items}, ensure_ascii=False, separators=(",", ":"))
+    return f"<!-- wp:theme/timeline {attrs} /-->"
+
+
 def _wrap_block(tag: str, el: str) -> str:
     """Wrap a single top-level HTML element in the correct Gutenberg comment."""
 
@@ -248,6 +295,9 @@ def _wrap_block(tag: str, el: str) -> str:
         return f"<!-- wp:code -->\n{el}\n<!-- /wp:code -->"
 
     if tag == "div":
+        # Timeline block: convert to theme/timeline Gutenberg block
+        if 'class="timeline"' in el:
+            return _convert_timeline_to_block(el)
         code_m = re.search(r"<code[^>]*>(.*)</code>", el, re.DOTALL)
         if code_m:
             return (

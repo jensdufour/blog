@@ -1,0 +1,22 @@
+{
+    "apiVersion": 3,
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "name": "theme/timeline",
+    "title": "Timeline",
+    "category": "widgets",
+    "description": "A vertical timeline displaying items with dates, titles, subtitles, and content.",
+    "textdomain": "jdm-theme",
+    "attributes": {
+        "items": {
+            "type": "array",
+            "default": [],
+            "items": {
+                "type": "object"
+            }
+        }
+    },
+    "supports": {
+        "html": false
+    },
+    "render": "file:./render.php"
+}

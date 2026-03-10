@@ -99,3 +99,9 @@ function jdm_sessionize_social_icon( $block_content, $block ) {
     return $block_content;
 }
 add_filter( 'render_block', 'jdm_sessionize_social_icon', 10, 2 );
+
+/* Register custom blocks bundled with the theme */
+function jdm_register_blocks() {
+    register_block_type( get_template_directory() . '/blocks/timeline' );
+}
+add_action( 'init', 'jdm_register_blocks' );
