@@ -67,3 +67,17 @@ remove_action('wp_head', 'rsd_link');
 remove_action('wp_head', 'wp_shortlink_wp_head');
 remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
+
+/* Replace chain icon with Sessionize logo for sessionize.com social links */
+function jdm_sessionize_social_icon( $block_content, $block ) {
+    if ( $block['blockName'] !== 'core/social-link' ) {
+        return $block_content;
+    }
+    if ( empty( $block['attrs']['url'] ) || strpos( $block['attrs']['url'], 'sessionize.com' ) === false ) {
+        return $block_content;
+    }
+    $sessionize_svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm1.2 17.4H6.6v-2.4h6.6v2.4zm4.2-4.2H6.6v-2.4h10.8v2.4zm0-4.2H6.6V6.6h10.8V9z" fill="currentColor"/></svg>';
+    $block_content = preg_replace( '/<svg[^>]*>.*?<\/svg>/s', $sessionize_svg, $block_content, 1 );
+    return $block_content;
+}
+add_filter( 'render_block', 'jdm_sessionize_social_icon', 10, 2 );
