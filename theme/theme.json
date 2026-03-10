@@ -69,8 +69,8 @@
       ]
     },
     "layout": {
-      "contentSize": "48rem",
-      "wideSize": "64rem"
+      "contentSize": "64rem",
+      "wideSize": "80rem"
     },
     "spacing": {
       "units": [
