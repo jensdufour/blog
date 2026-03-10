@@ -5,7 +5,6 @@ categories:
 date: '2025-08-01T10:04:17'
 status: publish
 tags:
-- '2025'
 - EPM
 - Logic Apps
 - Teams

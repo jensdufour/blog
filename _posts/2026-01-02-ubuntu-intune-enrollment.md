@@ -6,7 +6,6 @@ categories:
 date: '2026-01-02T11:36:09'
 status: draft
 tags:
-- '2026'
 - Ubuntu
 - Intune
 - Linux

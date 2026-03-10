@@ -6,7 +6,6 @@ categories:
 date: '2024-01-30T14:08:32'
 status: publish
 tags:
-- '2024'
 - Entra ID
 - Ubuntu
 - Linux

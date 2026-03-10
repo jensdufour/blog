@@ -5,7 +5,6 @@ categories:
 date: '2025-08-18T10:49:47'
 status: publish
 tags:
-- '2025'
 - Windows 365
 - Cloud PC
 - Azure

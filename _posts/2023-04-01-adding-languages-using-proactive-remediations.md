@@ -5,7 +5,6 @@ categories:
 date: '2023-04-01T12:00:00'
 status: publish
 tags:
-- '2023'
 - Intune
 - Proactive Remediations
 - PowerShell

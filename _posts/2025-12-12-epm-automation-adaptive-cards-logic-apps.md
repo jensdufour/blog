@@ -5,7 +5,6 @@ categories:
 date: '2025-12-12T13:28:42'
 status: publish
 tags:
-- '2025'
 - Adaptive Cards
 - EPM
 - Intune Suite

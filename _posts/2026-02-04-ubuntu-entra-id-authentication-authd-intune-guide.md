@@ -6,7 +6,6 @@ categories:
 date: '2026-02-04T14:05:21'
 status: draft
 tags:
-- '2026'
 - Entra ID
 - AuthD
 - Ubuntu
