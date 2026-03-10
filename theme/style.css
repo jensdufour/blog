@@ -246,7 +246,8 @@ header.wp-block-template-part {
 .wp-block-post-content .sz-group {
   position: relative;
   padding-left: 2rem;
-  margin: 1.5rem 0;
+  margin: 1.5rem auto;
+  max-width: 40rem;
 }
 
 .wp-block-post-content .sz-group::before {
