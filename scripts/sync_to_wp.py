@@ -169,18 +169,9 @@ def sync_post(filepath: Path, mapping: dict) -> None:
 
 
 def main() -> None:
-    changed_files_env = os.environ.get("CHANGED_FILES", "")
-
     mapping = load_json(MAPPING_FILE)
 
-    if changed_files_env:
-        files = [
-            POSTS_DIR / Path(f).name
-            for f in changed_files_env.split()
-            if f.startswith("_posts/") and f.endswith(".md")
-        ]
-    else:
-        files = sorted(POSTS_DIR.glob("*.md"))
+    files = sorted(POSTS_DIR.glob("*.md"))
 
     if not files:
         print("No posts to sync.")
