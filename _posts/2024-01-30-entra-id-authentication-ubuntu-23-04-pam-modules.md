@@ -156,8 +156,16 @@ Afterwards, we continue with the Intune enrollment. The user will need to sign-i
 
 ## Conclusion
 
-In this post, I showed you how to set up Entra ID authentication for your Ubuntu 23.04 device, and how to enroll it in Microsoft Intune for further management. Entra ID is a powerful and secure way to authenticate your Linux device with your Microsoft account, and Intune is a cloud-based service that allows you to configure and monitor your device remotely.
+In this post, I showed you how to set up Entra ID authentication for your Ubuntu 23.04 device using the **PAM-based method**, and how to enroll it in Microsoft Intune for further management.
 
 By following the steps in this post, you can leverage the benefits of both Entra ID and Intune for your Ubuntu device.
 
-If you have any questions or feedback, please leave a comment below. And if you found this post helpful, don’t forget to share it with your friends and colleagues who might be interested in Entra ID authentication for Ubuntu. Thank you for reading!
+### What's Next?
+
+This PAM-based approach has since been superseded by **AuthD**, which offers MFA support, offline credential caching, and a cleaner architecture. If you're deploying Ubuntu 24.04 LTS or later, I recommend the following updated guides:
+
+* [Entra ID Authentication with AuthD](https://jensdufour.be/2026/02/04/entra-id-authentication-with-authd/) — Manual AuthD setup for Ubuntu 24.04 LTS
+* [Enrolling Ubuntu 24.04 LTS in Microsoft Intune](https://jensdufour.be/2026/01/02/enrolling-ubuntu-intune-device-management/) — Dedicated Intune enrollment guide
+* [Automating Ubuntu Entra ID Authentication](https://jensdufour.be/2026/01/02/zero-touch-ubuntu-entra-id-autoinstall/) — Zero-touch deployment with autoinstall
+
+If you have any questions or feedback, please leave a comment below. Thank you for reading!

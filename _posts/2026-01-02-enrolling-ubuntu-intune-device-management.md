@@ -13,20 +13,23 @@ tags:
 - MDM
 - Compliance
 title: 'Enrolling Ubuntu 24.04 LTS in Microsoft Intune for Device Management'
-seo_title: 'Enrolling Ubuntu 24.04 LTS in Microsoft Intune'
-meta_description: 'Enroll Ubuntu 24.04 LTS in Microsoft Intune for enterprise device management. Updated guide with registration, compliance, and management setup.'
-focus_keyphrase: 'Ubuntu Intune enrollment'
+seo_title: 'Enrolling Ubuntu 24.04 LTS in Microsoft Intune: Step-by-Step Guide'
+meta_description: 'Enroll Ubuntu 24.04 LTS in Microsoft Intune for enterprise device management. Covers prerequisites, package installation, compliance policies, and troubleshooting.'
+focus_keyphrase: 'Ubuntu 24.04 Intune enrollment'
 ---
 
 ## Introduction to Intune Enrollment
 
-This article is an update on a previous one I wrote about [Entra ID Authentication for Ubuntu 22.04 LTS](https://jensdufour.be/2024/01/30/entra-id-the-magic-wand-for-ubuntu-23-04-authentication/).
+This article is an update on a previous one I wrote about [Entra ID Authentication for Ubuntu 23.04](https://jensdufour.be/2024/01/30/entra-id-authentication-ubuntu-23-04-pam-modules/), specifically covering the Intune enrollment portion for Ubuntu 24.04 LTS.
+
+> **Note:** This guide focuses exclusively on **Intune enrollment and device management**. For Entra ID authentication setup using AuthD, see [Entra ID Authentication with AuthD on Ubuntu 24.04 LTS](https://jensdufour.be/2026/02/04/entra-id-authentication-with-authd/). For a fully automated zero-touch deployment, see [Automating Ubuntu Entra ID Authentication](https://jensdufour.be/2026/01/02/zero-touch-ubuntu-entra-id-autoinstall/).
 
 **Intune enrollment** brings enterprise device management to Linux workstations. As organizations increasingly adopt Ubuntu for development, data science, and general productivity, there is a need for centralized device management.
 
 Consequently, Microsoft Intune provides the ideal solution, allowing IT administrators to manage Ubuntu devices alongside Windows, macOS, iOS, and Android devices, although this Linux management is still rather limited.
 
-![Ubuntu desktop with Intune enrollment status](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/jensdufour/Git/PUB-Scripts/04_Community/03_Intune_Ubuntu/images/ubuntu-intune-enrollment-status.png) *Figure 1: Ubuntu 24.04 LTS showing successful Intune enrollment status*
+<!-- TODO: Add image - Ubuntu desktop with Intune enrollment status -->
+*Figure 1: Ubuntu 24.04 LTS showing successful Intune enrollment status*
 
 Traditionally, Linux management often relied on custom scripts, configuration management tools like Ansible or Puppet, or simply trusting users to maintain their own devices. With **Intune enrollment**, you can achieve:
 
@@ -187,7 +190,8 @@ By default, Linux enrollment may be restricted. Therefore, you need to enable it
    * Under **Linux**, set to **Allow**
    * Finally, save your changes
 
-![Intune enrollment restrictions showing Linux enabled](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/jensdufour/Git/PUB-Scripts/04_Community/03_Intune_Ubuntu/images/intune-enrollment-restrictions-linux.png) *Figure 2: Intune enrollment restrictions configuration for Linux*
+<!-- TODO: Add image - Intune enrollment restrictions showing Linux enabled -->
+*Figure 2: Intune enrollment restrictions configuration for Linux*
 
 ### Step 2: Create Compliance Policy for Linux
 
@@ -287,7 +291,8 @@ sudo apt update
 sudo apt install -y microsoft-edge-stable
 ```
 
-![Terminal showing Microsoft Edge installation](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/jensdufour/Git/PUB-Scripts/04_Community/03_Intune_Ubuntu/images/ubuntu-edge-installation-terminal.png) *Figure 3: Installing Microsoft Edge on Ubuntu*
+<!-- TODO: Add image - Terminal showing Microsoft Edge installation -->
+*Figure 3: Installing Microsoft Edge on Ubuntu*
 
 ### Step 4: Add Microsoft Intune Repository
 
@@ -339,7 +344,8 @@ At this point, with all packages installed, you’re ready to complete the **In
    * Next, search for “Intune” or “Company Portal”
    * Then, click the Intune Portal app iconAlternatively, launch from terminal:`intune-portal`
 
-![Intune Portal app in Ubuntu Activities](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/jensdufour/Git/PUB-Scripts/04_Community/03_Intune_Ubuntu/images/ubuntu-intune-portal-launch.png) *Figure 4: Launching Intune Portal from Ubuntu Activities*
+<!-- TODO: Add image - Intune Portal app in Ubuntu Activities -->
+*Figure 4: Launching Intune Portal from Ubuntu Activities*
 
 ### Step 2: Sign In
 
@@ -388,7 +394,8 @@ intune-portal --info
    * **Compliance**: Compliant (or pending)
    * **OS**: Linux (Ubuntu)
 
-![Intune Admin Center showing enrolled Ubuntu device](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/jensdufour/Git/PUB-Scripts/04_Community/03_Intune_Ubuntu/images/intune-admin-center-ubuntu-device.png) *Figure 5: Ubuntu device visible in Intune Admin Center*
+<!-- TODO: Add image - Intune Admin Center showing enrolled Ubuntu device -->
+*Figure 5: Ubuntu device visible in Intune Admin Center*
 
 ---
 
@@ -690,9 +697,9 @@ For further reading, consult these official resources:
 
 In addition, you may find these related articles helpful:
 
-* First, [Ubuntu Entra ID Authentication with AuthD](https://file+.vscode-resource.vscode-cdn.net/articles/ubuntu-entra-id-authentication-authd) – Enable cloud identity login on Ubuntu
-* Second, [Getting Started with Microsoft Intune](https://file+.vscode-resource.vscode-cdn.net/articles/intune-getting-started) – Learn the basics of Intune device management
-* Third, [Microsoft Entra ID Conditional Access Guide](https://file+.vscode-resource.vscode-cdn.net/articles/entra-id-conditional-access) – Configure advanced access policies
+* [Entra ID Authentication with AuthD on Ubuntu 24.04 LTS](https://jensdufour.be/2026/02/04/entra-id-authentication-with-authd/) – Enable cloud identity login on Ubuntu using AuthD
+* [Automating Ubuntu Entra ID Authentication](https://jensdufour.be/2026/01/02/zero-touch-ubuntu-entra-id-autoinstall/) – Zero-touch deployment with autoinstall and cloud-init
+* [Entra ID Authentication on Ubuntu 23.04 Using PAM Modules](https://jensdufour.be/2024/01/30/entra-id-authentication-ubuntu-23-04-pam-modules/) – Legacy PAM-based approach
 
 ---
 

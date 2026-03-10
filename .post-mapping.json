@@ -1,11 +1,11 @@
 {
-  "automated-ubuntu-entra-id-authentication": {
+  "zero-touch-ubuntu-entra-id-autoinstall": {
     "wp_id": 826,
     "content_hash": "de94e89f773f6369fe155205d012cf6c76307a21aa8d619b43c309bc3de4a7bd",
     "source": "github",
     "wp_modified": "2026-03-10T20:55:01"
   },
-  "epm-automation-adaptive-cards-logic-apps": {
+  "epm-approval-workflow-adaptive-cards-logic-apps": {
     "wp_id": 779,
     "content_hash": "c1c19ef2fcbebd5bd2cb1a07db0fc3a9dc583286466f0f7afe704a4cfa77160a",
     "source": "github",
@@ -17,13 +17,13 @@
     "source": "github",
     "wp_modified": "2026-03-10T20:54:51"
   },
-  "automating-epm-approvals-with-teams-and-azure-logic-apps": {
+  "epm-elevation-notifications-teams-logic-apps": {
     "wp_id": 676,
     "content_hash": "52a470242927ed253181c4af5f74148697648857b1f2c204721a49b87074acdb",
     "source": "github",
     "wp_modified": "2026-03-10T20:54:45"
   },
-  "entra-id-the-magic-wand-for-ubuntu-23-04-authentication": {
+  "entra-id-authentication-ubuntu-23-04-pam-modules": {
     "wp_id": 226,
     "content_hash": "e5e3dc98fe0ed58e03e5bd2dceadb9362d94266087ef0d3b22251c692a999608",
     "source": "github",

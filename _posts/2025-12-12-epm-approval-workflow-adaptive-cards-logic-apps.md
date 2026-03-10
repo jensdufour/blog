@@ -10,19 +10,19 @@ tags:
 - Intune Suite
 - Logic Apps
 - Teams
-title: EPM Automation with Adaptive Cards
-seo_title: 'EPM Automation with Adaptive Cards and Logic Apps'
-meta_description: 'Build EPM automation with Adaptive Cards in Microsoft Teams. Approve or deny Intune elevation requests directly from Teams using Azure Logic Apps.'
-focus_keyphrase: 'EPM automation Adaptive Cards'
+title: 'EPM Approval Workflow: Adaptive Cards and Logic Apps'
+seo_title: 'Approve or Deny EPM Requests in Teams with Adaptive Cards and Logic Apps'
+meta_description: 'Build a two-way EPM approval workflow in Microsoft Teams using Adaptive Cards, Azure Logic Apps, Managed Identity, and Bicep. Approve or deny elevation requests without leaving Teams.'
+focus_keyphrase: 'EPM approval Adaptive Cards Teams'
 ---
 
 ## Introduction
 
-[This is an update on a previous article.](https://jensdufour.be/2025/08/01/automating-epm-approvals-with-teams-and-azure-logic-apps/)
+> This post builds on the notification MVP from [EPM Elevation Notifications with Teams and Azure Logic Apps](https://jensdufour.be/2025/08/01/epm-elevation-notifications-teams-logic-apps/). Where that article delivered one-way notifications, this solution adds **two-way approve/deny actions** directly inside Teams, replaces the App Registration + client secret with a **Managed Identity**, and deploys everything as **Infrastructure as Code** using Bicep.
 
 **EPM automation with Adaptive Cards** transforms how IT teams handle elevation requests in Microsoft Intune. By combining Azure Logic Apps with Teams Adaptive Cards, you can automate the entire Endpoint Privilege Management approval workflow, allowing approvers to act on requests without leaving Microsoft Teams. This EPM automation solution eliminates the need to constantly monitor the Intune portal.
 
-![EPM automation Adaptive Cards showing an approved elevation request in Microsoft Teams.](../media/epm-automation-adaptive-cards-logic-apps/epm-automation-adaptive-cards-logic-apps-01.webp)
+![EPM automation Adaptive Cards showing an approved elevation request in Microsoft Teams.](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-01.webp)
 
 ## The Challenge with Manual EPM Approvals
 
@@ -48,7 +48,7 @@ Our EPM automation solution bridges Microsoft Intune and Microsoft Teams by crea
 * **Enables one-click approval or denial** directly from Teams
 * **Updates the Adaptive Card** to show the final decision and who made it
 
-![EPM automation Adaptive Cards displaying a denied elevation request with reviewer details](../media/epm-automation-adaptive-cards-logic-apps/epm-automation-adaptive-cards-logic-apps-02.webp)
+![EPM automation Adaptive Cards displaying a denied elevation request with reviewer details](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-02.webp)
 
 ### Architecture for EPM Automation
 

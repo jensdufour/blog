@@ -13,21 +13,21 @@ tags:
 - Authentication
 - MFA
 - Intune
-title: 'Entra ID Authentication with AuthD'
-seo_title: 'Entra ID Authentication with AuthD on Ubuntu 24.04 LTS'
-meta_description: 'Configure Entra ID authentication on Ubuntu 24.04 LTS using AuthD. Covers Azure app registration, MFA support, and offline credential caching.'
-focus_keyphrase: 'Entra ID authentication AuthD'
+title: 'Entra ID Authentication with AuthD on Ubuntu 24.04 LTS'
+seo_title: 'Entra ID Authentication with AuthD on Ubuntu 24.04 LTS (Manual Setup)'
+meta_description: 'Manually configure Entra ID authentication on Ubuntu 24.04 LTS using AuthD. Covers Azure app registration, broker setup, MFA support, and offline credential caching.'
+focus_keyphrase: 'Entra ID authentication AuthD Ubuntu 24.04'
 ---
 
 > **Update (March 2026):** With Ubuntu 26.04 LTS, AuthD is now included in the official Ubuntu archive (universe) and no longer requires a PPA. The instructions in this guide target Ubuntu 24.04 LTS, where the PPA is still required. If you are running Ubuntu 26.04 LTS, you can skip the PPA step and install AuthD directly with `sudo apt install authd`. Additionally, a generic OIDC broker is now available for integration with any standards-compliant identity provider. For full details, see the [official announcement](https://discourse.ubuntu.com/t/authd-enters-the-ubuntu-archive-in-26-04-lts/78193).
 
 ## Introduction to Entra ID Authentication
 
-This is an updated version of the [Entra ID authentication on Ubuntu 22.04 LTS](https://jensdufour.be/2024/01/30/entra-id-the-magic-wand-for-ubuntu-23-04-authentication/).
+This is an updated version of the [Entra ID authentication on Ubuntu 22.04 LTS](https://jensdufour.be/2024/01/30/entra-id-authentication-ubuntu-23-04-pam-modules/).
 
 **Entra ID authentication** using AuthD represents a significant shift in how enterprises manage Linux workstation identity. As organizations adopt Ubuntu for development, data science, and productivity workloads, the need for cloud-native authentication becomes critical. AuthD provides the solution, enabling users to log in to Ubuntu with their Microsoft Entra ID credentials.
 
-![](../media/ubuntu-entra-id-authentication-authd-intune-guide/ubuntu-entra-id-authentication-authd-intune-guide-01.webp)
+![](../media/entra-id-authentication-with-authd/entra-id-authentication-with-authd-01.webp)
 
 *Figure 1: Ubuntu 24.04 LTS with GDM showing Microsoft Entra ID login option*
 
@@ -50,7 +50,7 @@ In this guide, you’ll learn how to:
 
 Whether you’re securing a handful of Linux workstations or planning an enterprise-wide rollout, this guide provides everything you need for **Entra ID authentication**.
 
-> **Note:** This guide focuses on AuthD configuration. For device management with Microsoft Intune, see our companion article on [Ubuntu Intune Enrollment](https://jensdufour.be/2026/01/02/ubuntu-intune-enrollment/).
+> **Note:** This guide focuses on **manual** AuthD configuration. For device management with Microsoft Intune, see our companion article on [Enrolling Ubuntu 24.04 LTS in Microsoft Intune](https://jensdufour.be/2026/01/02/enrolling-ubuntu-intune-device-management/). For a fully **automated zero-touch deployment** using autoinstall and cloud-init, see [Automating Ubuntu Entra ID Authentication](https://jensdufour.be/2026/01/02/zero-touch-ubuntu-entra-id-autoinstall/).
 
 ---
 
@@ -62,7 +62,7 @@ Before configuring **Entra ID authentication**, it’s essential to understand 
 
 [AuthD](https://github.com/canonical/authd) is Ubuntu's modern authentication daemon designed specifically for cloud identity providers. Unlike traditional solutions that require domain controllers or complex LDAP configurations, AuthD provides a streamlined approach to cloud authentication.
 
-![AuthD architecture with MS Entra ID broker integration](../media/ubuntu-entra-id-authentication-authd-intune-guide/ubuntu-entra-id-authentication-authd-intune-guide-02.webp)
+![AuthD architecture with MS Entra ID broker integration](../media/entra-id-authentication-with-authd/entra-id-authentication-with-authd-02.webp)
 
 *Figure 2: AuthD architecture with MS Entra ID broker integration*
 
@@ -194,7 +194,7 @@ Before disabling local accounts, plan for:
 
 To enable **Entra ID authentication**, you must first create an app registration in Azure.
 
-![Azure Portal app registration for AuthD](../media/ubuntu-entra-id-authentication-authd-intune-guide/ubuntu-entra-id-authentication-authd-intune-guide-03.webp)
+![Azure Portal app registration for AuthD](../media/entra-id-authentication-with-authd/entra-id-authentication-with-authd-03.webp)
 
 *Figure 3: Azure Portal showing app registration configuration for AuthD*
 
@@ -290,7 +290,7 @@ sudo snap install authd-msentraid
 snap list authd-msentraid
 ```
 
-![](../media/ubuntu-entra-id-authentication-authd-intune-guide/ubuntu-entra-id-authentication-authd-intune-guide-04.webp)
+![](../media/entra-id-authentication-with-authd/entra-id-authentication-with-authd-04.webp)
 
 *Figure 4: Installing AuthD and MS Entra broker on Ubuntu*
 
@@ -400,7 +400,7 @@ Before making further changes, verify **Entra ID authentication** works:
    * Complete MFA authentication
 5. You should be logged in with your Entra ID account
 
-![](../media/ubuntu-entra-id-authentication-authd-intune-guide/ubuntu-entra-id-authentication-authd-intune-guide-05.webp)
+![](../media/entra-id-authentication-with-authd/entra-id-authentication-with-authd-05.webp)
 
 *Figure 5: The device code authentication flow*
 
