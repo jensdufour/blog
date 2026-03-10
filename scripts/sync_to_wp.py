@@ -104,11 +104,14 @@ def sync_post(filepath: Path, mapping: dict) -> None:
     categories = post.metadata.get("categories", [])
     tags = post.metadata.get("tags", [])
 
+    meta_description = post.metadata.get("meta_description", "")
+
     payload = {
         "title": title,
         "content": html_body,
         "slug": slug,
         "status": status,
+        "excerpt": meta_description,
     }
 
     if date:
@@ -124,7 +127,6 @@ def sync_post(filepath: Path, mapping: dict) -> None:
     seo_title = post.metadata.get("seo_title")
     if seo_title:
         yoast_meta["_yoast_wpseo_title"] = seo_title
-    meta_description = post.metadata.get("meta_description")
     if meta_description:
         yoast_meta["_yoast_wpseo_metadesc"] = meta_description
     focus_keyphrase = post.metadata.get("focus_keyphrase")

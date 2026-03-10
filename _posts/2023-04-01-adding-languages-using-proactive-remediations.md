@@ -7,9 +7,10 @@ status: publish
 tags:
 - '2023'
 - Intune
-- MDM
-- Microsoft
-- Modern Device Management
+- Proactive Remediations
+- PowerShell
+- Windows
+- Language Packs
 title: Adding a language pack using Proactive remediations
 seo_title: 'Adding Language Packs Using Intune Proactive Remediations'
 meta_description: 'Learn how to add language packs to Windows devices using Intune Proactive Remediations. Step-by-step guide with detection and installation scripts.'

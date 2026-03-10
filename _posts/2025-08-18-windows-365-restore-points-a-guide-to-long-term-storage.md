@@ -6,10 +6,11 @@ date: '2025-08-18T10:49:47'
 status: publish
 tags:
 - '2025'
+- Windows 365
+- Cloud PC
+- Azure
+- Backup
 - Intune
-- MDM
-- Microsoft
-- Modern Device Management
 title: 'Windows 365 Restore Points: A Guide to Long-Term Storage'
 seo_title: 'Windows 365 Restore Points: Long-Term Storage with Azure'
 meta_description: 'Configure Windows 365 restore points and store them long-term with Azure Storage Accounts. A complete guide for Cloud PC backup management.'

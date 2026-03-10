@@ -7,14 +7,12 @@ date: '2026-01-02T11:36:09'
 status: draft
 tags:
 - '2026'
-- Authentication
-- Entra ID
-- IAM
+- Ubuntu
 - Intune
 - Linux
+- Entra ID
 - MDM
-- Microsoft
-- Modern Device Management
+- Compliance
 title: '[Update] Part 2: Enrolling Ubuntu 24.04 LTS in Microsoft Intune for Device
   Management'
 seo_title: 'Enrolling Ubuntu 24.04 LTS in Microsoft Intune'

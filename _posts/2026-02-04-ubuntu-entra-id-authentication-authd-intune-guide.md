@@ -7,14 +7,13 @@ date: '2026-02-04T14:05:21'
 status: draft
 tags:
 - '2026'
-- Authentication
 - Entra ID
-- IAM
-- Intune
+- AuthD
+- Ubuntu
 - Linux
-- MDM
-- Microsoft
-- Modern Device Management
+- Authentication
+- MFA
+- Intune
 title: '[Update] Part 1: Entra ID Authentication with AuthD'
 seo_title: 'Entra ID Authentication with AuthD on Ubuntu 24.04 LTS'
 meta_description: 'Configure Entra ID authentication on Ubuntu 24.04 LTS using AuthD. Covers Azure app registration, MFA support, and offline credential caching.'
