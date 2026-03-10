@@ -68,6 +68,24 @@ remove_action('wp_head', 'wp_shortlink_wp_head');
 remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
 
+/* Register Yoast SEO meta fields for REST API access */
+function jdm_register_yoast_meta() {
+    $meta_keys = [
+        '_yoast_wpseo_title',
+        '_yoast_wpseo_metadesc',
+        '_yoast_wpseo_focuskw',
+    ];
+    foreach ( $meta_keys as $key ) {
+        register_post_meta( 'post', $key, [
+            'show_in_rest'  => true,
+            'single'        => true,
+            'type'          => 'string',
+            'auth_callback' => function() { return current_user_can( 'edit_posts' ); },
+        ] );
+    }
+}
+add_action( 'init', 'jdm_register_yoast_meta' );
+
 /* Replace chain icon with Sessionize logo for sessionize.com social links */
 function jdm_sessionize_social_icon( $block_content, $block ) {
     if ( $block['blockName'] !== 'core/social-link' ) {

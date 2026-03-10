@@ -27,7 +27,7 @@ GITHUB_RAW_BASE = "https://raw.githubusercontent.com/jensdufour/blog/main"
 # Bump this version whenever the sync output format changes (e.g. Gutenberg
 # block conversion) so all posts are re-synced even if the source files haven't
 # changed.
-SYNC_FORMAT_VERSION = "3"
+SYNC_FORMAT_VERSION = "4"
 
 WP_URL = os.environ["WP_URL"].rstrip("/")
 WP_USER = os.environ["WP_USER"]
@@ -363,6 +363,26 @@ def sync_post(filepath: Path, mapping: dict) -> None:
     print(f"  {action} '{title}' (ID: {data['id']})")
 
 
+def cleanup_stale_mappings(mapping: dict, current_slugs: set[str]) -> None:
+    """Delete WordPress posts whose source files were removed or renamed."""
+    stale_slugs = [s for s in mapping if s not in current_slugs]
+    for slug in stale_slugs:
+        wp_id = mapping[slug].get("wp_id")
+        if wp_id:
+            print(f"  Deleting orphaned WP post: {slug} (ID: {wp_id})")
+            try:
+                resp = requests.delete(
+                    f"{API_BASE}/posts/{wp_id}",
+                    params={"force": True},
+                    auth=(WP_USER, WP_APP_PASSWORD),
+                    timeout=30,
+                )
+                resp.raise_for_status()
+            except Exception as exc:
+                print(f"  Warning: could not delete WP post {wp_id}: {exc}", file=sys.stderr)
+        del mapping[slug]
+
+
 def main() -> None:
     mapping = load_json(MAPPING_FILE)
 
@@ -372,15 +392,14 @@ def main() -> None:
         print("No posts to sync.")
         return
 
+    current_slugs = {slug_from_filename(f.stem) for f in files}
+
+    # Remove mapping entries (and WP posts) for deleted/renamed files
+    cleanup_stale_mappings(mapping, current_slugs)
+
     print(f"Syncing {len(files)} post(s) to WordPress...")
 
     for filepath in files:
-        if not filepath.exists():
-            slug = slug_from_filename(filepath.stem)
-            if slug in mapping:
-                print(f"  Post file deleted: {slug} (keeping WP post, removing mapping)")
-                del mapping[slug]
-            continue
         try:
             sync_post(filepath, mapping)
         except Exception as exc:
