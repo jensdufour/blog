@@ -5,12 +5,36 @@
     "appearanceTools": true,
     "color": {
       "palette": [
-        { "slug": "text", "color": "#1a1a1a", "name": "Text" },
-        { "slug": "background", "color": "#ffffff", "name": "Background" },
-        { "slug": "accent", "color": "#0366d6", "name": "Accent" },
-        { "slug": "muted", "color": "#586069", "name": "Muted" },
-        { "slug": "border", "color": "#e1e4e8", "name": "Border" },
-        { "slug": "code-bg", "color": "#f6f8fa", "name": "Code Background" }
+        {
+          "slug": "text",
+          "color": "#1a1a1a",
+          "name": "Text"
+        },
+        {
+          "slug": "background",
+          "color": "#ffffff",
+          "name": "Background"
+        },
+        {
+          "slug": "accent",
+          "color": "#0366d6",
+          "name": "Accent"
+        },
+        {
+          "slug": "muted",
+          "color": "#586069",
+          "name": "Muted"
+        },
+        {
+          "slug": "border",
+          "color": "#e1e4e8",
+          "name": "Border"
+        },
+        {
+          "slug": "code-bg",
+          "color": "#f6f8fa",
+          "name": "Code Background"
+        }
       ]
     },
     "typography": {
@@ -22,10 +46,26 @@
         }
       ],
       "fontSizes": [
-        { "slug": "small", "size": "0.85rem", "name": "Small" },
-        { "slug": "medium", "size": "1rem", "name": "Medium" },
-        { "slug": "large", "size": "1.2rem", "name": "Large" },
-        { "slug": "x-large", "size": "1.5rem", "name": "Extra Large" }
+        {
+          "slug": "small",
+          "size": "0.85rem",
+          "name": "Small"
+        },
+        {
+          "slug": "medium",
+          "size": "1rem",
+          "name": "Medium"
+        },
+        {
+          "slug": "large",
+          "size": "1.2rem",
+          "name": "Large"
+        },
+        {
+          "slug": "x-large",
+          "size": "1.5rem",
+          "name": "Extra Large"
+        }
       ]
     },
     "layout": {
@@ -33,7 +73,10 @@
       "wideSize": "64rem"
     },
     "spacing": {
-      "units": ["rem", "px"]
+      "units": [
+        "rem",
+        "px"
+      ]
     }
   },
   "styles": {
@@ -99,8 +142,16 @@
     }
   },
   "templateParts": [
-    { "name": "header", "title": "Header", "area": "header" },
-    { "name": "footer", "title": "Footer", "area": "footer" }
+    {
+      "name": "header",
+      "title": "Header",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "area": "footer"
+    }
   ],
   "customTemplates": []
 }
