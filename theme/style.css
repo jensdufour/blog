@@ -198,6 +198,12 @@ h1.wp-block-heading a:hover {
   text-decoration: none;
 }
 
+/* ── Sticky header ── */
+.is-position-sticky {
+  background: var(--bg);
+  z-index: 100;
+}
+
 /* ── Navigation links (dark mode aware) ── */
 .wp-block-navigation a {
   color: var(--text);
