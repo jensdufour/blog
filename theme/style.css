@@ -343,3 +343,24 @@ header.wp-block-template-part {
 .wp-block-post-comments-form .form-submit input[type="submit"]:hover {
   opacity: 0.85;
 }
+
+/* ── Mobile responsive ── */
+@media (max-width: 600px) {
+  .is-position-sticky {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  h1.wp-block-heading {
+    font-size: 1.15rem !important;
+  }
+
+  .wp-block-site-tagline {
+    display: none;
+  }
+
+  .cert-badge img {
+    width: 56px;
+    height: 56px;
+  }
+}
