@@ -95,7 +95,7 @@ def rewrite_local_media_in_html(html: str) -> str:
 
 # Top-level tags that the Markdown library emits
 _TOP_LEVEL_RE = re.compile(
-    r"<(h[1-6]|p|ul|ol|pre|blockquote|table|div)[\s>]|<(hr)\s*/?>",
+    r"<(h[1-6]|p|ul|ol|pre|blockquote|table|div|script)[\s>]|<(hr)\s*/?>",
     re.IGNORECASE,
 )
 
@@ -255,6 +255,9 @@ def _wrap_block(tag: str, el: str) -> str:
                 f'<pre class="wp-block-code"><code>{code_m.group(1)}</code></pre>\n'
                 "<!-- /wp:code -->"
             )
+        return f"<!-- wp:html -->\n{el}\n<!-- /wp:html -->"
+
+    if tag == "script":
         return f"<!-- wp:html -->\n{el}\n<!-- /wp:html -->"
 
     return el

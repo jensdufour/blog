@@ -6,8 +6,6 @@ meta_description: "Conference talks and community sessions by Jens Du Four on en
 focus_keyphrase: "Jens Du Four speaking"
 ---
 
-## Speaking
-
 I speak at community events and conferences across Europe about endpoint management, cloud security, and modern workplace topics. Whether it's a deep dive on Windows 365 deployment models or a hands-on look at Endpoint Privilege Management, my goal is to share practical lessons from real-world projects.
 
 ### Topics I Cover
