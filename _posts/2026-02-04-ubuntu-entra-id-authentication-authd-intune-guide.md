@@ -19,6 +19,8 @@ meta_description: 'Configure Entra ID authentication on Ubuntu 24.04 LTS using A
 focus_keyphrase: 'Entra ID authentication AuthD'
 ---
 
+> **Update (March 2026):** With Ubuntu 26.04 LTS, AuthD is now included in the official Ubuntu archive (universe) and no longer requires a PPA. The instructions in this guide target Ubuntu 24.04 LTS, where the PPA is still required. If you are running Ubuntu 26.04 LTS, you can skip the PPA step and install AuthD directly with `sudo apt install authd`. Additionally, a generic OIDC broker is now available for integration with any standards-compliant identity provider. For full details, see the [official announcement](https://discourse.ubuntu.com/t/authd-enters-the-ubuntu-archive-in-26-04-lts/78193).
+
 ## Introduction to Entra ID Authentication
 
 This is an updated version of the [Entra ID authentication on Ubuntu 22.04 LTS](https://jensdufour.be/2024/01/30/entra-id-the-magic-wand-for-ubuntu-23-04-authentication/).
@@ -31,7 +33,7 @@ This is an updated version of the [Entra ID authentication on Ubuntu 22.04 LTS](
 
 Traditional approaches like LDAP, Kerberos, or SSSD configurations require significant infrastructure and expertise. Furthermore, they complicate the user experience with separate credentials. For organizations invested in Microsoft Entra ID (formerly Azure AD), the question becomes: can we provide the same seamless, secure **Entra ID authentication** experience that users expect on Windows?
 
-The answer is **yes**, thanks to **AuthD** (Ubuntu’s authentication daemon). With AuthD, you can achieve: 3
+The answer is **yes**, thanks to **AuthD** (Ubuntu's authentication daemon). With AuthD, you can achieve:
 
 * **Single Sign-On** with Entra ID credentials on Ubuntu desktops
 * **Multi-Factor Authentication (MFA)** using Microsoft Authenticator
@@ -48,7 +50,7 @@ In this guide, you’ll learn how to:
 
 Whether you’re securing a handful of Linux workstations or planning an enterprise-wide rollout, this guide provides everything you need for **Entra ID authentication**.
 
-> **Note:** This guide focuses on AuthD configuration. For device management with Microsoft Intune, see our companion article on [Ubuntu Intune Enrollment](https://file+.vscode-resource.vscode-cdn.net/articles/ubuntu-intune-enrollment).
+> **Note:** This guide focuses on AuthD configuration. For device management with Microsoft Intune, see our companion article on [Ubuntu Intune Enrollment](https://jensdufour.be/2026/01/02/ubuntu-intune-enrollment/).
 
 ---
 
@@ -58,7 +60,7 @@ Before configuring **Entra ID authentication**, it’s essential to understand 
 
 ### AuthD: The Core of Entra ID Authentication
 
-[AuthD](https://github.com/ubuntu/authd) is Ubuntu’s modern authentication daemon designed specifically for cloud identity providers. Unlike traditional solutions that require domain controllers or complex LDAP configurations, AuthD provides a streamlined approach to cloud authentication.
+[AuthD](https://github.com/canonical/authd) is Ubuntu's modern authentication daemon designed specifically for cloud identity providers. Unlike traditional solutions that require domain controllers or complex LDAP configurations, AuthD provides a streamlined approach to cloud authentication.
 
 ![AuthD architecture with MS Entra ID broker integration](../media/ubuntu-entra-id-authentication-authd-intune-guide/ubuntu-entra-id-authentication-authd-intune-guide-02.webp)
 
@@ -857,7 +859,7 @@ Implementing **Entra ID authentication** with AuthD transforms Ubuntu workstat
 * **Reduce attack surface** by eliminating local accounts
 * **Enable unified identity** across all platforms
 
-This **Entra ID authentication** solution represents the future of enterprise Linux management. As AuthD continues to evolve (with plans for inclusion in Ubuntu 26.04 LTS), expect even deeper integration and additional identity provider support.
+This **Entra ID authentication** solution represents the future of enterprise Linux management. With AuthD now [included in the Ubuntu 26.04 LTS archive](https://discourse.ubuntu.com/t/authd-enters-the-ubuntu-archive-in-26-04-lts/78193), expect even deeper integration and additional identity provider support, including a generic OIDC broker for standards-compliant providers.
 
 **Ready to implement Entra ID authentication?** Begin with a single test workstation, validate the authentication flow, then scale your deployment with confidence.
 
@@ -868,7 +870,7 @@ This **Entra ID authentication** solution represents the future of enterprise 
 ### External Documentation
 
 * [AuthD Official Documentation](https://documentation.ubuntu.com/authd/stable-docs/)
-* [AuthD GitHub Repository](https://github.com/ubuntu/authd)
+* [AuthD GitHub Repository](https://github.com/canonical/authd)
 * [Microsoft Entra ID Documentation](https://learn.microsoft.com/en-us/entra/)
 
 ---
