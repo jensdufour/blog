@@ -420,6 +420,8 @@ def sync_post(filepath: Path, mapping: dict) -> None:
             auth=(WP_USER, WP_APP_PASSWORD), timeout=30,
         )
 
+    if not resp.ok:
+        print(f"  WP API error for {slug}: {resp.status_code} {resp.text[:500]}", file=sys.stderr)
     resp.raise_for_status()
     data = resp.json()
 
