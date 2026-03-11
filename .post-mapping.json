@@ -43,14 +43,14 @@
   },
   "entra-id-authentication-with-authd": {
     "wp_id": 968,
-    "content_hash": "65024b3317720d49d80271f398eb1e03832333d01098cd9623ea9b9ff7c89943",
+    "content_hash": "b3999a566940e690488de7eb288a3a088ecd9c56b5b8b00f14b0c43934d6f555",
     "source": "github",
-    "wp_modified": "2026-03-11T07:33:18"
+    "wp_modified": "2026-03-11T09:17:01"
   },
   "enabling-ai-frontier-capabilities-on-windows-365-with-intune": {
     "wp_id": 998,
-    "content_hash": "736429d520706ae1fd4bd259f6e9a445f7520d3cb634334a2ae0b9c3f8ac3f53",
+    "content_hash": "dccfdd9100d320ce49a6859d3d42d0a115ae2a548f2a4202ac63db0c6f9a1de5",
     "source": "github",
-    "wp_modified": "2026-03-11T08:54:34"
+    "wp_modified": "2026-03-11T09:17:06"
   }
 }
