@@ -55,7 +55,7 @@ This group automatically contains all users that have a Windows 365 Enterprise 8
 
 The service plan ID `69dc175c-dcff-4757-8389-d19e76acb45d` corresponds to the `CPC_E_8C_32GB_256GB` SKU (Windows 365 Enterprise 8 vCPU, 32 GB, 256 GB).
 
-![Dynamic user group configuration with service plan ID rule](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-01.webp)
+![Dynamic user group configuration with service plan ID rule](../media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-01.webp)
 
 6. Click **Save** and then **Create**.
 
@@ -73,7 +73,7 @@ This group automatically contains all Cloud PC devices that match the 8 vCPU con
 (device.deviceModel -startsWith "Cloud PC Enterprise 8vCPU")
 ```
 
-![Dynamic device group configuration with deviceModel startsWith rule](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-02.webp)
+![Dynamic device group configuration with deviceModel startsWith rule](../media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-02.webp)
 
 6. Click **Save** and then **Create**.
 
@@ -90,7 +90,7 @@ AI-enabled features require the **RemoteSigned** execution policy on the Cloud P
 5. Select **Administrative Templates > Windows Components > Windows PowerShell** and enable **Turn on Script Execution**.
 6. Set **Execution Policy** to **Allow only signed scripts** (this is the RemoteSigned equivalent).
 
-![Execution policy configuration in the Settings Catalog](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-03.webp)
+![Execution policy configuration in the Settings Catalog](../media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-03.webp)
 
 7. On the **Assignments** tab, assign to the **W365-D-Frontier** device group.
 8. Click **Create**.
@@ -111,13 +111,28 @@ A Windows Update policy must be enabled so that features delivered through servi
 | **Data type** | Integer |
 | **Value** | `1` |
 
-![Custom OMA-URI policy for AllowTemporaryEnterpriseFeatureControl](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-04.webp)
+![Custom OMA-URI policy for AllowTemporaryEnterpriseFeatureControl](../media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-04.webp)
 
 5. Click **Save**, then **Next**.
 6. On the **Assignments** tab, assign to the **W365-D-Frontier** device group.
 7. Click **Create**.
 
-## Step 4: Enroll Cloud PCs in the Windows Insider Beta Channel
+## Step 4: Enable Optional Diagnostics Data
+
+The Windows Insider Program requires optional diagnostics data to be enabled on Cloud PCs. Without it, the device will display "To join the Insider program, turn on optional diagnostics data" and cannot enroll in the Beta channel. Deploy this through a Settings Catalog policy.
+
+1. Navigate to **Microsoft Intune admin center** > **Devices** > **Configuration** > **Create** > **New Policy**.
+2. Select **Windows 10 and later** as the platform and **Settings catalog** as the profile type.
+3. Name the policy `DEV-CONF-W365-FRONTIER-DIAGNOSTICS`.
+4. Click **Add settings** and search for `Allow Telemetry`.
+5. Select **System > Allow Telemetry** and set it to **Full** (this enables optional diagnostics data).
+
+<!-- TODO: Add screenshot of diagnostics data policy -->
+
+6. On the **Assignments** tab, assign to the **W365-D-Frontier** device group.
+7. Click **Create**.
+
+## Step 5: Enroll Cloud PCs in the Windows Insider Beta Channel
 
 The AI features require the Windows Insider Beta channel. Instead of having each user manually opt in, use an Intune Update Ring to handle this at scale.
 
@@ -129,14 +144,14 @@ The AI features require the Windows Insider Beta channel. Instead of having each
    - Set **Select pre-release channel** to **Beta Channel**.
 5. Leave the remaining settings at their defaults.
 
-![Windows Insider Beta channel update ring configuration](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-05.webp)
+![Windows Insider Beta channel update ring configuration](../media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-05.webp)
 
 6. On the **Assignments** tab, assign to the **W365-D-Frontier** device group.
 7. Click **Create**.
 
 After the policy syncs, Cloud PCs will start receiving Beta channel updates. Make sure devices check for updates and restart.
 
-## Step 5: Assign AI-Enablement in Intune
+## Step 6: Assign AI-Enablement in Intune
 
 With all prerequisites deployed, you can now flip the switch to enable AI features on the targeted Cloud PCs.
 
@@ -146,14 +161,14 @@ With all prerequisites deployed, you can now flip the switch to enable AI featur
 4. Enter a **Name**, for example `USR-CONF-W365-FRONTIER-AIENABLEMENT`.
 5. On the **Configuration settings** tab, set **AI-enabled features** to **Enable**.
 
-![AI-enablement configuration settings](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-06.webp)
+![AI-enablement configuration settings](../media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-06.webp)
 
 6. On the **Assignments** tab, assign to the **W365-U-Frontier** user group.
 7. Proceed to **Review + create** and click **Create**.
 
 > **Important:** After AI-enablement is assigned, it can take **up to 48 hours** for the background processes to complete. During this time, the Cloud PCs are setting up the AI infrastructure locally.
 
-## Step 6: Apply Updates and Restart
+## Step 7: Apply Updates and Restart
 
 Once the 48-hour enablement window has passed, updates need to be applied:
 
@@ -163,7 +178,7 @@ Once the 48-hour enablement window has passed, updates need to be applied:
 
 This can also be managed at scale using Intune's **Windows Update for Business** policies or by using **Expedite updates** to push things along.
 
-## Step 7: Validate the Deployment
+## Step 8: Validate the Deployment
 
 After the updates have been applied, you can verify that AI features are active in several places.
 
@@ -231,7 +246,7 @@ If you want to keep AI-enablement but toggle individual features:
 There are two options:
 
 1. **Unassign** the user from the Enable policy.
-2. **Create a Disable policy**: Follow the same steps as Step 5, but set **AI-enabled features** to **Disable** and assign to the target group. The Disable policy takes precedence over Enable during conflict resolution.
+2. **Create a Disable policy**: Follow the same steps as Step 6, but set **AI-enabled features** to **Disable** and assign to the target group. The Disable policy takes precedence over Enable during conflict resolution.
 
 After disabling, it can take up to 48 hours for the AI features to be removed from the Cloud PCs.
 
@@ -249,9 +264,10 @@ With a few Intune policies and a couple of dynamic Entra ID groups, you can brin
 
 1. Create dynamic groups to target the right users and devices.
 2. Deploy execution policy and servicing feature policies.
-3. Enroll devices in the Windows Insider Beta channel.
-4. Enable AI features through a Cloud PC configuration.
-5. Apply updates and validate.
+3. Enable optional diagnostics data for Windows Insider enrollment.
+4. Enroll devices in the Windows Insider Beta channel.
+5. Enable AI features through a Cloud PC configuration.
+6. Apply updates and validate.
 
 For troubleshooting, check the [AI-enabled Cloud PC Known Issues](https://learn.microsoft.com/en-us/troubleshoot/windows-365/windows-365-ai-enabled-cloud-pc-known-issues) page. For the full Microsoft documentation, see [AI-enabled Cloud PC (Frontier Preview)](https://learn.microsoft.com/en-us/windows-365/enterprise/ai-enabled-cloud-pcs) and [Manage AI-enabled features](https://learn.microsoft.com/en-us/windows-365/enterprise/manage-ai-enabled-features).
 
