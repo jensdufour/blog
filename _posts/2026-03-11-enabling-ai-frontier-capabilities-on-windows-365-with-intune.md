@@ -187,7 +187,7 @@ After the updates have been applied, you can verify that AI features are active 
 **Device Overview page:**
 Navigate to **Devices** > select a Cloud PC > **Overview**. The **Essentials** tab will show an **AI-enabled** field.
 
-<!-- TODO: Add screenshot of device overview AI-enabled field -->
+![AI-enablement Cloud PC](../media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-08.webp)
 
 **Reports dashboard:**
 Navigate to **Reports** > **Windows 365** > **Cloud PC overview**. You will see a breakdown of AI-enabled Cloud PCs by status:
@@ -196,19 +196,17 @@ Navigate to **Reports** > **Windows 365** > **Cloud PC overview**. You will see 
 - **Ready to use** - Features are available
 - **Failed** - Setup could not complete
 
-<!-- TODO: Add screenshot of reports dashboard -->
+![AI-enablement Cloud PC overview](../media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-09.webp)
 
 ### End-User Validation
 
 **Windows App:**
 AI-enabled Cloud PCs show an **"AI-enabled"** tag on the device card within the Windows App.
 
-<!-- TODO: Add screenshot of Windows App AI-enabled tag -->
+![Windows app AI-enabled tag](../media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-10.webp)
 
 **Windows Taskbar:**
 The search box on the taskbar displays a **magnifying glass with sparkles** icon when AI features are active.
-
-<!-- TODO: Add screenshot of taskbar sparkles icon -->
 
 > **Note:** After a Windows Update, the sparkles icon might temporarily disappear. If clicking the search box doesn't restore it, check the [AI-enabled Cloud PC Known Issues](https://learn.microsoft.com/en-us/troubleshoot/windows-365/windows-365-ai-enabled-cloud-pc-known-issues) page.
 
@@ -222,13 +220,9 @@ Users can find files using **descriptive, natural-language queries**. The AI int
 
 This works in both the **Windows Search box** on the taskbar and in **File Explorer**. It supports English, Chinese (Simplified), French, German, Japanese, and Spanish.
 
-<!-- TODO: Add screenshot of improved Windows Search -->
-
 ### Click to Do
 
 Press **Win + Q** or hold the **Windows key** while left-clicking an element on screen to get contextual actions on highlighted text or images. You can summarize text, look up information, or perform actions on images without switching apps.
-
-<!-- TODO: Add screenshot of Click to Do -->
 
 > **Note:** You must launch the Click to Do app once after AI-enablement and after every Cloud PC restart before the keyboard shortcuts work. Some intelligent text actions (like "Ask Microsoft 365 Copilot") are not yet supported on Cloud PCs.
 
