@@ -1,7 +1,7 @@
 ---
 title: 'Enabling AI Frontier Capabilities on Windows 365 with Intune'
 date: '2026-03-11'
-status: draft
+status: publish
 seo_title: 'Enable AI Frontier Features on Windows 365 8 vCPU Cloud PC with Intune'
 meta_description: 'Step-by-step Intune guide to enabling Copilot+ AI features like improved Windows Search and Click to Do on an 8 vCPU Windows 365 Enterprise Cloud PC via the Frontier Preview.'
 focus_keyphrase: 'AI-enabled Windows 365 Cloud PC'

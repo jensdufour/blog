@@ -4,7 +4,7 @@ categories:
 - Microsoft
 - Technology
 date: '2026-02-04T14:05:21'
-status: publish
+status: draft
 tags:
 - Entra ID
 - AuthD
