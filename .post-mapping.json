@@ -46,5 +46,11 @@
     "content_hash": "65024b3317720d49d80271f398eb1e03832333d01098cd9623ea9b9ff7c89943",
     "source": "github",
     "wp_modified": "2026-03-11T07:33:18"
+  },
+  "enabling-ai-frontier-capabilities-on-windows-365-with-intune": {
+    "wp_id": 998,
+    "content_hash": "c25fa1a939ede1d7dcd6df71ac7e48018e17e4394e6dd096159dd6f90b8757f8",
+    "source": "github",
+    "wp_modified": "2026-03-11T00:00:00"
   }
 }
