@@ -380,7 +380,11 @@ def sync_post(filepath: Path, mapping: dict) -> None:
     }
 
     if date:
-        payload["date"] = str(date)
+        date_str = str(date)
+        # Ensure full ISO 8601 datetime for WordPress REST API
+        if len(date_str) == 10:  # YYYY-MM-DD
+            date_str += "T00:00:00"
+        payload["date"] = date_str
 
     if categories:
         payload["categories"] = get_or_create_terms("categories", categories)
