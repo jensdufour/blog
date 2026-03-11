@@ -212,6 +212,16 @@ header.wp-block-template-part {
   z-index: 100;
 }
 
+.admin-bar header.wp-block-template-part {
+  top: 32px !important;
+}
+
+@media (max-width: 782px) {
+  .admin-bar header.wp-block-template-part {
+    top: 46px !important;
+  }
+}
+
 /* ── Navigation links (dark mode aware) ── */
 .wp-block-navigation a {
   color: var(--text);
