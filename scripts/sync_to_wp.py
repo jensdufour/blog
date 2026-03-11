@@ -29,7 +29,7 @@ GITHUB_RAW_BASE = "https://raw.githubusercontent.com/jensdufour/blog/main"
 # Bump this version whenever the sync output format changes (e.g. Gutenberg
 # block conversion) so all posts are re-synced even if the source files haven't
 # changed.
-SYNC_FORMAT_VERSION = "7"
+SYNC_FORMAT_VERSION = "8"
 
 WP_URL = os.environ["WP_URL"].rstrip("/")
 WP_USER = os.environ["WP_USER"]

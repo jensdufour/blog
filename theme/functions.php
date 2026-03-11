@@ -75,13 +75,15 @@ function jdm_register_yoast_meta() {
         '_yoast_wpseo_metadesc',
         '_yoast_wpseo_focuskw',
     ];
-    foreach ( $meta_keys as $key ) {
-        register_post_meta( 'post', $key, [
-            'show_in_rest'  => true,
-            'single'        => true,
-            'type'          => 'string',
-            'auth_callback' => function() { return current_user_can( 'edit_posts' ); },
-        ] );
+    foreach ( ['post', 'page'] as $post_type ) {
+        foreach ( $meta_keys as $key ) {
+            register_post_meta( $post_type, $key, [
+                'show_in_rest'  => true,
+                'single'        => true,
+                'type'          => 'string',
+                'auth_callback' => function() { return current_user_can( 'edit_posts' ); },
+            ] );
+        }
     }
 }
 add_action( 'init', 'jdm_register_yoast_meta' );
