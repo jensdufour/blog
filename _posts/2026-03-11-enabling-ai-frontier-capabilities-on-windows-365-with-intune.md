@@ -55,7 +55,7 @@ This group automatically contains all users that have a Windows 365 Enterprise 8
 
 The service plan ID `69dc175c-dcff-4757-8389-d19e76acb45d` corresponds to the `CPC_E_8C_32GB_256GB` SKU (Windows 365 Enterprise 8 vCPU, 32 GB, 256 GB).
 
-![Dynamic user group configuration with service plan ID rule](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/dynamic-user-group-configuration.png)
+![Dynamic user group configuration with service plan ID rule](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-01.webp)
 
 6. Click **Save** and then **Create**.
 
@@ -73,7 +73,7 @@ This group automatically contains all Cloud PC devices that match the 8 vCPU con
 (device.deviceModel -startsWith "Cloud PC Enterprise 8vCPU")
 ```
 
-![Dynamic device group configuration with deviceModel startsWith rule](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/dynamic-device-group-configuration.png)
+![Dynamic device group configuration with deviceModel startsWith rule](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-02.webp)
 
 6. Click **Save** and then **Create**.
 
@@ -90,7 +90,7 @@ AI-enabled features require the **RemoteSigned** execution policy on the Cloud P
 5. Select **Administrative Templates > Windows Components > Windows PowerShell** and enable **Turn on Script Execution**.
 6. Set **Execution Policy** to **Allow only signed scripts** (this is the RemoteSigned equivalent).
 
-![Execution policy configuration in the Settings Catalog](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/execution-policy-settings-catalog.png)
+![Execution policy configuration in the Settings Catalog](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-03.webp)
 
 7. On the **Assignments** tab, assign to the **W365-D-Frontier** device group.
 8. Click **Create**.
@@ -111,7 +111,7 @@ A Windows Update policy must be enabled so that features delivered through servi
 | **Data type** | Integer |
 | **Value** | `1` |
 
-![Custom OMA-URI policy for AllowTemporaryEnterpriseFeatureControl](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/servicing-features-oma-uri.png)
+![Custom OMA-URI policy for AllowTemporaryEnterpriseFeatureControl](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-04.webp)
 
 5. Click **Save**, then **Next**.
 6. On the **Assignments** tab, assign to the **W365-D-Frontier** device group.
@@ -129,7 +129,7 @@ The AI features require the Windows Insider Beta channel. Instead of having each
    - Set **Select pre-release channel** to **Beta Channel**.
 5. Leave the remaining settings at their defaults.
 
-![Windows Insider Beta channel update ring configuration](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/insider-beta-update-ring.png)
+![Windows Insider Beta channel update ring configuration](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-05.webp)
 
 6. On the **Assignments** tab, assign to the **W365-D-Frontier** device group.
 7. Click **Create**.
@@ -146,11 +146,9 @@ With all prerequisites deployed, you can now flip the switch to enable AI featur
 4. Enter a **Name**, for example `USR-CONF-W365-FRONTIER-AIENABLEMENT`.
 5. On the **Configuration settings** tab, set **AI-enabled features** to **Enable**.
 
-![AI-enablement configuration settings](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/ai-enablement-configuration.png)
+![AI-enablement configuration settings](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-06.webp)
 
 6. On the **Assignments** tab, assign to the **W365-U-Frontier** user group.
-
-![AI-enablement policy assignment to W365-U-Frontier](/media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/ai-enablement-assignment.png)
 7. Proceed to **Review + create** and click **Create**.
 
 > **Important:** After AI-enablement is assigned, it can take **up to 48 hours** for the background processes to complete. During this time, the Cloud PCs are setting up the AI infrastructure locally.
