@@ -127,7 +127,7 @@ The Windows Insider Program requires optional diagnostics data to be enabled on 
 4. Click **Add settings** and search for `Allow Telemetry`.
 5. Select **System > Allow Telemetry** and set it to **Full** (this enables optional diagnostics data).
 
-<!-- TODO: Add screenshot of diagnostics data policy -->
+![Optional diagnostics data configuration](../media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-05.webp)
 
 6. On the **Assignments** tab, assign to the **W365-D-Frontier** device group.
 7. Click **Create**.
@@ -144,7 +144,7 @@ The AI features require the Windows Insider Beta channel. Instead of having each
    - Set **Select pre-release channel** to **Beta Channel**.
 5. Leave the remaining settings at their defaults.
 
-![Windows Insider Beta channel update ring configuration](../media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-05.webp)
+![Windows Insider Beta channel update ring configuration](../media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-06.webp)
 
 6. On the **Assignments** tab, assign to the **W365-D-Frontier** device group.
 7. Click **Create**.
@@ -161,7 +161,7 @@ With all prerequisites deployed, you can now flip the switch to enable AI featur
 4. Enter a **Name**, for example `USR-CONF-W365-FRONTIER-AIENABLEMENT`.
 5. On the **Configuration settings** tab, set **AI-enabled features** to **Enable**.
 
-![AI-enablement configuration settings](../media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-06.webp)
+![AI-enablement configuration settings](../media/enabling-ai-frontier-capabilities-on-windows-365-with-intune/enabling-ai-frontier-capabilities-on-windows-365-with-intune-07.webp)
 
 6. On the **Assignments** tab, assign to the **W365-U-Frontier** user group.
 7. Proceed to **Review + create** and click **Create**.
