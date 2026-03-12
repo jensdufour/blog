@@ -76,6 +76,7 @@ body {
   transition: color 0.25s ease, background 0.25s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scrollbar-gutter: stable;
 }
 
 a {
