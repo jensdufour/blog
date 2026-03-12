@@ -1,44 +1,44 @@
 {
   "zero-touch-ubuntu-entra-id-autoinstall": {
     "wp_id": 826,
-    "content_hash": "6826d7fba4784db37fc662d4f0a8415df3f5f1121ae99657029c11dc664d01dc",
+    "content_hash": "2a810355b163869a9329ee089907a76163618271ff8f1fd05d1e2cd377efd05e",
     "source": "github",
-    "wp_modified": "2026-03-12T08:06:50"
+    "wp_modified": "2026-03-12T08:17:34"
   },
   "epm-approval-workflow-adaptive-cards-logic-apps": {
     "wp_id": 779,
-    "content_hash": "b0a3e7372136adf724efd8c4c982a69633792f54ea8c1f294ef6c9aed710ec2e",
+    "content_hash": "840360814945e0419288f4cf7f6760db49e4c7c1ba00f0109c73675d7206e9f9",
     "source": "github",
-    "wp_modified": "2026-03-12T08:06:37"
+    "wp_modified": "2026-03-12T08:17:15"
   },
   "windows-365-restore-points-a-guide-to-long-term-storage": {
     "wp_id": 619,
-    "content_hash": "eef1da11679bcf57bd4507880d9c3ffbfb9190c32796c06b6105bf578fa12639",
+    "content_hash": "8d9a51bea1f5956d04bb1c7aa414de7eb1367cb962ecbd2622dcbc498efe2bc7",
     "source": "github",
-    "wp_modified": "2026-03-12T08:06:32"
+    "wp_modified": "2026-03-12T08:17:10"
   },
   "adding-languages-using-proactive-remediations": {
     "wp_id": 198,
-    "content_hash": "e34d9279d9ccc12e99e6b8d5cb02b8e3cba9fe4ee9b5cca51b25813721749a42",
+    "content_hash": "7e13e12c5d09331d8004f330c1155f88f6e3dc4ccfa6798ec9506fe9d67d28f9",
     "source": "github",
-    "wp_modified": "2026-03-12T08:06:27"
+    "wp_modified": "2026-03-12T08:17:05"
   },
   "enrolling-ubuntu-intune-device-management": {
     "wp_id": 967,
-    "content_hash": "f6124bcf70325f1abf03e40771b49f4cd03c1d0f59b69118683c7787ed5a9e3c",
+    "content_hash": "9333c4ea21768d3afdc619b16f576c40ed80d12727d469a344e61a9124efbffa",
     "source": "github",
-    "wp_modified": "2026-03-12T08:06:44"
+    "wp_modified": "2026-03-12T08:17:39"
   },
   "entra-id-authentication-with-authd": {
     "wp_id": 968,
-    "content_hash": "0c2331c246aba1c7e84355e3e1860866afd0bc4d4b8388196c6a1c2140c6bb72",
+    "content_hash": "11598303dfe63677dc9db87b24064a3c40873865fec81739321ac5867865d5a7",
     "source": "github",
-    "wp_modified": "2026-03-12T08:06:56"
+    "wp_modified": "2026-03-12T08:17:22"
   },
   "enabling-ai-frontier-capabilities-on-windows-365-with-intune": {
     "wp_id": 998,
-    "content_hash": "1e04e5ffb3e675b8f44bd779804225d24b7124851328244eeb37bcf2df1f5559",
+    "content_hash": "6d7e1561f6d40d229f2e15143c343cc0623e923f50df84062b464b2e219db44f",
     "source": "github",
-    "wp_modified": "2026-03-12T08:07:00"
+    "wp_modified": "2026-03-12T08:17:28"
   }
 }
