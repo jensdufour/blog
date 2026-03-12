@@ -1,56 +1,44 @@
 {
   "zero-touch-ubuntu-entra-id-autoinstall": {
     "wp_id": 826,
-    "content_hash": "686af7eee35c076081168910b5d48825f427075093f527a94167c575c906f9fb",
+    "content_hash": "6826d7fba4784db37fc662d4f0a8415df3f5f1121ae99657029c11dc664d01dc",
     "source": "github",
-    "wp_modified": "2026-03-11T07:33:13"
+    "wp_modified": "2026-03-12T08:06:50"
   },
   "epm-approval-workflow-adaptive-cards-logic-apps": {
     "wp_id": 779,
-    "content_hash": "8cf28dcecea85791f1dc2696f7d41563b3db20ef6caa513fbe04a43848342f23",
+    "content_hash": "b0a3e7372136adf724efd8c4c982a69633792f54ea8c1f294ef6c9aed710ec2e",
     "source": "github",
-    "wp_modified": "2026-03-11T07:33:08"
+    "wp_modified": "2026-03-12T08:06:37"
   },
   "windows-365-restore-points-a-guide-to-long-term-storage": {
     "wp_id": 619,
-    "content_hash": "cccd274e46638cdba356a6e6a1994ef819e0b58a0c3933aa73b2da3049772748",
+    "content_hash": "eef1da11679bcf57bd4507880d9c3ffbfb9190c32796c06b6105bf578fa12639",
     "source": "github",
-    "wp_modified": "2026-03-11T07:33:04"
-  },
-  "epm-elevation-notifications-teams-logic-apps": {
-    "wp_id": 676,
-    "content_hash": "ab10549dff8613ab20b97fcf3b4560873e43cb0dc40237b40b447d1debd2bd4c",
-    "source": "github",
-    "wp_modified": "2026-03-11T07:33:00"
-  },
-  "entra-id-authentication-ubuntu-23-04-pam-modules": {
-    "wp_id": 226,
-    "content_hash": "eeb15e2327c512d6ff1fc19f0d0052851e4792047a44d3111562e38ac65d0da8",
-    "source": "github",
-    "wp_modified": "2026-03-11T07:32:56"
+    "wp_modified": "2026-03-12T08:06:32"
   },
   "adding-languages-using-proactive-remediations": {
     "wp_id": 198,
-    "content_hash": "c05db1128e1e7cc19d70c129b4e6136846ca681192971d162ffc65bde3fd2974",
+    "content_hash": "e34d9279d9ccc12e99e6b8d5cb02b8e3cba9fe4ee9b5cca51b25813721749a42",
     "source": "github",
-    "wp_modified": "2026-03-11T07:32:51"
+    "wp_modified": "2026-03-12T08:06:27"
   },
   "enrolling-ubuntu-intune-device-management": {
     "wp_id": 967,
-    "content_hash": "a0165c68c4051449f72e118133bb7a3cc729c28d3fc099cb9b3048c69ceade28",
+    "content_hash": "f6124bcf70325f1abf03e40771b49f4cd03c1d0f59b69118683c7787ed5a9e3c",
     "source": "github",
-    "wp_modified": "2026-03-11T07:33:12"
+    "wp_modified": "2026-03-12T08:06:44"
   },
   "entra-id-authentication-with-authd": {
     "wp_id": 968,
-    "content_hash": "b3999a566940e690488de7eb288a3a088ecd9c56b5b8b00f14b0c43934d6f555",
+    "content_hash": "0c2331c246aba1c7e84355e3e1860866afd0bc4d4b8388196c6a1c2140c6bb72",
     "source": "github",
-    "wp_modified": "2026-03-11T09:17:01"
+    "wp_modified": "2026-03-12T08:06:56"
   },
   "enabling-ai-frontier-capabilities-on-windows-365-with-intune": {
     "wp_id": 998,
-    "content_hash": "1aeb5512334e59ca170eddefa3557e999b0c13a80d0fcf0982c364dc603cf85c",
+    "content_hash": "1e04e5ffb3e675b8f44bd779804225d24b7124851328244eeb37bcf2df1f5559",
     "source": "github",
-    "wp_modified": "2026-03-11T13:18:46"
+    "wp_modified": "2026-03-12T08:07:00"
   }
 }
