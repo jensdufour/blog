@@ -16,7 +16,7 @@ meta_description: 'Configure Windows 365 restore points and store them long-term
 focus_keyphrase: 'Windows 365 restore points'
 ---
 
-Windows 365 is a service that provides a Windows Cloud experience, allowing users to access a Windows desktop from anywhere. One of the key features of Windows 365 is the ability to create restore points, which are snapshots of the system at a specific point in time. Let’s take a look at what those mean!
+[Windows 365](https://learn.microsoft.com/en-us/windows-365/overview) is a service that provides a Windows Cloud experience, allowing users to access a Windows desktop from anywhere. One of the key features of Windows 365 is the ability to create restore points, which are snapshots of the system at a specific point in time. Let’s take a look at what those mean!
 
 ## Overview of Windows 365 Restore Points
 
@@ -28,7 +28,7 @@ Additionally, restore points can be used to test new software or updates, allowi
 
 ## How to adapt the automatic Windows 365 Restore Points in Microsoft Intune
 
-By default Microsoft Intune will create several restore points for each and every Cloud PC.
+By default [Microsoft Intune](https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/what-is-intune) will create several restore points for each and every Cloud PC.
 
 The amount of restore points will never change and is two bi-weekly restore points and ten restore points you can adapt the recurrence of, this is done through a “User Setting”:
 
@@ -87,4 +87,13 @@ In summary, Windows 365 restore points are an essential feature. They provide a 
 
 By creating and managing restore points effectively, users can safeguard their systems and minimize downtime.
 
-Additionally, utilizing storage accounts for long-term storage of restore points offers a scalable and secure solution for preserving these critical backups. I encourage everyone to take advantage of them in Windows 365 to enhance system management and data protection strategies.
+Additionally, utilizing [Azure Storage Accounts](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview) for long-term storage of restore points offers a scalable and secure solution for preserving these critical backups. I encourage everyone to take advantage of them in Windows 365 to enhance system management and data protection strategies.
+
+If you want to further enhance your Windows 365 environment, check out [Enabling AI Frontier Capabilities on Windows 365 with Intune](https://jensdufour.be/2026/03/11/enabling-ai-frontier-capabilities-on-windows-365-with-intune/) or learn how to automate language packs in [Adding Language Packs Using Proactive Remediations](https://jensdufour.be/2023/04/01/adding-languages-using-proactive-remediations/).
+
+## Sources
+
+* [Windows 365 documentation | Microsoft Learn](https://learn.microsoft.com/en-us/windows-365/)
+* [Cloud PC restore points | Microsoft Learn](https://learn.microsoft.com/en-us/windows-365/enterprise/restore-overview)
+* [Azure Storage Accounts | Microsoft Learn](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview)
+* [Access tiers for blob data | Microsoft Learn](https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview)

@@ -16,9 +16,9 @@ meta_description: 'Learn how to add language packs to Windows devices using Intu
 focus_keyphrase: 'proactive remediations language pack'
 ---
 
-One of the features of Intune is Proactive Remediation. This allows administrators to create scripts that automatically fix issues on devices before users even notice them. Adding a language pack using Proactive Remediation script is a straightforward process. I will guide you through the steps in this article.
+One of the features of [Microsoft Intune](https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/what-is-intune) is [Proactive Remediation](https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/remediations). This allows administrators to create scripts that automatically fix issues on devices before users even notice them. Adding a language pack using Proactive Remediations is a straightforward process. I will guide you through the steps in this article.
 
-I have been using this method to add additional language packs to my Windows 365 deployments. This is from great use to organizations that are multi-geographical.
+I have been using this method to add additional language packs to my [Windows 365](https://learn.microsoft.com/en-us/windows-365/overview) deployments. If you are looking into other Windows 365 management topics, check out [Windows 365 Restore Points: A Guide to Long-Term Storage](https://jensdufour.be/2025/08/18/windows-365-restore-points-a-guide-to-long-term-storage/) and [Enabling AI Frontier Capabilities on Windows 365 with Intune](https://jensdufour.be/2026/03/11/enabling-ai-frontier-capabilities-on-windows-365-with-intune/). This is from great use to organizations that are multi-geographical.
 
 ## Creating the scripts
 
@@ -75,3 +75,9 @@ Additionally, you can also change the schedule and filter for specific devices.
 Adding a language pack using a Proactive Remediation script is a straightforward process that can save administrators time and ensure that devices are always running in the correct language.
 
 By following the steps outlined in this article, administrators can easily create a language pack installation script and create a Proactive Remediation script to automate the installation process.
+
+## Sources
+
+* [LanguagePackManagement Module | Microsoft Learn](https://learn.microsoft.com/en-us/powershell/module/languagepackmanagement/?view=windowsserver2022-ps)
+* [Proactive Remediations in Intune | Microsoft Learn](https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/remediations)
+* [Endpoint Analytics overview | Microsoft Learn](https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/endpoint-analytics-overview)

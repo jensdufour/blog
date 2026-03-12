@@ -2,8 +2,8 @@
 title: 'Enabling AI Frontier Capabilities on Windows 365 with Intune'
 date: '2026-03-11'
 status: publish
-seo_title: 'Enable AI Frontier Features on Windows 365 8 vCPU Cloud PC with Intune'
-meta_description: 'Step-by-step Intune guide to enabling Copilot+ AI features like improved Windows Search and Click to Do on an 8 vCPU Windows 365 Enterprise Cloud PC via the Frontier Preview.'
+seo_title: 'AI-Enabled Windows 365 Cloud PC with Intune'
+meta_description: 'Enable Copilot+ AI features on an AI-enabled Windows 365 Cloud PC with Intune. Covers improved Windows Search and Click to Do.'
 focus_keyphrase: 'AI-enabled Windows 365 Cloud PC'
 categories:
 - Microsoft
@@ -17,7 +17,7 @@ tags:
 - Frontier Preview
 ---
 
-Copilot+ PC features like improved Windows Search and Click to Do are no longer limited to devices with a physical NPU. Through the **Frontier Preview**, Microsoft now lets you light up these AI capabilities on Windows 365 Enterprise Cloud PCs with 8 vCPUs. In this post we will walk through every Intune configuration step needed to enable them at scale, from dynamic group creation all the way to validation.
+Copilot+ PC features like improved Windows Search and Click to Do are no longer limited to devices with a physical NPU. Through the **Frontier Preview**, Microsoft now lets you create an **AI-enabled Windows 365 Cloud PC** with 8 vCPUs. In this post we will walk through every Intune configuration step needed to enable them at scale, from dynamic group creation all the way to validation.
 
 > **Note:** The Frontier Preview is a public preview. Future availability depends on its results and is subject to change.
 
@@ -264,6 +264,8 @@ With a few Intune policies and a couple of dynamic Entra ID groups, you can brin
 6. Apply updates and validate.
 
 For troubleshooting, check the [AI-enabled Cloud PC Known Issues](https://learn.microsoft.com/en-us/troubleshoot/windows-365/windows-365-ai-enabled-cloud-pc-known-issues) page. For the full Microsoft documentation, see [AI-enabled Cloud PC (Frontier Preview)](https://learn.microsoft.com/en-us/windows-365/enterprise/ai-enabled-cloud-pcs) and [Manage AI-enabled features](https://learn.microsoft.com/en-us/windows-365/enterprise/manage-ai-enabled-features).
+
+Looking for more Windows 365 management tips? Check out [Windows 365 Restore Points: A Guide to Long-Term Storage](https://jensdufour.be/2025/08/18/windows-365-restore-points-a-guide-to-long-term-storage/) and [Adding Language Packs Using Proactive Remediations](https://jensdufour.be/2023/04/01/adding-languages-using-proactive-remediations/).
 
 ## Sources
 

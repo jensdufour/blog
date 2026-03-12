@@ -2,7 +2,6 @@
 
 This repo is the **single source of truth** for the blog. All posts (Markdown) and media (images) live here.
 
-- **GitHub Pages**: Posts are rendered as a static site at `https://<username>.github.io/blog/`
 - **WordPress sync**: On push to `main`, changed posts and images are synced to WordPress via the REST API
 
 ## Creating a new article
@@ -20,7 +19,7 @@ This creates:
 
 ### 2. Add screenshots
 
-Save Greenshot captures directly into the `media/<slug>/` folder — **any filename works**. The GitHub Actions workflow will automatically rename them to follow the convention (`<slug>-01.png`, `<slug>-02.png`, ...), convert them to WebP for smaller file sizes, and update your markdown references on push.
+Save Greenshot captures directly into the `media/<slug>/` folder — **any filename works**. The GitHub Actions workflows will automatically rename them to follow the convention (`<slug>-01.png`, `<slug>-02.png`, ...), convert them to WebP for smaller file sizes, and update your markdown references on push.
 
 ### 3. Write the post
 
@@ -42,10 +41,11 @@ The GitHub Actions workflow will convert your Markdown to HTML and publish the p
 
 ## How it works
 
-| Direction | Trigger | What happens |
+| Workflow | Trigger | What happens |
 |---|---|---|
-| **GitHub → WordPress** | Push to `main` (changes in `_posts/` or `media/`) | Markdown is converted to HTML with image paths rewritten to GitHub raw URLs, and posts are published/updated via the WP REST API |
-| **GitHub → GitHub Pages** | Push to `main` | Jekyll builds the site and deploys to GitHub Pages |
+| **Optimize media** | Push to `main` changing `media/**` | Renames images to `<slug>-NN` convention, converts to WebP, commits changes |
+| **Deploy theme** | Push to `main` changing `theme/**` | Deploys the WordPress theme via rsync over SSH |
+| **Sync to WordPress** | Push to `main` changing `_posts/**`, `_pages/**`, or after Optimize media completes | Converts Markdown to HTML, rewrites image paths to GitHub raw URLs, publishes via the WP REST API |
 
 Mapping files track sync state:
 - `.post-mapping.json` — slug ↔ WordPress post ID and content hashes
@@ -54,13 +54,14 @@ Mapping files track sync state:
 
 ```
 blog/
-├── _posts/              # Markdown files (Jekyll naming: YYYY-MM-DD-slug.md)
+├── _posts/              # Markdown files (YYYY-MM-DD-slug.md)
 │   └── 2026-03-09-my-post.md
-├── _layouts/            # Jekyll HTML layouts
+├── _pages/              # Static pages synced to WordPress
 ├── media/               # All images, organized per article
 │   └── my-post/
 │       ├── my-post-01.webp
 │       └── my-post-02.webp
+├── theme/               # WordPress theme (deployed via rsync)
 ├── scripts/
 │   ├── new_post.py      # Scaffold a new post + media directory
 │   ├── optimize_media.py # Convert images to WebP
@@ -68,11 +69,11 @@ blog/
 │   ├── sync_to_wp.py    # GitHub → WordPress sync
 │   └── requirements.txt
 ├── .github/workflows/
-│   ├── push-to-wp.yml   # Syncs posts to WP on push
-│   └── deploy-pages.yml # Builds and deploys GitHub Pages
-├── _config.yml          # Jekyll configuration
-├── index.md             # Homepage listing all posts
+│   ├── optimize-media.yml # Renames & converts images on media/ changes
+│   ├── deploy-theme.yml   # Deploys WP theme on theme/ changes
+│   └── sync-to-wp.yml    # Syncs posts & pages to WP on content changes
 ├── .post-mapping.json   # Post sync state
+├── .page-mapping.json   # Page sync state
 └── README.md
 ```
 

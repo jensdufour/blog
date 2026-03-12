@@ -14,8 +14,8 @@ tags:
 - MFA
 - Intune
 title: 'Entra ID Authentication with AuthD on Ubuntu 24.04 LTS'
-seo_title: 'Entra ID Authentication with AuthD on Ubuntu 24.04 LTS (Manual Setup)'
-meta_description: 'Manually configure Entra ID authentication on Ubuntu 24.04 LTS using AuthD. Covers Azure app registration, broker setup, MFA support, and offline credential caching.'
+seo_title: 'Entra ID AuthD Authentication on Ubuntu 24.04'
+meta_description: 'Configure Entra ID authentication with AuthD on Ubuntu 24.04. Covers app registration, broker setup, MFA support, and offline caching.'
 focus_keyphrase: 'Entra ID authentication AuthD Ubuntu 24.04'
 ---
 
@@ -23,7 +23,7 @@ focus_keyphrase: 'Entra ID authentication AuthD Ubuntu 24.04'
 
 ## Introduction to Entra ID Authentication
 
-This is an updated version of the [Entra ID authentication on Ubuntu 22.04 LTS](https://jensdufour.be/2024/01/30/entra-id-authentication-ubuntu-23-04-pam-modules/).
+This guide replaces the legacy PAM-based Entra ID authentication method for older Ubuntu versions.
 
 **Entra ID authentication** using AuthD represents a significant shift in how enterprises manage Linux workstation identity. As organizations adopt Ubuntu for development, data science, and productivity workloads, the need for cloud-native authentication becomes critical. AuthD provides the solution, enabling users to log in to Ubuntu with their Microsoft Entra ID credentials.
 

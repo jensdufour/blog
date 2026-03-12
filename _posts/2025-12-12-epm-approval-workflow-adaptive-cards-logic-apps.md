@@ -11,18 +11,43 @@ tags:
 - Logic Apps
 - Teams
 title: 'EPM Approval Workflow: Adaptive Cards and Logic Apps'
-seo_title: 'Approve or Deny EPM Requests in Teams with Adaptive Cards and Logic Apps'
-meta_description: 'Build a two-way EPM approval workflow in Microsoft Teams using Adaptive Cards, Azure Logic Apps, Managed Identity, and Bicep. Approve or deny elevation requests without leaving Teams.'
+seo_title: 'EPM Approval via Adaptive Cards in Teams'
+meta_description: 'Automate EPM approval in Microsoft Teams with Adaptive Cards and Azure Logic Apps. Approve or deny elevation requests without leaving Teams.'
 focus_keyphrase: 'EPM approval Adaptive Cards Teams'
 ---
 
 ## Introduction
 
-> This post builds on the notification MVP from [EPM Elevation Notifications with Teams and Azure Logic Apps](https://jensdufour.be/2025/08/01/epm-elevation-notifications-teams-logic-apps/). Where that article delivered one-way notifications, this solution adds **two-way approve/deny actions** directly inside Teams, replaces the App Registration + client secret with a **Managed Identity**, and deploys everything as **Infrastructure as Code** using Bicep.
-
-**EPM automation with Adaptive Cards** transforms how IT teams handle elevation requests in Microsoft Intune. By combining Azure Logic Apps with Teams Adaptive Cards, you can automate the entire Endpoint Privilege Management approval workflow, allowing approvers to act on requests without leaving Microsoft Teams. This EPM automation solution eliminates the need to constantly monitor the Intune portal.
+**EPM automation with Adaptive Cards** transforms how IT teams handle elevation requests in [Microsoft Intune](https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/what-is-intune). By combining [Azure Logic Apps](https://learn.microsoft.com/en-us/azure/logic-apps/) with Teams [Adaptive Cards](https://learn.microsoft.com/en-us/adaptive-cards/), you can automate the entire [Endpoint Privilege Management](https://learn.microsoft.com/en-us/intune/intune-service/protect/epm-overview) (EPM) approval workflow, allowing approvers to act on requests without leaving Microsoft Teams. This EPM automation solution eliminates the need to constantly monitor the Intune portal.
 
 ![EPM automation Adaptive Cards showing an approved elevation request in Microsoft Teams.](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-01.webp)
+
+## What Is Endpoint Privilege Management?
+
+**Endpoint Privilege Management (EPM)** is a feature in the [Microsoft Intune Suite](https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/intune-add-ons) that allows organizations to manage and control local administrator rights on Windows devices --- without granting permanent admin access. It enables rule-based and Just-In-Time (JIT) elevation, ensuring users can perform privileged tasks only when necessary, and only under defined conditions.
+
+### Rules-Based Elevation: Three Options
+
+EPM supports three types of elevation rules:
+
+1. **Automatic Elevation** --- The application is elevated silently without user interaction, based on predefined rules.
+2. **User-Confirmed Elevation** --- The user is prompted to confirm the elevation request, typically with a business justification and/or Windows authentication.
+3. **Support-Approved Elevation** --- The user submits a request that must be approved by IT or support staff before elevation is granted. This is the model we focus on in this post, as it allows integration with Microsoft Teams for real-time approvals.
+
+### Just-In-Time Elevation with Support Approval
+
+Support-approved elevation is ideal for organizations that want to maintain strict control over admin rights while still enabling flexibility for end users. When a user requests elevation, the request is logged and routed for approval. By integrating this process with Microsoft Teams using Azure Logic Apps, IT teams can receive instant notifications and respond quickly --- without switching tools or missing critical requests.
+
+Currently, when approved, these requests remain valid for 24 hours.
+
+### Benefits of Using EPM
+
+Implementing Endpoint Privilege Management offers several key advantages:
+
+* **User Empowerment**: Allows users to perform necessary tasks without waiting for manual intervention --- when policies allow it.
+* **Improved Security**: Reduces the attack surface by eliminating standing admin rights.
+* **Operational Efficiency**: Automates elevation workflows and reduces helpdesk overhead.
+* **Compliance and Auditing**: Provides detailed logs of elevation activity for auditing and compliance reporting.
 
 ## The Challenge with Manual EPM Approvals
 
@@ -33,11 +58,55 @@ When EPM is configured in Microsoft Intune, end users can request elevation to r
 3. Review the request details
 4. Approve or deny the request
 
-This process, while secure, creates friction, especially when approvers are busy with other tasks or aren’t actively monitoring the Intune console.
+This process, while secure, creates friction, especially when approvers are busy with other tasks or aren't actively monitoring the Intune console.
 
 The result?
 
 Delayed approvals and frustrated users waiting for elevated access.
+
+## Configuring EPM in Microsoft Intune
+
+Before setting up the automation, you need an EPM elevation rules policy. In this example we enable the "Mark 8 Project Team" to request elevation for Wireshark. I am assuming here that EPM was already enabled in your tenant.
+
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-03.webp)
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-04.webp)
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-05.webp)
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-06.webp)
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-07.webp)
+
+Start in [Microsoft Intune](https://intune.microsoft.com/) and navigate to the **Endpoint security** blade. Under **Endpoint Privilege Management** go to **Policies** and create a new **Elevation rules policy**.
+
+After going through the basics, fill in the detailed information about the application you are adding to the rule. This information can be collected using the `EpmTools.dll`.
+
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-08.webp)
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-09.webp)
+
+Using this tool you can even extract publisher certificates from the file. These can be added to the reusable library.
+
+Finally, fill in all the necessary details about the file.
+
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-10.webp)
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-11.webp)
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-12.webp)
+
+Verify the configuration from a demo device. From the end-user perspective the **Run with elevated access** option should be visible, and the elevation request dialog should open.
+
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-13.webp)
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-14.webp)
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-15.webp)
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-16.webp)
+
+For the Intune administrator, the request should appear in the **Elevation requests** tab almost immediately.
+
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-17.webp)
+
+### Verifying the Graph API Data
+
+Before building the Logic App, confirm that elevation requests are visible through the [Microsoft Graph API](https://learn.microsoft.com/en-us/graph/use-the-api). Open the [Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer) and query `deviceManagement/elevationRequests`.
+
+![](../media/epm-approval-workflow-adaptive-cards-logic-apps/epm-approval-workflow-adaptive-cards-logic-apps-18.webp)
+
+Make sure you are using the **beta** version of the API and that the `DeviceManagementConfiguration.Read.All` permission has been granted. Otherwise, the query returns a permission error.
 
 ## How EPM Automation with Adaptive Cards Works
 
@@ -212,3 +281,13 @@ The modular design allows for easy extensions:
 The solution is cost-effective (under $10/month), secure (no secrets, managed identity), and easy to deploy (Infrastructure as Code with automated deployment scripts).
 
 Ready to implement EPM automation with Adaptive Cards in your environment? Check out the full source code and detailed deployment instructions on [GitHub](https://github.com/jensdufour/PUB-EPM-Teams-Integration)!
+
+## Sources
+
+* [Endpoint Privilege Management overview | Microsoft Learn](https://learn.microsoft.com/en-us/intune/intune-service/protect/epm-overview)
+* [Azure Logic Apps documentation | Microsoft Learn](https://learn.microsoft.com/en-us/azure/logic-apps/)
+* [Adaptive Cards documentation | Microsoft Learn](https://learn.microsoft.com/en-us/adaptive-cards/)
+* [Microsoft Teams Connectors | Microsoft Learn](https://learn.microsoft.com/en-us/connectors/teams/?tabs=text1%2Cdotnet)
+* [Microsoft Graph API | Microsoft Learn](https://learn.microsoft.com/en-us/graph/use-the-api)
+* [Azure Managed Identities | Microsoft Learn](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview)
+* [Azure Bicep documentation | Microsoft Learn](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/)

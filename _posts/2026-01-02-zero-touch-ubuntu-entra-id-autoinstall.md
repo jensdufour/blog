@@ -1,4 +1,4 @@
-﻿---
+---
 categories:
 - Linux
 - Microsoft
@@ -13,14 +13,14 @@ tags:
 - Autoinstall
 - Automation
 title: Automating Ubuntu 24.04 LTS Entra ID Authentication with Autoinstall
-seo_title: 'Zero-Touch Ubuntu Entra ID Deployment with Autoinstall and Cloud-Init'
-meta_description: 'Automate Ubuntu 24.04 LTS Entra ID authentication with autoinstall and cloud-init. Generate deployment media using a web-based configurator for zero-touch provisioning.'
+seo_title: 'Automated Ubuntu Entra ID Autoinstall Guide'
+meta_description: 'Automated Ubuntu Entra ID autoinstall with cloud-init. Generate deployment media via a web configurator for zero-touch provisioning.'
 focus_keyphrase: 'automated Ubuntu Entra ID autoinstall'
 ---
 
 ## Introduction to Automated Ubuntu Entra ID Authentication
 
-**Automated Ubuntu Entra ID authentication** represents the next evolution in enterprise Linux deployment. Building on the manual configuration methods detailed in our previous articles on [Entra ID Authentication with AuthD](https://jensdufour.be/2026/02/04/entra-id-authentication-with-authd/) and [Ubuntu Intune Enrollment](https://jensdufour.be/2026/01/02/enrolling-ubuntu-intune-device-management/), this guide introduces a complete automation solution that eliminates manual setup while enforcing security from the moment of installation.
+**Automated Ubuntu Entra ID autoinstall** represents the next evolution in enterprise Linux deployment. Building on the manual configuration methods detailed in our previous articles on [Entra ID Authentication with AuthD](https://jensdufour.be/2026/02/04/entra-id-authentication-with-authd/) and [Ubuntu Intune Enrollment](https://jensdufour.be/2026/01/02/enrolling-ubuntu-intune-device-management/), this guide introduces a complete automation solution that eliminates manual setup while enforcing security from the moment of installation.
 
 <!-- TODO: Add image - Web-based configurator generating Ubuntu autoinstall files -->
 *Figure 1: Web-based configurator for automated Ubuntu Entra ID deployment*

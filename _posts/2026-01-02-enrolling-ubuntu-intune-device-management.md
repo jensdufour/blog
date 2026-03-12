@@ -13,14 +13,14 @@ tags:
 - MDM
 - Compliance
 title: 'Enrolling Ubuntu 24.04 LTS in Microsoft Intune for Device Management'
-seo_title: 'Enrolling Ubuntu 24.04 LTS in Microsoft Intune: Step-by-Step Guide'
-meta_description: 'Enroll Ubuntu 24.04 LTS in Microsoft Intune for enterprise device management. Covers prerequisites, package installation, compliance policies, and troubleshooting.'
+seo_title: 'Ubuntu 24.04 LTS Intune Enrollment: Full Guide'
+meta_description: 'Enroll Ubuntu 24.04 LTS in Microsoft Intune for enterprise device management. Covers prerequisites, compliance policies, and troubleshooting.'
 focus_keyphrase: 'Ubuntu 24.04 Intune enrollment'
 ---
 
 ## Introduction to Intune Enrollment
 
-This article is an update on a previous one I wrote about [Entra ID Authentication for Ubuntu 23.04](https://jensdufour.be/2024/01/30/entra-id-authentication-ubuntu-23-04-pam-modules/), specifically covering the Intune enrollment portion for Ubuntu 24.04 LTS.
+This article covers **Ubuntu 24.04 Intune enrollment** for enterprise device management.
 
 > **Note:** This guide focuses exclusively on **Intune enrollment and device management**. For Entra ID authentication setup using AuthD, see [Entra ID Authentication with AuthD on Ubuntu 24.04 LTS](https://jensdufour.be/2026/02/04/entra-id-authentication-with-authd/). For a fully automated zero-touch deployment, see [Automating Ubuntu Entra ID Authentication](https://jensdufour.be/2026/01/02/zero-touch-ubuntu-entra-id-autoinstall/).
 
@@ -699,7 +699,6 @@ In addition, you may find these related articles helpful:
 
 * [Entra ID Authentication with AuthD on Ubuntu 24.04 LTS](https://jensdufour.be/2026/02/04/entra-id-authentication-with-authd/) – Enable cloud identity login on Ubuntu using AuthD
 * [Automating Ubuntu Entra ID Authentication](https://jensdufour.be/2026/01/02/zero-touch-ubuntu-entra-id-autoinstall/) – Zero-touch deployment with autoinstall and cloud-init
-* [Entra ID Authentication on Ubuntu 23.04 Using PAM Modules](https://jensdufour.be/2024/01/30/entra-id-authentication-ubuntu-23-04-pam-modules/) – Legacy PAM-based approach
 
 ---
 
