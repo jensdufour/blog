@@ -40,5 +40,11 @@
     "content_hash": "6d7e1561f6d40d229f2e15143c343cc0623e923f50df84062b464b2e219db44f",
     "source": "github",
     "wp_modified": "2026-03-12T08:17:28"
+  },
+  "automating-new-device-setup-with-nerdio-scripted-sequences": {
+    "wp_id": 1009,
+    "content_hash": "ac7e200bc21f32e662fb4a3dc03e86eca02221dc5274a1a5644195f993b3d53a",
+    "source": "github",
+    "wp_modified": "2026-04-01T00:00:00"
   }
 }
