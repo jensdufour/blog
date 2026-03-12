@@ -2,7 +2,7 @@
 categories:
 - Microsoft
 - Technology
-date: '2025-08-18T10:49:47'
+date: '2025-12-01'
 status: publish
 tags:
 - Windows 365

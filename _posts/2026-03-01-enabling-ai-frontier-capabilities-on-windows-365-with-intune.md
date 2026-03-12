@@ -1,6 +1,6 @@
 ---
 title: 'Enabling AI Frontier Capabilities on Windows 365 with Intune'
-date: '2026-03-11'
+date: '2026-03-01'
 status: publish
 seo_title: 'AI-Enabled Windows 365 Cloud PC with Intune'
 meta_description: 'Enable Copilot+ AI features on an AI-enabled Windows 365 Cloud PC with Intune. Covers improved Windows Search and Click to Do.'

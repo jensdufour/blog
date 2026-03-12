@@ -3,8 +3,8 @@ categories:
 - Linux
 - Microsoft
 - Technology
-date: '2026-02-04T14:05:21'
-status: draft
+date: '2026-02-01'
+status: publish
 tags:
 - Entra ID
 - AuthD
@@ -105,8 +105,8 @@ The following diagram shows how **Entra ID authentication** works:
 │                         Ubuntu 24.04 LTS                            │
 │                                                                     │
 │  ┌──────────┐    ┌──────────┐    ┌──────────────────────────────┐   │
-│  │   GDM    │───▶│  AuthD   │───▶│  MS Entra ID Broker (Snap)   │   │
-│  │ (Login)  │    │ (daemon) │    │  (authd-msentraid)             │   │
+│  │   GDM    │───▶│  AuthD   │───▶│  MS Entra ID Broker (Snap)  │   │
+│  │ (Login)  │    │ (daemon) │    │  (authd-msentraid)           │   │
 │  └──────────┘    └──────────┘    └──────────────────────────────┘   │
 │       │               │                      │                      │
 │       │               │                      │                      │

@@ -3,7 +3,7 @@ categories:
 - Linux
 - Microsoft
 - Technology
-date: '2026-01-02T11:36:02'
+date: '2026-04-01'
 status: draft
 tags:
 - Entra ID

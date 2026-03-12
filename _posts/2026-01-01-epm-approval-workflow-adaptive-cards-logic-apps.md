@@ -2,7 +2,7 @@
 categories:
 - Microsoft
 - Technology
-date: '2025-12-12T13:28:42'
+date: '2026-01-01'
 status: publish
 tags:
 - Adaptive Cards

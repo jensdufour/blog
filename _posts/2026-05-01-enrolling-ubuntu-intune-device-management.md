@@ -3,7 +3,7 @@ categories:
 - Linux
 - Microsoft
 - Technology
-date: '2026-01-02T11:36:09'
+date: '2026-05-01'
 status: draft
 tags:
 - Ubuntu
