@@ -236,18 +236,18 @@ function jdm_lazy_load_cert_badges( $block_content, $block ) {
 add_filter( 'render_block', 'jdm_lazy_load_cert_badges', 10, 2 );
 
 /* Fix Yoast robots.txt: remove non-standard Schemamap directive (flagged as
-   "Unknown directive" by PageSpeed) and fix line break formatting */
+   "Unknown directive" by PageSpeed) and fix line break formatting.
+   Use PHP_INT_MAX priority so we run AFTER Yoast adds its directives. */
 function jdm_fix_robots_txt( $output ) {
-    /* Remove the Schemamap directive — Yoast splits it across two lines:
-       "Schemamap:\n<url>" so we must match the directive line AND the next line */
-    $output = preg_replace( '/^Schemamap:.*\n.*$/mi', '', $output );
+    /* Remove the Schemamap line (handles both single-line and split formats) */
+    $output = preg_replace( '/^Schemamap:.*$/mi', '', $output );
     /* Fix "User-agent:\n*" split across lines */
     $output = preg_replace( '/User-agent:\s*\n\s*\*/i', 'User-agent: *', $output );
     /* Clean up any resulting blank lines */
     $output = preg_replace( '/\n{3,}/', "\n\n", $output );
     return $output;
 }
-add_filter( 'robots_txt', 'jdm_fix_robots_txt', 999, 2 );
+add_filter( 'robots_txt', 'jdm_fix_robots_txt', PHP_INT_MAX, 2 );
 
 /* Register a shortcode that renders a "Report an issue" link for the current post */
 function jdm_report_issue_shortcode() {
