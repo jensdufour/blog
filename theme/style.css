@@ -656,52 +656,9 @@ header.wp-block-template-part {
   border-color: var(--accent);
 }
 
-/* ── Social share sidebar ── */
-.share-sidebar {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  left: calc((100vw - 64rem) / 2 - 4rem);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  z-index: 10;
-}
-
-.share-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--bg);
-  color: var(--muted);
-  cursor: pointer;
-  text-decoration: none;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.share-btn:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-
-.share-btn.copied {
-  color: #2ea043;
-  border-color: #2ea043;
-}
-
 /* ── Hide sidebars on narrow screens ── */
 @media (max-width: 90rem) {
   .toc-sidebar {
-    display: none;
-  }
-}
-
-@media (max-width: 78rem) {
-  .share-sidebar {
     display: none;
   }
 }
