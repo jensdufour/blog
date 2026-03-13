@@ -135,6 +135,9 @@
         }
       },
       "core/image": {
+        "lightbox": {
+          "enabled": true
+        },
         "border": {
           "radius": "6px"
         }
