@@ -54,6 +54,9 @@ function jdm_toggle_inline_script() {
             localStorage.setItem('theme', next);
             updateIcon();
         });
+        requestAnimationFrame(function() {
+            document.body.classList.add('transitions-ready');
+        });
     });
     </script>
     <?php
@@ -107,3 +110,48 @@ function jdm_register_blocks() {
     register_block_type( get_template_directory() . '/blocks/timeline' );
 }
 add_action( 'init', 'jdm_register_blocks' );
+
+/* ── Performance optimizations ── */
+
+/* Set fetchpriority="high" on the featured image (LCP element) on single posts */
+function jdm_featured_image_fetchpriority( $attr, $attachment, $size ) {
+    if ( is_singular( 'post' ) && has_post_thumbnail() && get_post_thumbnail_id() === $attachment->ID ) {
+        $attr['fetchpriority'] = 'high';
+        $attr['loading'] = false;
+        $attr['decoding'] = 'async';
+    }
+    return $attr;
+}
+add_filter( 'wp_get_attachment_image_attributes', 'jdm_featured_image_fetchpriority', 10, 3 );
+
+/* Remove WordPress block library CSS on pages that don't need it */
+function jdm_dequeue_block_styles() {
+    /* Keep core block styles but remove the global-styles inline CSS duplication
+       since the theme already defines all colors/spacing via style.css + theme.json */
+    wp_dequeue_style( 'classic-theme-styles' );
+}
+add_action( 'wp_enqueue_scripts', 'jdm_dequeue_block_styles', 20 );
+
+/* Disable self-pingbacks */
+function jdm_disable_self_pingback( &$links ) {
+    $home = home_url();
+    foreach ( $links as $l => $link ) {
+        if ( strpos( $link, $home ) === 0 ) {
+            unset( $links[ $l ] );
+        }
+    }
+}
+add_action( 'pre_ping', 'jdm_disable_self_pingback' );
+
+/* Add lazy loading to footer certificate badge images */
+function jdm_lazy_load_cert_badges( $block_content, $block ) {
+    if ( $block['blockName'] !== 'core/image' ) {
+        return $block_content;
+    }
+    if ( empty( $block['attrs']['className'] ) || strpos( $block['attrs']['className'], 'cert-badge' ) === false ) {
+        return $block_content;
+    }
+    $block_content = str_replace( '<img ', '<img loading="lazy" decoding="async" ', $block_content );
+    return $block_content;
+}
+add_filter( 'render_block', 'jdm_lazy_load_cert_badges', 10, 2 );
