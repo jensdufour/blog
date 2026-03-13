@@ -565,13 +565,18 @@ header.wp-block-template-part {
   position: fixed;
   top: 50%;
   transform: translateY(-50%);
-  right: calc((100vw - 64rem) / 2 - 14rem);
-  width: 12rem;
+  right: calc((100vw - 64rem) / 2 - 18rem);
+  width: 16rem;
   max-height: 60vh;
   overflow-y: auto;
+  scrollbar-width: none;
   font-size: 0.8rem;
   line-height: 1.5;
   z-index: 10;
+}
+
+.toc-sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .toc-title {
