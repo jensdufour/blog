@@ -640,44 +640,6 @@ header.wp-block-template-part {
   font-weight: 600;
 }
 
-/* ── About Me card (home sidebar) ── */
-.about-card {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  right: calc((100vw - 64rem) / 2 - 18rem);
-  width: 16rem;
-  font-size: 0.8rem;
-  line-height: 1.5;
-  z-index: 10;
-  text-align: center;
-}
-
-.about-card-avatar {
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  margin: 0 auto 0.5rem;
-  display: block;
-}
-
-.about-card-name {
-  display: block;
-  font-size: 0.9rem;
-  margin-bottom: 0.35rem;
-}
-
-.about-card-bio {
-  color: var(--muted);
-  margin: 0;
-}
-
-@media (max-width: 90rem) {
-  .about-card {
-    display: none;
-  }
-}
-
 /* ── Back to Top button ── */
 .back-to-top {
   position: fixed;

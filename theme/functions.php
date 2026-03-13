@@ -262,28 +262,6 @@ function jdm_report_issue_shortcode() {
 }
 add_shortcode( 'report_issue', 'jdm_report_issue_shortcode' );
 
-/* ── About Me sidebar card (home page only) ── */
-function jdm_about_card_script() {
-    if ( ! is_home() && ! is_front_page() ) {
-        return;
-    }
-    ?>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var card = document.createElement('aside');
-        card.className = 'about-card';
-        card.setAttribute('aria-label', 'About the author');
-        card.innerHTML =
-            '<img src="https://github.com/jensdufour.png" alt="Jens Du Four" class="about-card-avatar" width="64" height="64"/>' +
-            '<strong class="about-card-name">Jens Du Four</strong>' +
-            '<p class="about-card-bio">Cloud Endpoint Solution Engineer at Microsoft. Writing about Intune, Entra ID, Windows 365, and endpoint security.</p>';
-        document.body.appendChild(card);
-    });
-    </script>
-    <?php
-}
-add_action( 'wp_footer', 'jdm_about_card_script' );
-
 /* ── Reading time estimate ── */
 function jdm_reading_time_after_date( $block_content, $block ) {
     if ( $block['blockName'] !== 'core/post-date' ) {
