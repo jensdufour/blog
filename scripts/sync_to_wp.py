@@ -29,7 +29,7 @@ GITHUB_RAW_BASE = "https://raw.githubusercontent.com/jensdufour/blog/main"
 # Bump this version whenever the sync output format changes (e.g. Gutenberg
 # block conversion) so all posts are re-synced even if the source files haven't
 # changed.
-SYNC_FORMAT_VERSION = "10"
+SYNC_FORMAT_VERSION = "11"
 
 WP_URL = os.environ["WP_URL"].rstrip("/")
 WP_USER = os.environ["WP_USER"]
@@ -98,6 +98,25 @@ _TOP_LEVEL_RE = re.compile(
     r"<(h[1-6]|p|ul|ol|pre|blockquote|table|div|script)[\s>]|<(hr)\s*/?>",
     re.IGNORECASE,
 )
+
+
+_IMAGE_LINE_RE = re.compile(r"^!\[.*\]\(.*\)\s*$")
+
+
+def _separate_consecutive_images(md: str) -> str:
+    """Insert blank lines between consecutive image-only lines so the
+    Markdown library outputs each image as its own <p> tag."""
+    lines = md.split("\n")
+    out: list[str] = []
+    for i, line in enumerate(lines):
+        out.append(line)
+        if (
+            _IMAGE_LINE_RE.match(line)
+            and i + 1 < len(lines)
+            and _IMAGE_LINE_RE.match(lines[i + 1])
+        ):
+            out.append("")
+    return "\n".join(out)
 
 
 def _normalize_list_indent(md: str) -> str:
@@ -389,6 +408,7 @@ def sync_post(filepath: Path, mapping: dict) -> None:
     slug = slug_from_filename(filepath.stem)
 
     md_body = post.content
+    md_body = _separate_consecutive_images(md_body)
     md_body = _normalize_list_indent(md_body)
     html_body = markdown.markdown(md_body, extensions=["extra", "codehilite", "toc"])
 
@@ -500,6 +520,7 @@ def sync_page(filepath: Path, mapping: dict) -> None:
     slug = filepath.stem  # pages use filename directly as slug
 
     md_body = page.content
+    md_body = _separate_consecutive_images(md_body)
     md_body = _normalize_list_indent(md_body)
     html_body = markdown.markdown(md_body, extensions=["extra", "codehilite", "toc"])
     html_body = rewrite_local_media_in_html(html_body)
