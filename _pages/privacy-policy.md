@@ -18,8 +18,6 @@ Our website address is: https://jensdufour.be. The site is operated by Jens Du F
 
 When visitors leave comments on the site we collect the data shown in the comments form, and also the visitor's IP address and browser user agent string to help spam detection.
 
-An anonymized string created from your email address (also called a hash) may be provided to the Gravatar service to see if you are using it. The Gravatar service privacy policy is available here: https://automattic.com/privacy/. After approval of your comment, your profile picture is visible to the public in the context of your comment.
-
 Visitor comments may be checked through an automated spam detection service provided by Akismet. The information collected typically includes the commenter's IP address, user agent, referrer, and site URL, along with other information directly provided by the commenter such as their name, username, email address, and the comment itself.
 
 ## Media

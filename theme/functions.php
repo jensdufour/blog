@@ -136,14 +136,20 @@ function jdm_dequeue_block_styles() {
 }
 add_action( 'wp_enqueue_scripts', 'jdm_dequeue_block_styles', 20 );
 
-/* Add preconnect hints for external resources */
-function jdm_resource_hints( $urls, $relation_type ) {
+/* Disable Gravatar requests entirely (not used, saves external HTTP calls) */
+add_filter( 'option_show_avatars', '__return_false' );
+
+/* Remove Gravatar dns-prefetch since avatars are disabled */
+function jdm_remove_gravatar_dns( $urls, $relation_type ) {
     if ( $relation_type === 'dns-prefetch' ) {
-        $urls[] = '//gravatar.com';
+        $urls = array_filter( $urls, function( $url ) {
+            return strpos( $url, 'gravatar.com' ) === false
+                && strpos( $url, 'secure.gravatar.com' ) === false;
+        } );
     }
     return $urls;
 }
-add_filter( 'wp_resource_hints', 'jdm_resource_hints', 10, 2 );
+add_filter( 'wp_resource_hints', 'jdm_remove_gravatar_dns', 10, 2 );
 
 /* Remove jQuery migrate on the front end (not needed for this theme) */
 function jdm_remove_jquery_migrate( $scripts ) {
