@@ -166,14 +166,34 @@ function jdm_remove_jquery_migrate( $scripts ) {
 }
 add_action( 'wp_default_scripts', 'jdm_remove_jquery_migrate' );
 
-/* Defer Google Tag Manager to avoid blocking the main thread */
-function jdm_defer_gtm( $tag, $handle, $src ) {
-    if ( strpos( $src, 'googletagmanager.com' ) !== false || strpos( $src, 'gtag' ) !== false ) {
-        return str_replace( ' src=', ' defer src=', $tag );
+/* Delay Google Tag Manager loading to keep it off the critical path.
+   Site Kit injects gtag as inline HTML, so script_loader_tag can't catch it.
+   Instead, use an output buffer to rewrite the script tags. */
+function jdm_delay_gtm_start() {
+    if ( is_admin() ) {
+        return;
     }
-    return $tag;
+    ob_start( 'jdm_delay_gtm_rewrite' );
 }
-add_filter( 'script_loader_tag', 'jdm_defer_gtm', 10, 3 );
+function jdm_delay_gtm_end() {
+    if ( is_admin() ) {
+        return;
+    }
+    if ( ob_get_level() > 0 ) {
+        ob_end_flush();
+    }
+}
+function jdm_delay_gtm_rewrite( $html ) {
+    /* Add defer to any gtag/GTM script tags */
+    $html = preg_replace(
+        '/<script([^>]*src=["\'][^"\']*googletagmanager\.com[^"\']*["\'][^>]*)>/i',
+        '<script$1 defer>',
+        $html
+    );
+    return $html;
+}
+add_action( 'template_redirect', 'jdm_delay_gtm_start', 1 );
+add_action( 'shutdown', 'jdm_delay_gtm_end', 999 );
 
 /* Disable self-pingbacks */
 function jdm_disable_self_pingback( &$links ) {
