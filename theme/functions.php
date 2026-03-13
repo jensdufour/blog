@@ -238,9 +238,10 @@ add_filter( 'render_block', 'jdm_lazy_load_cert_badges', 10, 2 );
 /* Fix Yoast robots.txt: remove non-standard Schemamap directive (flagged as
    "Unknown directive" by PageSpeed) and fix line break formatting */
 function jdm_fix_robots_txt( $output ) {
-    /* Remove the entire Schemamap line (non-standard, causes SEO flag) */
-    $output = preg_replace( '/^Schemamap:.*$/mi', '', $output );
-    /* Also fix "User-agent:\n*" if split across lines */
+    /* Remove the Schemamap directive — Yoast splits it across two lines:
+       "Schemamap:\n<url>" so we must match the directive line AND the next line */
+    $output = preg_replace( '/^Schemamap:.*\n.*$/mi', '', $output );
+    /* Fix "User-agent:\n*" split across lines */
     $output = preg_replace( '/User-agent:\s*\n\s*\*/i', 'User-agent: *', $output );
     /* Clean up any resulting blank lines */
     $output = preg_replace( '/\n{3,}/', "\n\n", $output );
