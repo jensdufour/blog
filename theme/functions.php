@@ -235,12 +235,15 @@ function jdm_lazy_load_cert_badges( $block_content, $block ) {
 }
 add_filter( 'render_block', 'jdm_lazy_load_cert_badges', 10, 2 );
 
-/* Fix Yoast robots.txt Schemamap line break that causes a parsing error */
+/* Fix Yoast robots.txt: remove non-standard Schemamap directive (flagged as
+   "Unknown directive" by PageSpeed) and fix line break formatting */
 function jdm_fix_robots_txt( $output ) {
-    /* Collapse "Schemamap:\n<url>" onto a single line */
-    $output = preg_replace( '/Schemamap:\s*\n\s*/i', 'Schemamap: ', $output );
+    /* Remove the entire Schemamap line (non-standard, causes SEO flag) */
+    $output = preg_replace( '/^Schemamap:.*$/mi', '', $output );
     /* Also fix "User-agent:\n*" if split across lines */
     $output = preg_replace( '/User-agent:\s*\n\s*\*/i', 'User-agent: *', $output );
+    /* Clean up any resulting blank lines */
+    $output = preg_replace( '/\n{3,}/', "\n\n", $output );
     return $output;
 }
 add_filter( 'robots_txt', 'jdm_fix_robots_txt', 999, 2 );
