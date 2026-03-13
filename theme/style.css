@@ -572,7 +572,7 @@ header.wp-block-template-part {
   transform: translateY(-50%);
   right: calc((100vw - 64rem) / 2 - 18rem);
   width: 16rem;
-  max-height: 60vh;
+  max-height: 80vh;
   overflow-y: auto;
   scrollbar-width: none;
   font-size: 0.8rem;
