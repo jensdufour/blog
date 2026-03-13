@@ -8,6 +8,8 @@ focus_keyphrase: "Jens Du Four speaking"
 
 I speak at community events and conferences across Europe about endpoint management, cloud security, and modern workplace topics. Whether it's a deep dive on Windows 365 deployment models or a hands-on look at Endpoint Privilege Management, my goal is to share practical lessons from real-world projects.
 
+I'm also a member of **[MC2MC](https://mc2mc.be)**, a Belgian community for Microsoft Cloud and Client Management. MC2MC hosts regular live events covering Cloud and Hybrid Cloud, Endpoint Management, and Security, Compliance, and Identity, with a permanent Call for Speakers for both experienced and first-time presenters.
+
 ### Topics I Cover
 
 - **Windows 365 and AVD**: Deployment models (Enterprise, Frontline Shared, Frontline Dedicated), when to choose AVD vs. Windows 365, and real-world trade-offs

@@ -90,11 +90,14 @@ My role sits between customers and the product teams at Microsoft. I help custom
 - Cloud Endpoint TS Elite, Microsoft
 - Security, Compliance, and Identity Fundamentals (SC-900), Microsoft
 - Nerdio Valued Professional (NVP)
+- MC2MC Member
 - ITIL v4 Foundation, AXELOS (2019)
 
 For the most up-to-date list of my certifications, check my [LinkedIn profile](https://linkedin.com/in/JensDuFour).
 
 ## Speaking and Community
+
+I'm a member of **[MC2MC](https://mc2mc.be)**, a Belgian community focused on Microsoft Cloud and Client Management. MC2MC covers Cloud and Hybrid Cloud, Endpoint Management, and Security, Compliance, and Identity, bringing together professionals through regular MC2MC Live events and a permanent Call for Speakers.
 
 I regularly speak at community events and conferences about device management, cloud security, and modern workplace topics. Some highlights:
 
