@@ -202,3 +202,16 @@ function jdm_fix_robots_txt( $output ) {
     return $output;
 }
 add_filter( 'robots_txt', 'jdm_fix_robots_txt', 999 );
+
+/* Register a shortcode that renders a "Report an issue" link for the current post */
+function jdm_report_issue_shortcode() {
+    if ( ! is_singular( 'post' ) ) {
+        return '';
+    }
+    $title = rawurlencode( 'Issue with: ' . get_the_title() );
+    $url   = get_permalink();
+    $body  = rawurlencode( "**Page:** {$url}\n\n**Describe the issue:**\n" );
+    $href  = "https://github.com/jensdufour/blog/issues/new?title={$title}&body={$body}&labels=content";
+    return '<div class="report-issue"><a href="' . esc_url( $href ) . '" target="_blank" rel="noopener noreferrer">Spotted something wrong? Report an issue on GitHub</a></div>';
+}
+add_shortcode( 'report_issue', 'jdm_report_issue_shortcode' );

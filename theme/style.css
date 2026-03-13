@@ -352,6 +352,23 @@ header.wp-block-template-part {
   color: var(--accent) !important;
 }
 
+/* ── Report issue link ── */
+.report-issue {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+.report-issue a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.report-issue a:hover {
+  color: var(--accent);
+}
+
 /* ── Social links icons ── */
 .site-footer .wp-block-social-links .wp-social-link {
   transition: transform 0.2s ease, opacity 0.2s ease;
