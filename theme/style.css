@@ -189,12 +189,15 @@ th {
   width: 80px;
   height: 80px;
   object-fit: contain;
-  opacity: 0.85;
-  transition: opacity 0.2s ease;
+  opacity: 0.6;
+  filter: grayscale(100%);
+  transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
 }
 
 .cert-badge:hover img {
   opacity: 1;
+  filter: grayscale(0%);
+  transform: scale(1.1);
 }
 
 /* ── Site heading link ── */
