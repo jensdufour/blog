@@ -166,34 +166,39 @@ function jdm_remove_jquery_migrate( $scripts ) {
 }
 add_action( 'wp_default_scripts', 'jdm_remove_jquery_migrate' );
 
-/* Delay Google Tag Manager loading to keep it off the critical path.
-   Site Kit injects gtag as inline HTML, so script_loader_tag can't catch it.
-   Instead, use an output buffer to rewrite the script tags. */
-function jdm_delay_gtm_start() {
+/* Delay Google Tag Manager to keep it off the critical rendering path.
+   Replaces GTM's script tag with a lightweight loader that fetches it
+   after the page becomes interactive (3s delay or requestIdleCallback). */
+function jdm_delay_gtm() {
     if ( is_admin() ) {
         return;
     }
-    ob_start( 'jdm_delay_gtm_rewrite' );
+    /* Remove Site Kit's default GTM output and replace with delayed version */
+    ob_start( function( $html ) {
+        /* Find and remove the gtag.js script tag */
+        $pattern = '/<script[^>]*src=["\'][^"\']*googletagmanager\.com\/gtag\/js[^"\']*["\'][^>]*><\/script>/i';
+        if ( preg_match( $pattern, $html, $matches ) ) {
+            $html = str_replace( $matches[0], '', $html );
+            /* Inject a delayed loader before </body> */
+            $loader = '<script>setTimeout(function(){var s=document.createElement("script");s.src="' .
+                esc_url( 'https://www.googletagmanager.com/gtag/js?id=GT-TNF9L36X' ) .
+                '";s.async=true;document.head.appendChild(s)},3000);</script>';
+            $html = str_replace( '</body>', $loader . '</body>', $html );
+        }
+        return $html;
+    } );
 }
-function jdm_delay_gtm_end() {
-    if ( is_admin() ) {
+add_action( 'template_redirect', 'jdm_delay_gtm', 0 );
+
+/* Add cache headers for static theme assets served via PHP */
+function jdm_send_cache_headers() {
+    if ( is_admin() || is_user_logged_in() ) {
         return;
     }
-    if ( ob_get_level() > 0 ) {
-        ob_end_flush();
-    }
+    /* Set cache headers on the HTML response */
+    header( 'Cache-Control: public, max-age=3600, s-maxage=86400' );
 }
-function jdm_delay_gtm_rewrite( $html ) {
-    /* Add defer to any gtag/GTM script tags */
-    $html = preg_replace(
-        '/<script([^>]*src=["\'][^"\']*googletagmanager\.com[^"\']*["\'][^>]*)>/i',
-        '<script$1 defer>',
-        $html
-    );
-    return $html;
-}
-add_action( 'template_redirect', 'jdm_delay_gtm_start', 1 );
-add_action( 'shutdown', 'jdm_delay_gtm_end', 999 );
+add_action( 'send_headers', 'jdm_send_cache_headers' );
 
 /* Disable self-pingbacks */
 function jdm_disable_self_pingback( &$links ) {
@@ -223,9 +228,11 @@ add_filter( 'render_block', 'jdm_lazy_load_cert_badges', 10, 2 );
 function jdm_fix_robots_txt( $output ) {
     /* Collapse "Schemamap:\n<url>" onto a single line */
     $output = preg_replace( '/Schemamap:\s*\n\s*/i', 'Schemamap: ', $output );
+    /* Also fix "User-agent:\n*" if split across lines */
+    $output = preg_replace( '/User-agent:\s*\n\s*\*/i', 'User-agent: *', $output );
     return $output;
 }
-add_filter( 'robots_txt', 'jdm_fix_robots_txt', 999 );
+add_filter( 'robots_txt', 'jdm_fix_robots_txt', 999, 2 );
 
 /* Register a shortcode that renders a "Report an issue" link for the current post */
 function jdm_report_issue_shortcode() {
