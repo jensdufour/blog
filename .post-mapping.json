@@ -1,50 +1,50 @@
 {
   "zero-touch-ubuntu-entra-id-autoinstall": {
     "wp_id": 826,
-    "content_hash": "658ea7b50b9183d0320602e38816660c31097e0754b74924adb710d6c399dfde",
+    "content_hash": "6a8f28f9b7bcb922e8999d446f05a79dc0be469231b9591a162fc9e3fb8bb3ab",
     "source": "github",
-    "wp_modified": "2026-03-13T12:34:48"
+    "wp_modified": "2026-03-13T12:40:30"
   },
   "epm-approval-workflow-adaptive-cards-logic-apps": {
     "wp_id": 779,
-    "content_hash": "607701e4fb9961131ffff70c4b12069f7c1b5d4cf3026dc69a77030224e336f3",
+    "content_hash": "9f9c122c560b0b5a345fdb5cb04ed905fa9645813685bcc9e46033aff5e8764e",
     "source": "github",
-    "wp_modified": "2026-03-13T12:34:15"
+    "wp_modified": "2026-03-13T12:40:06"
   },
   "windows-365-restore-points-a-guide-to-long-term-storage": {
     "wp_id": 619,
-    "content_hash": "8eb52a016c3390a1bc0d5289d7181ec5481ba332e1efa3db4ecef2b157f37538",
+    "content_hash": "751e194cba054136762de404217e6d937ea41921aa74893f26bd1f4ce23648be",
     "source": "github",
-    "wp_modified": "2026-03-13T12:34:10"
+    "wp_modified": "2026-03-13T12:39:58"
   },
   "adding-languages-using-proactive-remediations": {
     "wp_id": 198,
-    "content_hash": "66c6d5b63cf26c629886d3b6765fe6dad29491711bc5d8843c75d7249b45a8b3",
+    "content_hash": "40ba94a71567b3edbe79ed6ee697fc101de39bf76796f2feec16c4894217312a",
     "source": "github",
-    "wp_modified": "2026-03-13T12:34:04"
+    "wp_modified": "2026-03-13T12:39:54"
   },
   "enrolling-ubuntu-intune-device-management": {
     "wp_id": 967,
-    "content_hash": "63f838f363c6fd2efd896507b673a60baadfe3e5e5f07fdc91deef2a9fdf1369",
+    "content_hash": "d9d87f9fb9b32ee652ee89313183f126cae9257d2e516efbbbb96bc8b3a57248",
     "source": "github",
-    "wp_modified": "2026-03-13T12:34:41"
+    "wp_modified": "2026-03-13T12:40:26"
   },
   "entra-id-authentication-with-authd": {
     "wp_id": 968,
-    "content_hash": "d80747cae067b4fb4d6a69536b59a7966c18d556f5025f9f01438db81f0505c7",
+    "content_hash": "2074316d112aaed40f2d0252f9df7c907e46753a9158cbc787ab87c14281a406",
     "source": "github",
-    "wp_modified": "2026-03-13T12:34:23"
+    "wp_modified": "2026-03-13T12:40:12"
   },
   "enabling-ai-frontier-capabilities-on-windows-365-with-intune": {
     "wp_id": 998,
-    "content_hash": "4fc0d8e4f6438f6b13362fd7dafdc1254df02dc28f233a544ac8ec915dc28bb2",
+    "content_hash": "2f8607cc19d3bde0097d9e4178be0cf591e1c69e496f7f67cd7c6b24f28e7d9b",
     "source": "github",
-    "wp_modified": "2026-03-13T12:34:29"
+    "wp_modified": "2026-03-13T12:40:17"
   },
   "automating-new-device-setup-with-nerdio-scripted-sequences": {
     "wp_id": 1009,
-    "content_hash": "13367dcacdd9f524901dd79b26c7ad57b82111348cd1795abe3c2d6d0b9bae0d",
+    "content_hash": "f33617f3e3e10280b09373d32323eb3db95ce5dc8b8a5fc3c1a2bf71dd09cd17",
     "source": "github",
-    "wp_modified": "2026-03-13T12:34:36"
+    "wp_modified": "2026-03-13T12:40:22"
   }
 }
