@@ -121,12 +121,23 @@ function jdm_featured_image_fetchpriority( $attr, $attachment, $size ) {
 }
 add_filter( 'wp_get_attachment_image_attributes', 'jdm_featured_image_fetchpriority', 10, 3 );
 
-/* Remove WordPress block library CSS on pages that don't need it */
+/* Remove unused stylesheets and inline the navigation block CSS */
 function jdm_dequeue_block_styles() {
-    /* Remove classic-theme-styles since this is a block theme with its own style.css + theme.json */
     wp_dequeue_style( 'classic-theme-styles' );
+    /* Dequeue navigation CSS so W3TC doesn't bundle it into a render-blocking file.
+       It will be inlined by jdm_inline_nav_styles instead. */
+    wp_dequeue_style( 'wp-block-navigation' );
 }
 add_action( 'wp_enqueue_scripts', 'jdm_dequeue_block_styles', 20 );
+
+/* Inline the navigation block CSS to avoid a render-blocking request */
+function jdm_inline_nav_styles() {
+    $nav_css = ABSPATH . WPINC . '/blocks/navigation/style.min.css';
+    if ( file_exists( $nav_css ) ) {
+        echo '<style id="wp-block-navigation-inline">' . file_get_contents( $nav_css ) . '</style>' . "\n";
+    }
+}
+add_action( 'wp_head', 'jdm_inline_nav_styles', 9 );
 
 /* Disable Gravatar requests entirely (not used, saves external HTTP calls) */
 add_filter( 'option_show_avatars', '__return_false' );
