@@ -126,11 +126,47 @@ add_filter( 'wp_get_attachment_image_attributes', 'jdm_featured_image_fetchprior
 
 /* Remove WordPress block library CSS on pages that don't need it */
 function jdm_dequeue_block_styles() {
-    /* Keep core block styles but remove the global-styles inline CSS duplication
-       since the theme already defines all colors/spacing via style.css + theme.json */
+    /* Remove classic-theme-styles since this is a block theme with its own style.css + theme.json */
     wp_dequeue_style( 'classic-theme-styles' );
+
+    /* Dequeue wp-block-library on the front page where most blocks are simple */
+    if ( is_front_page() ) {
+        wp_dequeue_style( 'wp-block-library' );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'jdm_dequeue_block_styles', 20 );
+
+/* Add preconnect hints for external resources */
+function jdm_resource_hints( $urls, $relation_type ) {
+    if ( $relation_type === 'dns-prefetch' ) {
+        $urls[] = '//gravatar.com';
+    }
+    return $urls;
+}
+add_filter( 'wp_resource_hints', 'jdm_resource_hints', 10, 2 );
+
+/* Remove jQuery migrate on the front end (not needed for this theme) */
+function jdm_remove_jquery_migrate( $scripts ) {
+    if ( ! is_admin() && isset( $scripts->registered['jquery'] ) ) {
+        $scripts->registered['jquery']->deps = array_diff(
+            $scripts->registered['jquery']->deps,
+            [ 'jquery-migrate' ]
+        );
+    }
+}
+add_action( 'wp_default_scripts', 'jdm_remove_jquery_migrate' );
+
+/* Set cache-control headers for theme assets */
+function jdm_cache_headers() {
+    if ( is_admin() ) {
+        return;
+    }
+    /* Only add cache headers for non-logged-in users viewing the front end */
+    if ( ! is_user_logged_in() ) {
+        header( 'Cache-Control: public, max-age=86400, s-maxage=604800' );
+    }
+}
+add_action( 'send_headers', 'jdm_cache_headers' );
 
 /* Disable self-pingbacks */
 function jdm_disable_self_pingback( &$links ) {
@@ -155,3 +191,11 @@ function jdm_lazy_load_cert_badges( $block_content, $block ) {
     return $block_content;
 }
 add_filter( 'render_block', 'jdm_lazy_load_cert_badges', 10, 2 );
+
+/* Fix Yoast robots.txt Schemamap line break that causes a parsing error */
+function jdm_fix_robots_txt( $output ) {
+    /* Collapse "Schemamap:\n<url>" onto a single line */
+    $output = preg_replace( '/Schemamap:\s*\n\s*/i', 'Schemamap: ', $output );
+    return $output;
+}
+add_filter( 'robots_txt', 'jdm_fix_robots_txt', 999 );
