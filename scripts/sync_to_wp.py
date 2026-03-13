@@ -29,7 +29,7 @@ GITHUB_RAW_BASE = "https://raw.githubusercontent.com/jensdufour/blog/main"
 # Bump this version whenever the sync output format changes (e.g. Gutenberg
 # block conversion) so all posts are re-synced even if the source files haven't
 # changed.
-SYNC_FORMAT_VERSION = "9"
+SYNC_FORMAT_VERSION = "10"
 
 WP_URL = os.environ["WP_URL"].rstrip("/")
 WP_USER = os.environ["WP_USER"]
@@ -236,7 +236,7 @@ def _wrap_block(tag: str, el: str) -> str:
         if img:
             attrs = img.group(1).strip()
             return (
-                "<!-- wp:image -->\n"
+                '<!-- wp:image {"lightbox":{"enabled":true}} -->\n'
                 f'<figure class="wp-block-image"><img {attrs}/></figure>\n'
                 "<!-- /wp:image -->"
             )
@@ -345,7 +345,7 @@ def html_to_gutenberg_blocks(html: str) -> str:
 
 
 _IMAGE_BLOCK_RE = re.compile(
-    r"^<!-- wp:image -->".replace(" ", r"\s*"), re.DOTALL
+    r"^<!-- wp:image\b", re.DOTALL
 )
 
 

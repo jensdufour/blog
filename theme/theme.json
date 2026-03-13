@@ -77,6 +77,14 @@
         "rem",
         "px"
       ]
+    },
+    "blocks": {
+      "core/image": {
+        "lightbox": {
+          "enabled": true,
+          "allowEditing": true
+        }
+      }
     }
   },
   "styles": {
@@ -135,9 +143,6 @@
         }
       },
       "core/image": {
-        "lightbox": {
-          "enabled": true
-        },
         "border": {
           "radius": "6px"
         }
