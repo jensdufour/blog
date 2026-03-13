@@ -11,10 +11,7 @@ function jdm_setup() {
 }
 add_action('after_setup_theme', 'jdm_setup');
 
-function jdm_enqueue_styles() {
-    wp_enqueue_style('jdm-style', get_stylesheet_uri(), [], wp_get_theme()->get('Version'));
-}
-add_action('wp_enqueue_scripts', 'jdm_enqueue_styles');
+/* Theme stylesheet is inlined via jdm_inline_theme_styles — no external CSS enqueue needed */
 
 function jdm_theme_toggle_script() {
     ?>
@@ -153,8 +150,6 @@ function jdm_inline_theme_styles() {
         $css = file_get_contents( $css_file );
         /* Strip the file header comment block */
         $css = preg_replace( '/\/\*[\s\S]*?\*\/\s*/', '', $css, 1 );
-        wp_dequeue_style( 'jdm-style' );
-        wp_deregister_style( 'jdm-style' );
         echo '<style id="jdm-inline-style">' . $css . '</style>' . "\n";
     }
 }
@@ -170,6 +165,15 @@ function jdm_remove_jquery_migrate( $scripts ) {
     }
 }
 add_action( 'wp_default_scripts', 'jdm_remove_jquery_migrate' );
+
+/* Defer Google Tag Manager to avoid blocking the main thread */
+function jdm_defer_gtm( $tag, $handle, $src ) {
+    if ( strpos( $src, 'googletagmanager.com' ) !== false || strpos( $src, 'gtag' ) !== false ) {
+        return str_replace( ' src=', ' defer src=', $tag );
+    }
+    return $tag;
+}
+add_filter( 'script_loader_tag', 'jdm_defer_gtm', 10, 3 );
 
 /* Disable self-pingbacks */
 function jdm_disable_self_pingback( &$links ) {
