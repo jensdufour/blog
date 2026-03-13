@@ -138,6 +138,13 @@ img {
   height: auto;
 }
 
+/* ── Lightbox ── */
+.wp-lightbox-overlay img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+}
+
 /* ── Code blocks ── */
 pre {
   background: var(--code-bg) !important;
