@@ -254,12 +254,29 @@ header.wp-block-template-part {
 }
 
 /* ── Post list ── */
+.wp-block-post-template .wp-block-group {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 6px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.wp-block-post-template .wp-block-group:hover {
+  transform: translateX(4px);
+  box-shadow: -2px 0 0 0 var(--accent);
+}
+
 .wp-block-post-title a {
   text-decoration: none;
 }
 
 .wp-block-post-title a:hover {
   color: var(--accent);
+}
+
+/* ── Reading time ── */
+.reading-time {
+  color: var(--muted);
 }
 
 /* ── Sessionize embed: restyle as timeline ── */

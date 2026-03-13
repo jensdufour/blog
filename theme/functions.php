@@ -262,6 +262,24 @@ function jdm_report_issue_shortcode() {
 }
 add_shortcode( 'report_issue', 'jdm_report_issue_shortcode' );
 
+/* ── Reading time estimate ── */
+function jdm_reading_time_after_date( $block_content, $block ) {
+    if ( $block['blockName'] !== 'core/post-date' ) {
+        return $block_content;
+    }
+    $post = get_post();
+    if ( ! $post || $post->post_type !== 'post' ) {
+        return $block_content;
+    }
+    $word_count = str_word_count( wp_strip_all_tags( $post->post_content ) );
+    $minutes = max( 1, (int) ceil( $word_count / 200 ) );
+    $reading_time = '<span class="reading-time">&middot; ' . $minutes . ' min read</span>';
+    /* Insert before the closing tag of the date wrapper */
+    $block_content = preg_replace( '/<\/div>$/i', $reading_time . '</div>', $block_content, 1 );
+    return $block_content;
+}
+add_filter( 'render_block', 'jdm_reading_time_after_date', 10, 2 );
+
 /* ── Sticky Table of Contents (single posts only) ── */
 function jdm_toc_script() {
     if ( ! is_singular( 'post' ) ) {
