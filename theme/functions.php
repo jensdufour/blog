@@ -280,6 +280,29 @@ function jdm_reading_time_after_date( $block_content, $block ) {
 }
 add_filter( 'render_block', 'jdm_reading_time_after_date', 10, 2 );
 
+/* ── Clickable post cards on home page ── */
+function jdm_clickable_post_cards_script() {
+    if ( ! is_home() && ! is_front_page() ) {
+        return;
+    }
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.wp-block-post-template .wp-block-group').forEach(function(card) {
+            var link = card.querySelector('.wp-block-post-title a');
+            if (!link) return;
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('a')) return;
+                link.click();
+            });
+        });
+    });
+    </script>
+    <?php
+}
+add_action( 'wp_footer', 'jdm_clickable_post_cards_script' );
+
 /* ── Sticky Table of Contents (single posts only) ── */
 function jdm_toc_script() {
     if ( ! is_singular( 'post' ) ) {
