@@ -261,3 +261,116 @@ function jdm_report_issue_shortcode() {
     return '<div class="report-issue"><a href="' . esc_url( $href ) . '" target="_blank" rel="noopener noreferrer">Spotted something wrong? Report an issue on GitHub</a></div>';
 }
 add_shortcode( 'report_issue', 'jdm_report_issue_shortcode' );
+
+/* ── Sticky Table of Contents (single posts only) ── */
+function jdm_toc_script() {
+    if ( ! is_singular( 'post' ) ) {
+        return;
+    }
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var content = document.querySelector('.entry-content, .wp-block-post-content');
+        if (!content) return;
+        var headings = content.querySelectorAll('h2, h3');
+        if (headings.length < 2) return;
+
+        var nav = document.createElement('nav');
+        nav.className = 'toc-sidebar';
+        nav.setAttribute('aria-label', 'Table of contents');
+        var title = document.createElement('span');
+        title.className = 'toc-title';
+        title.textContent = 'On this page';
+        nav.appendChild(title);
+        var ul = document.createElement('ul');
+
+        headings.forEach(function(h, i) {
+            if (!h.id) h.id = 'heading-' + i;
+            var li = document.createElement('li');
+            li.className = h.tagName === 'H3' ? 'toc-h3' : '';
+            var a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent;
+            li.appendChild(a);
+            ul.appendChild(li);
+        });
+        nav.appendChild(ul);
+        document.body.appendChild(nav);
+
+        var links = ul.querySelectorAll('a');
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    links.forEach(function(l) { l.classList.remove('active'); });
+                    var active = ul.querySelector('a[href="#' + entry.target.id + '"]');
+                    if (active) active.classList.add('active');
+                }
+            });
+        }, { rootMargin: '0px 0px -70% 0px', threshold: 0 });
+
+        headings.forEach(function(h) { observer.observe(h); });
+    });
+    </script>
+    <?php
+}
+add_action( 'wp_footer', 'jdm_toc_script' );
+
+/* ── Back to Top button ── */
+function jdm_back_to_top_script() {
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.createElement('button');
+        btn.className = 'back-to-top';
+        btn.setAttribute('aria-label', 'Back to top');
+        btn.innerHTML = '&#8593;';
+        document.body.appendChild(btn);
+        window.addEventListener('scroll', function() {
+            btn.classList.toggle('visible', window.scrollY > 400);
+        }, { passive: true });
+        btn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+    </script>
+    <?php
+}
+add_action( 'wp_footer', 'jdm_back_to_top_script' );
+
+/* ── Social share buttons (single posts only) ── */
+function jdm_share_buttons_script() {
+    if ( ! is_singular( 'post' ) ) {
+        return;
+    }
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var url = encodeURIComponent(window.location.href);
+        var title = encodeURIComponent(document.title);
+        var nav = document.createElement('nav');
+        nav.className = 'share-sidebar';
+        nav.setAttribute('aria-label', 'Share this post');
+        nav.innerHTML =
+            '<a href="https://www.linkedin.com/sharing/share-offsite/?url=' + url + '" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" class="share-btn">' +
+                '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>' +
+            '</a>' +
+            '<a href="https://x.com/intent/tweet?url=' + url + '&text=' + title + '" target="_blank" rel="noopener noreferrer" aria-label="Share on X" class="share-btn">' +
+                '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>' +
+            '</a>' +
+            '<button class="share-btn" aria-label="Copy link" id="copy-link-btn">' +
+                '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>' +
+            '</button>';
+        document.body.appendChild(nav);
+
+        document.getElementById('copy-link-btn').addEventListener('click', function() {
+            navigator.clipboard.writeText(window.location.href).then(function() {
+                var btn = document.getElementById('copy-link-btn');
+                btn.classList.add('copied');
+                setTimeout(function() { btn.classList.remove('copied'); }, 2000);
+            });
+        });
+    });
+    </script>
+    <?php
+}
+add_action( 'wp_footer', 'jdm_share_buttons_script' );

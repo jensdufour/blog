@@ -560,6 +560,142 @@ header.wp-block-template-part {
   color: var(--text) !important;
 }
 
+/* ── Sticky Table of Contents ── */
+.toc-sidebar {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  right: calc((100vw - 64rem) / 2 - 14rem);
+  width: 12rem;
+  max-height: 60vh;
+  overflow-y: auto;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  z-index: 10;
+}
+
+.toc-title {
+  display: block;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.toc-sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 2px solid var(--border);
+}
+
+.toc-sidebar li {
+  padding: 0.2rem 0 0.2rem 0.75rem;
+}
+
+.toc-sidebar li.toc-h3 {
+  padding-left: 1.5rem;
+}
+
+.toc-sidebar a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.toc-sidebar a:hover,
+.toc-sidebar a.active {
+  color: var(--accent);
+}
+
+.toc-sidebar a.active {
+  font-weight: 600;
+}
+
+/* ── Back to Top button ── */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, color 0.2s ease, border-color 0.2s ease;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ── Social share sidebar ── */
+.share-sidebar {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  left: calc((100vw - 64rem) / 2 - 4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--muted);
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.share-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.share-btn.copied {
+  color: #2ea043;
+  border-color: #2ea043;
+}
+
+/* ── Hide sidebars on narrow screens ── */
+@media (max-width: 90rem) {
+  .toc-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 78rem) {
+  .share-sidebar {
+    display: none;
+  }
+}
+
 /* ── Mobile responsive ── */
 @media (max-width: 600px) {
   .is-position-sticky {
