@@ -128,11 +128,6 @@ add_filter( 'wp_get_attachment_image_attributes', 'jdm_featured_image_fetchprior
 function jdm_dequeue_block_styles() {
     /* Remove classic-theme-styles since this is a block theme with its own style.css + theme.json */
     wp_dequeue_style( 'classic-theme-styles' );
-
-    /* Dequeue wp-block-library on the front page where most blocks are simple */
-    if ( is_front_page() ) {
-        wp_dequeue_style( 'wp-block-library' );
-    }
 }
 add_action( 'wp_enqueue_scripts', 'jdm_dequeue_block_styles', 20 );
 
@@ -151,6 +146,20 @@ function jdm_remove_gravatar_dns( $urls, $relation_type ) {
 }
 add_filter( 'wp_resource_hints', 'jdm_remove_gravatar_dns', 10, 2 );
 
+/* Inline the small theme stylesheet to eliminate render-blocking CSS request */
+function jdm_inline_theme_styles() {
+    $css_file = get_template_directory() . '/style.css';
+    if ( file_exists( $css_file ) ) {
+        $css = file_get_contents( $css_file );
+        /* Strip the file header comment block */
+        $css = preg_replace( '/\/\*[\s\S]*?\*\/\s*/', '', $css, 1 );
+        wp_dequeue_style( 'jdm-style' );
+        wp_deregister_style( 'jdm-style' );
+        echo '<style id="jdm-inline-style">' . $css . '</style>' . "\n";
+    }
+}
+add_action( 'wp_head', 'jdm_inline_theme_styles', 8 );
+
 /* Remove jQuery migrate on the front end (not needed for this theme) */
 function jdm_remove_jquery_migrate( $scripts ) {
     if ( ! is_admin() && isset( $scripts->registered['jquery'] ) ) {
@@ -161,18 +170,6 @@ function jdm_remove_jquery_migrate( $scripts ) {
     }
 }
 add_action( 'wp_default_scripts', 'jdm_remove_jquery_migrate' );
-
-/* Set cache-control headers for theme assets */
-function jdm_cache_headers() {
-    if ( is_admin() ) {
-        return;
-    }
-    /* Only add cache headers for non-logged-in users viewing the front end */
-    if ( ! is_user_logged_in() ) {
-        header( 'Cache-Control: public, max-age=86400, s-maxage=604800' );
-    }
-}
-add_action( 'send_headers', 'jdm_cache_headers' );
 
 /* Disable self-pingbacks */
 function jdm_disable_self_pingback( &$links ) {
