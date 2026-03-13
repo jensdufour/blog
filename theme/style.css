@@ -72,7 +72,7 @@ Text Domain: minimalist-blog
 /* ── Base ── */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;
+  scroll-padding-top: 8rem;
 }
 
 body {
