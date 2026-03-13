@@ -51,7 +51,7 @@ Before building your first sequence, make sure you have:
 | Requirement | Detail |
 |---|---|
 | **NME version** | v7.6.0 or later recommended |
-| **Intune integration** | Enabled in NME under **Settings > Integrations > Intune** |
+| **Intune integration** | Enabled in NME under **Settings > Environments > Integrations > Intune** |
 | **Target device** | A Windows 365 Cloud PC or Intune-managed Windows device |
 | **Nerdio Endpoint Worker** | Deployed to the target device (covered in Step 1) |
 | **Permissions** | NME admin role with access to the Automation module |
@@ -66,43 +66,57 @@ We will automate day-one setup for a developer joining the team. The sequence in
 | 2 | Install Git | Version control tooling |
 | 3 | Install Visual Studio Code | Code editor |
 | 4 | Clone repos and configure VS Code | Pull team repos and install extensions |
-| 5 | Log completion | Confirm the sequence finished |
+| 5a | Add registry key | Create the completion marker key |
+| 5b | Set registry value | Confirm the sequence finished |
 
 Let's build it.
 
-## Step 1: Deploy the Nerdio Endpoint Worker
+## Step 1: Enable the Intune Integration
 
-The Endpoint Worker is a lightweight agent that NME deploys via an Intune platform script. It handles task execution on the device.
+Before you can use Scripted Sequences, the Intune integration must be enabled. This is where NME connects to your Intune tenant.
 
-1. Navigate to **NME** > **Settings** > **Integrations** > **Intune**.
-2. Ensure the Intune integration is enabled and the Endpoint Worker deployment is active.
-3. Verify that the target device shows the worker as installed under **Automation** > **Scripted Sequences** > **Endpoints**.
+1. Navigate to **NME** > **Settings** > **Environments** > **Integrations** > **Intune**.
+2. Ensure the Intune integration is enabled.
 
 > **Note:** The initial Endpoint Worker deployment is controlled by Intune platform script delivery and may take some time. Subsequent tasks to the same device execute within a 15 to 30 minute window.
 
 ![Nerdio Endpoint Worker deployment status in the NME console.](../media/automating-new-device-setup-with-nerdio-scripted-sequences/automating-new-device-setup-with-nerdio-scripted-sequences-01.webp)
 
-## Step 2: Create the Scripted Sequence
+## Step 2: Configure Task Automation
+
+Task Automation must be configured before you can create or run Scripted Sequences.
+
+1. Navigate to **NME** > **Settings** > **Nerdio Environment** > **Task Automation**.
+2. Click **Configure**.
+3. Enter a name and select a resource group for the Azure storage account that Nerdio Manager will create to use with the feature.
+4. Click **Save** to complete the configuration.
+
+![Configuring Task Automation in the NME console.](../media/automating-new-device-setup-with-nerdio-scripted-sequences/automating-new-device-setup-with-nerdio-scripted-sequences-02.webp)
+
+## Step 3: Create the Scripted Sequence
 
 1. Navigate to **NME** > **Automation** > **Scripted Sequences**.
-2. Click **Add sequence**.
+2. Click **New Scripted Sequence**.
 3. Name the sequence `Developer Onboarding - Day One`.
 4. Optionally add a description: *Installs developer tools and configures the workstation on first login.*
 
-![Creating a new Scripted Sequence in the NME console.](../media/automating-new-device-setup-with-nerdio-scripted-sequences/automating-new-device-setup-with-nerdio-scripted-sequences-02.webp)
+![Creating a new Scripted Sequence in the NME console.](../media/automating-new-device-setup-with-nerdio-scripted-sequences/automating-new-device-setup-with-nerdio-scripted-sequences-03.webp)
 
-## Step 3: Add a Task Group
+## Step 4: Add a Task Group
 
 Task Groups let you organize related tasks. We will create one group for this sequence.
 
-1. Inside the sequence, click **Add task group**.
-2. Name the group `Developer Tooling`.
+1. Inside the sequence, click **Add task or Add group**.
+2. Select **Add group**.
+3. Name the group `Developer Tooling`.
 
-![Adding a Task Group to the sequence.](../media/automating-new-device-setup-with-nerdio-scripted-sequences/automating-new-device-setup-with-nerdio-scripted-sequences-03.webp)
+> **Note:** A group must contain at least one task.
 
-## Step 4: Define the Tasks
+![Adding a Task Group to the sequence.](../media/automating-new-device-setup-with-nerdio-scripted-sequences/automating-new-device-setup-with-nerdio-scripted-sequences-04.webp)
 
-Add the following five tasks inside the **Developer Tooling** group. The order you add them is the order they will execute.
+## Step 5: Define the Tasks
+
+Add the following six tasks inside the **Developer Tooling** group. The order you add them is the order they will execute.
 
 ### Task 1: Set PowerShell Execution Policy
 
@@ -118,6 +132,8 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine -Force
 
 ### Task 2: Install Git
 
+This task uses a PowerShell script to install Git via winget. You could also use the **Install Application** task type instead.
+
 - **Task name:** `Install Git`
 - **Type:** PowerShell script
 - **Script:**
@@ -128,13 +144,13 @@ winget install --id Git.Git --accept-source-agreements --accept-package-agreemen
 
 ### Task 3: Install Visual Studio Code
 
-- **Task name:** `Install VS Code`
-- **Type:** PowerShell script
-- **Script:**
+This task uses the **Install Application** task type, which lets you select a winget package directly without writing a script. You could also use a PowerShell script as shown in Task 2.
 
-```powershell
-winget install --id Microsoft.VisualStudioCode --accept-source-agreements --accept-package-agreements --silent
-```
+- **Task name:** `Install VS Code`
+- **Type:** Install Application
+- **Winget package ID:** `Microsoft.VisualStudioCode`
+
+![Using the Install Application task type to install VS Code.](../media/automating-new-device-setup-with-nerdio-scripted-sequences/automating-new-device-setup-with-nerdio-scripted-sequences-05.webp)
 
 ### Task 4: Clone Repos and Configure VS Code
 
@@ -159,22 +175,28 @@ code --install-extension ms-python.python
 code --install-extension hashicorp.terraform
 ```
 
-### Task 5: Log Completion
+### Task 5a: Add Registry Key
 
-A simple confirmation entry in the Windows Event Log so you can validate remotely.
+First, create the registry key that will hold the completion marker.
 
 - **Task name:** `Log Completion`
-- **Type:** PowerShell script
-- **Script:**
+- **Action:** Add Registry Key
+- **Key path:** `HKLM\SOFTWARE\LeafIT\NerdioSequences`
 
-```powershell
-New-EventLog -LogName Application -Source "NerdioSequence" -ErrorAction SilentlyContinue
-Write-EventLog -LogName Application -Source "NerdioSequence" -EventId 1000 -EntryType Information -Message "Developer onboarding sequence completed successfully."
-```
+### Task 5b: Set Registry Value
 
-![All five tasks configured inside the Developer Tooling task group.](../media/automating-new-device-setup-with-nerdio-scripted-sequences/automating-new-device-setup-with-nerdio-scripted-sequences-04.webp)
+Next, set a value under the key to confirm the sequence completed. This makes it easy to query device status remotely via Intune or PowerShell.
 
-## Step 5: Clone Tasks for Quick Iteration
+- **Task name:** `Log Completion clone`
+- **Action:** Set Registry Value
+- **Key path:** `HKLM\SOFTWARE\LeafIT\NerdioSequences`
+- **Name:** `DeveloperOnboarding`
+- **Value type:** String
+- **Value:** `Completed`
+
+![Setting a registry value to log sequence completion.](../media/automating-new-device-setup-with-nerdio-scripted-sequences/automating-new-device-setup-with-nerdio-scripted-sequences-06.webp)
+
+## Step 6: Clone Tasks for Quick Iteration
 
 Need a second sequence for designers with different tools? Since NME v7.6.0, you can **clone** the entire sequence or individual task groups and tasks.
 
@@ -184,20 +206,19 @@ Need a second sequence for designers with different tools? Since NME v7.6.0, you
 
 This saves significant time compared to rebuilding sequences from scratch.
 
-## Step 6: Target Devices and Execute
+## Step 7: Target Devices and Execute
 
-1. Open the `Developer Onboarding - Day One` sequence.
-2. Click **Run sequence**.
+1. On the **Scripted Sequences** page, click the three dots to the right of the `Developer Onboarding - Day One` sequence.
+2. Click **Run now**.
 3. Select the target Windows 365 Cloud PC or Intune device.
-4. Confirm execution.
 
 NME will push the tasks to the Nerdio Endpoint Worker on the device. Each task runs in order. Task 2 only starts after Task 1 reports success.
 
-![Targeting a Windows 365 Cloud PC for sequence execution.](../media/automating-new-device-setup-with-nerdio-scripted-sequences/automating-new-device-setup-with-nerdio-scripted-sequences-05.webp)
+![Targeting a Windows 365 Cloud PC for sequence execution.](../media/automating-new-device-setup-with-nerdio-scripted-sequences/automating-new-device-setup-with-nerdio-scripted-sequences-07.webp)
 
 > **Tip:** Monitor progress in **NME** > **Logs**. Enhanced task logging in v7.6.0 provides better visibility into each step.
 
-## Step 7: Validate on the Device
+## Step 8: Validate on the Device
 
 Log into the target Cloud PC and verify:
 
@@ -205,9 +226,70 @@ Log into the target Cloud PC and verify:
 2. **VS Code** is installed. Launch it from the Start menu.
 3. **Repos** are cloned. Check `%USERPROFILE%\Source\Repos\main-repo`.
 4. **Extensions** are present. Open VS Code and navigate to the Extensions panel.
-5. **Event log** entry exists. Open Event Viewer > Application and look for Event ID 1000 from source `NerdioSequence`.
+5. **Registry key** exists. Open a terminal and run `reg query "HKLM\SOFTWARE\LeafIT\NerdioSequences" /v DeveloperOnboarding`.
 
-![Validation of the completed sequence on the Cloud PC.](../media/automating-new-device-setup-with-nerdio-scripted-sequences/automating-new-device-setup-with-nerdio-scripted-sequences-06.webp)
+## Bonus: Compliance Script for Onboarding Verification
+
+Since the sequence writes a registry value on completion, you can create an Intune custom compliance policy to verify that a device has finished the onboarding sequence. Devices that have not completed it will be marked as non-compliant.
+
+### Detection Script
+
+Create a PowerShell detection script that checks for the registry value:
+
+```powershell
+try {
+    $value = Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\LeafIT\NerdioSequences" -Name "DeveloperOnboarding" -ErrorAction Stop
+    if ($value -eq "Completed") {
+        Write-Output '{"DeveloperOnboarding": "Completed"}'
+        exit 0
+    }
+} catch {}
+
+Write-Output '{"DeveloperOnboarding": "NotCompleted"}'
+exit 1
+```
+
+### Compliance JSON
+
+Upload the following JSON as the compliance rules definition:
+
+```json
+{
+    "Rules": [
+        {
+            "SettingName": "DeveloperOnboarding",
+            "Operator": "IsEquals",
+            "DataType": "String",
+            "Operand": "Completed",
+            "MoreInfoUrl": "https://learn.microsoft.com/en-us/mem/intune/protect/compliance-custom-json",
+            "RemediationStrings": [
+                {
+                    "Language": "en_US",
+                    "Title": "Developer onboarding not completed",
+                    "Description": "The Nerdio Scripted Sequence for developer onboarding has not completed on this device."
+                }
+            ]
+        }
+    ]
+}
+```
+
+### Deploying the Policy
+
+1. Navigate to **Microsoft Intune** > **Devices** > **Compliance** > **Create policy**.
+2. Select **Windows 10/11** as the platform.
+3. Under **Profile type**, select **Windows 10/11 compliance policy** from the **Templates** section.
+4. Enter a name and description for the policy:
+   - **Name:** `CPL - Developer Onboarding Completed`
+   - **Description:** `Verifies that the Nerdio Scripted Sequence for developer onboarding has completed by checking the registry key.`
+5. Open the **Custom Compliance** blade.
+6. Upload the detection script.
+7. Upload the compliance JSON.
+8. Assign the policy to the same device group targeted by the Scripted Sequence.
+
+![Validation of the completed sequence through Compliance Policy](../media/automating-new-device-setup-with-nerdio-scripted-sequences/automating-new-device-setup-with-nerdio-scripted-sequences-08.webp)
+
+Devices that have completed the sequence will report as compliant. Devices that have not will show the custom non-compliance message, giving you a clear overview of onboarding status across your fleet.
 
 ## Current Limitations
 
