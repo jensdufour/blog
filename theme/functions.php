@@ -276,11 +276,7 @@ function jdm_about_card_script() {
         card.innerHTML =
             '<img src="https://github.com/jensdufour.png" alt="Jens Du Four" class="about-card-avatar" width="64" height="64"/>' +
             '<strong class="about-card-name">Jens Du Four</strong>' +
-            '<p class="about-card-bio">Cloud Endpoint Solution Engineer at Microsoft. Writing about Intune, Entra ID, Windows 365, and endpoint security.</p>' +
-            '<nav class="about-card-links">' +
-                '<a href="/about">About</a>' +
-                '<a href="/contact">Contact</a>' +
-            '</nav>';
+            '<p class="about-card-bio">Cloud Endpoint Solution Engineer at Microsoft. Writing about Intune, Entra ID, Windows 365, and endpoint security.</p>';
         document.body.appendChild(card);
     });
     </script>

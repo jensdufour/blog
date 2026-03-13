@@ -669,23 +669,7 @@ header.wp-block-template-part {
 
 .about-card-bio {
   color: var(--muted);
-  margin: 0 0 0.75rem;
-}
-
-.about-card-links {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.about-card-links a {
-  color: var(--accent);
-  text-decoration: none;
-  font-size: 0.8rem;
-}
-
-.about-card-links a:hover {
-  text-decoration: underline;
+  margin: 0;
 }
 
 @media (max-width: 90rem) {
