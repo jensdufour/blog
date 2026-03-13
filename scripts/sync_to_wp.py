@@ -29,7 +29,7 @@ GITHUB_RAW_BASE = "https://raw.githubusercontent.com/jensdufour/blog/main"
 # Bump this version whenever the sync output format changes (e.g. Gutenberg
 # block conversion) so all posts are re-synced even if the source files haven't
 # changed.
-SYNC_FORMAT_VERSION = "8"
+SYNC_FORMAT_VERSION = "9"
 
 WP_URL = os.environ["WP_URL"].rstrip("/")
 WP_USER = os.environ["WP_USER"]
@@ -340,7 +340,42 @@ def html_to_gutenberg_blocks(html: str) -> str:
         blocks.append(_wrap_block(tag, element))
         pos = end
 
+    blocks = _group_images_into_galleries(blocks)
     return "\n\n".join(blocks)
+
+
+_IMAGE_BLOCK_RE = re.compile(
+    r"^<!-- wp:image -->".replace(" ", r"\s*"), re.DOTALL
+)
+
+
+def _group_images_into_galleries(blocks: list[str]) -> list[str]:
+    """Group runs of 2+ consecutive wp:image blocks into a wp:gallery block."""
+    result: list[str] = []
+    i = 0
+    while i < len(blocks):
+        if _IMAGE_BLOCK_RE.match(blocks[i]):
+            run = [blocks[i]]
+            j = i + 1
+            while j < len(blocks) and _IMAGE_BLOCK_RE.match(blocks[j]):
+                run.append(blocks[j])
+                j += 1
+            if len(run) >= 2:
+                inner = "\n".join(run)
+                result.append(
+                    '<!-- wp:gallery {"linkTo":"none"} -->\n'
+                    '<figure class="wp-block-gallery has-nested-images columns-default is-cropped">\n'
+                    f"{inner}\n"
+                    "</figure>\n"
+                    "<!-- /wp:gallery -->"
+                )
+            else:
+                result.append(run[0])
+            i = j
+        else:
+            result.append(blocks[i])
+            i += 1
+    return result
 
 
 def slug_from_filename(stem: str) -> str:
