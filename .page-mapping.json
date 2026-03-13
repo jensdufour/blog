@@ -16,5 +16,11 @@
     "content_hash": "51cb72211260927a5b5019bc80cef30a24eb7cc22232ff8b5882ef537b4084ce",
     "source": "github",
     "wp_modified": "2026-03-11T07:33:20"
+  },
+  "privacy-policy": {
+    "wp_id": 1010,
+    "content_hash": "3d1d78ba87bb7a8c0cd0a38269fb4dee92164a8b893ec81a137b613d7640c178",
+    "source": "github",
+    "wp_modified": "2026-03-13T08:36:36"
   }
 }
