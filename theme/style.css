@@ -70,6 +70,10 @@ Text Domain: minimalist-blog
 }
 
 /* ── Base ── */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: var(--text);
   background: var(--bg);
