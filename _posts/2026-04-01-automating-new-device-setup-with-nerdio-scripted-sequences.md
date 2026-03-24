@@ -19,9 +19,9 @@ tags:
 
 ## Introduction
 
-Setting up a new device for a developer usually means installing tools, cloning repositories, and applying configurations, all in a specific order. [Microsoft Intune](https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/what-is-intune) handles app and script deployment well, but it does not guarantee execution order. A Git install that finishes after the script that clones your repos is a problem.
+Setting up a new device for a developer usually means installing tools, cloning repositories, and applying configurations, **all in a specific order**. [Microsoft Intune](https://learn.microsoft.com/en-us/intune/intune-service/fundamentals/what-is-intune) handles app and script deployment well, but it does not guarantee execution order. A Git install that finishes after the script that clones your repos is a problem.
 
-**Nerdio Scripted Sequences** solve this. Introduced in [Nerdio Manager for Enterprise](https://getnerdio.com/) (NME) v7.5.1 as a Public Preview, Scripted Sequences let you define complex, multi-step task workflows with a guaranteed order of operations. They target Intune-managed devices, including [Windows 365](https://learn.microsoft.com/en-us/windows-365/overview) Cloud PCs, and execute tasks sequentially through the Nerdio Endpoint Worker.
+**Nerdio Scripted Sequences** solve this. Introduced in [Nerdio Manager for Enterprise](https://getnerdio.com/) (NME), Scripted Sequences let you define complex, multi-step task workflows with a guaranteed order of operations. They target Intune-managed devices, including [Windows 365](https://learn.microsoft.com/en-us/windows-365/overview) Cloud PCs, and execute tasks sequentially through the Nerdio Endpoint Worker.
 
 In this post we will build a real-world **developer workstation onboarding sequence** that installs Git, Visual Studio Code, clones team repositories, and confirms completion, all in the right order, every time.
 
@@ -29,20 +29,18 @@ In this post we will build a real-world **developer workstation onboarding seque
 
 ## What Are Scripted Sequences?
 
-Scripted Sequences are an automation feature in NME that lets you create ordered, multi-step task workflows deployed to Intune-managed devices. Think of them as a lightweight task sequencer built into the Nerdio console.
+Scripted Sequences are an automation feature in NME that lets you create multi-step task workflows deployed to Intune-managed devices. Think of them as a lightweight task sequencer built into the Nerdio console.
 
 Key characteristics:
 
 | Aspect | Detail |
 |---|---|
-| **Introduced in** | NME v7.5.1 (December 2025) |
-| **Current status** | Public Preview |
 | **Supported targets** | Intune-managed devices, including Windows 365 Cloud PCs |
 | **Execution engine** | Nerdio Endpoint Worker (deployed via Intune platform script) |
 | **Concurrency limit** | 100 concurrent tasks per sequence |
 | **Task types** | PowerShell scripts, Winget installs, and other Intune-deliverable actions |
 
-Sequences respect the defined order of operations: Task 2 will not start until Task 1 completes successfully. Tasks can be grouped into **Task Groups** for logical organization, and since NME v7.6.0 you can **clone** sequences, groups, and individual tasks for faster iteration.
+Sequences respect the defined order of operations: Task 2 will not start until Task 1 completes successfully. Tasks can be grouped into **Task Groups** for logical organization. You can **clone** sequences, groups, and individual tasks for faster iteration.
 
 ## Prerequisites
 
@@ -307,4 +305,4 @@ Scripted Sequences are still in Public Preview. Keep these constraints in mind:
 
 **Nerdio Scripted Sequences** bring deterministic, ordered task execution to Intune-managed devices. This is something native Intune cannot guarantee today. By combining simple PowerShell scripts in a defined sequence, you can automate complex onboarding workflows and ensure every new device is configured consistently.
 
-As the feature moves toward general availability, expect expanded scope including AVD session host support, automated targeting of new devices, and deeper integration with NME's Unified Application Management. For now, it is already a practical tool for any organization managing Windows 365 Cloud PCs or physical Intune endpoints at scale.
+As the feature moves toward general availability, expect expanded scope and deeper integration within NME. For now, it is already a practical tool for any organization managing Intune endpoints at scale.
