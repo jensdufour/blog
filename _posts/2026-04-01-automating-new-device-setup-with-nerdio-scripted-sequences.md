@@ -1,7 +1,7 @@
 ---
 title: 'Automating New Device Setup with Nerdio Scripted Sequences'
 date: '2026-04-01'
-status: draft
+status: publish
 seo_title: 'Nerdio Scripted Sequences: Automate Device Setup'
 meta_description: 'Use Nerdio Scripted Sequences to automate multi-step device setup on Windows 365 and Intune devices. Includes a real-world developer onboarding demo.'
 focus_keyphrase: 'Nerdio Scripted Sequences'
@@ -48,8 +48,7 @@ Before building your first sequence, make sure you have:
 
 | Requirement | Detail |
 |---|---|
-| **NME version** | v7.6.0 or later recommended |
-| **Intune integration** | Enabled in NME under **Settings > Environments > Integrations > Intune** |
+| **Intune integration** | Enabled in NME under **Settings > Environment > Integrations > Intune** |
 | **Target device** | A Windows 365 Cloud PC or Intune-managed Windows device |
 | **Nerdio Endpoint Worker** | Deployed to the target device (covered in Step 1) |
 | **Permissions** | NME admin role with access to the Automation module |
@@ -73,7 +72,7 @@ Let's build it.
 
 Before you can use Scripted Sequences, the Intune integration must be enabled. This is where NME connects to your Intune tenant.
 
-1. Navigate to **NME** > **Settings** > **Environments** > **Integrations** > **Intune**.
+1. Navigate to **NME** > **Settings** > **Environment** > **Integrations** > **Intune**.
 2. Ensure the Intune integration is enabled.
 
 > **Note:** The initial Endpoint Worker deployment is controlled by Intune platform script delivery and may take some time. Subsequent tasks to the same device execute within a 15 to 30 minute window.
@@ -144,7 +143,7 @@ winget install --id Git.Git --accept-source-agreements --accept-package-agreemen
 
 This task uses the **Install Application** task type, which lets you select a winget package directly without writing a script. You could also use a PowerShell script as shown in Task 2.
 
-- **Task name:** `Install VS Code`
+- **Task name:** `Install Visual Studio Code`
 - **Type:** Install Application
 - **Winget package ID:** `Microsoft.VisualStudioCode`
 
