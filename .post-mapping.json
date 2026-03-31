@@ -1,9 +1,9 @@
 {
   "zero-touch-ubuntu-entra-id-autoinstall": {
     "wp_id": 826,
-    "content_hash": "a58b7d6107624add61b80fd3c08167613a8319752db3ade9f7679369484a4da4",
+    "content_hash": "adf5444e4b9cf76e7056924e5ee030ce42748546d9eac593e4295f6dccce7743",
     "source": "github",
-    "wp_modified": "2026-03-13T12:51:08"
+    "wp_modified": "2026-03-31T16:08:19"
   },
   "epm-approval-workflow-adaptive-cards-logic-apps": {
     "wp_id": 779,
@@ -25,9 +25,9 @@
   },
   "enrolling-ubuntu-intune-device-management": {
     "wp_id": 967,
-    "content_hash": "b949771ce777899a7a98d6bb42cc0e2068b1591180bd5b7552b0e7014b94025d",
+    "content_hash": "a0bcbb433281d27c616c506aebaa273fe98c039e44de7dfba4efd3f25f57d820",
     "source": "github",
-    "wp_modified": "2026-03-13T12:51:04"
+    "wp_modified": "2026-03-31T16:08:12"
   },
   "entra-id-authentication-with-authd": {
     "wp_id": 968,
@@ -43,14 +43,14 @@
   },
   "automating-new-device-setup-with-nerdio-scripted-sequences": {
     "wp_id": 1009,
-    "content_hash": "0bb9cf75790bc22be9faf300bea5f69b183c96ebad4944915e13df2e1a5740c9",
+    "content_hash": "ba74b906b878b0fabd6715cf34a1c6a5ed44fd833ad0cf15adf228741e476767",
     "source": "github",
-    "wp_modified": "2026-03-24T08:02:29"
+    "wp_modified": "2026-03-31T16:08:00"
   },
-  "seamless-doorbell-recording-offloading-camera-capture-from-home-assistant-to-agentdvr": {
-    "wp_id": 1029,
-    "content_hash": "5316893da4c82e345d24155cf64818f327a61bc31434cf8cfb28e4d3a9f18195",
+  "managing-windows-365-cloud-apps-with-nerdio": {
+    "wp_id": 1031,
+    "content_hash": "18a7f024a25b6c8568cd5cb37e28760c76e00740e003e02afa6e49f8b07601ea",
     "source": "github",
-    "wp_modified": "2026-07-01T00:00:00"
+    "wp_modified": "2026-05-01T00:00:00"
   }
 }
