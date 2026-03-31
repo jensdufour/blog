@@ -1,9 +1,9 @@
 {
   "zero-touch-ubuntu-entra-id-autoinstall": {
     "wp_id": 826,
-    "content_hash": "adf5444e4b9cf76e7056924e5ee030ce42748546d9eac593e4295f6dccce7743",
+    "content_hash": "035cae5ab036e57cc70ab23cdadf84804ccbf8a17a1748fefc48d85cd56f8489",
     "source": "github",
-    "wp_modified": "2026-03-31T16:08:19"
+    "wp_modified": "2026-03-31T17:18:56"
   },
   "epm-approval-workflow-adaptive-cards-logic-apps": {
     "wp_id": 779,
@@ -25,9 +25,9 @@
   },
   "enrolling-ubuntu-intune-device-management": {
     "wp_id": 967,
-    "content_hash": "a0bcbb433281d27c616c506aebaa273fe98c039e44de7dfba4efd3f25f57d820",
+    "content_hash": "b705641f69603327020b8364a566b31e5d32ed5c50724479a1a55c3ad66fcbad",
     "source": "github",
-    "wp_modified": "2026-03-31T16:08:12"
+    "wp_modified": "2026-03-31T17:18:51"
   },
   "entra-id-authentication-with-authd": {
     "wp_id": 968,
@@ -52,5 +52,11 @@
     "content_hash": "18a7f024a25b6c8568cd5cb37e28760c76e00740e003e02afa6e49f8b07601ea",
     "source": "github",
     "wp_modified": "2026-05-01T00:00:00"
+  },
+  "migrating-avd-to-windows-365-with-nerdio": {
+    "wp_id": 1033,
+    "content_hash": "0492c23f7e65abe744dec42d7e076dd036401f3078d534c8485e32eb2f6329b5",
+    "source": "github",
+    "wp_modified": "2026-06-01T00:00:00"
   }
 }
