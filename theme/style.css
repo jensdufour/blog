@@ -89,7 +89,7 @@ body.transitions-ready {
 a {
   color: var(--accent);
   text-decoration: none;
-  transition: color 0.15s ease;
+  transition: color 0.2s ease;
 }
 
 a:hover {
@@ -212,13 +212,14 @@ th {
   object-fit: contain;
   opacity: 0.6;
   filter: grayscale(100%);
-  transition: opacity 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.2s ease, filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .cert-badge:hover img {
   opacity: 1;
   filter: grayscale(0%);
   transform: scale(1.1);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
 /* ── Site heading link ── */
@@ -261,7 +262,7 @@ header.wp-block-template-part {
   color: var(--text);
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.15s ease, transform 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
   display: inline-block;
   position: relative;
 }
@@ -291,7 +292,7 @@ header.wp-block-template-part {
 
 /* ── Post list ── */
 .wp-block-post-template .wp-block-group {
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
   border-radius: 6px;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -299,6 +300,7 @@ header.wp-block-template-part {
 
 .wp-block-post-template .wp-block-group:hover {
   transform: scale(1.01);
+  background: color-mix(in srgb, var(--accent) 4%, transparent);
 }
 
 .wp-block-post-title a {
@@ -306,6 +308,17 @@ header.wp-block-template-part {
 }
 
 .wp-block-post-title a:hover {
+  color: var(--accent);
+}
+
+/* ── Post tags ── */
+.wp-block-post-terms a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.wp-block-post-terms a:hover {
   color: var(--accent);
 }
 
@@ -489,13 +502,11 @@ header.wp-block-template-part {
 
 /* ── Social links icons ── */
 .site-footer .wp-block-social-links .wp-social-link {
-  transition: transform 0.2s ease, opacity 0.2s ease;
-  opacity: 0.85;
+  transition: transform 0.2s ease;
 }
 
 .site-footer .wp-block-social-links .wp-social-link:hover {
   transform: scale(1.15);
-  opacity: 1;
 }
 
 .site-footer .wp-block-social-links .wp-social-link:hover svg {
@@ -572,11 +583,12 @@ header.wp-block-template-part {
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .wp-block-post-comments-form .form-submit input[type="submit"]:hover {
-  opacity: 0.85;
+  background: color-mix(in srgb, var(--accent) 85%, #000);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 /* ── Navigation overlay (mobile hamburger → full-page centered) ── */
@@ -648,6 +660,7 @@ header.wp-block-template-part {
   left: auto !important;
   right: auto !important;
   top: auto !important;
+  transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-close svg {
@@ -658,6 +671,7 @@ header.wp-block-template-part {
 .wp-block-navigation__responsive-container.is-menu-open .wp-block-navigation__responsive-container-close:hover {
   border-color: var(--accent) !important;
   color: var(--accent) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent) !important;
 }
 
 .wp-block-navigation__responsive-container-close {
@@ -738,15 +752,18 @@ header.wp-block-template-part {
   border: 1px solid var(--border);
   background: var(--bg);
   color: var(--muted);
-  font-size: 1.2rem;
   cursor: pointer;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: opacity 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   z-index: 20;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.back-to-top svg {
+  display: block;
 }
 
 .back-to-top.visible {
@@ -757,6 +774,7 @@ header.wp-block-template-part {
 .back-to-top:hover {
   color: var(--accent);
   border-color: var(--accent);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
 /* ── Hide sidebars on narrow screens ── */
@@ -879,7 +897,7 @@ header.wp-block-template-part {
 
 .search-result-item:hover,
 .search-result-item.active {
-  background: var(--code-bg);
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
   text-decoration: none;
   color: var(--text);
 }
