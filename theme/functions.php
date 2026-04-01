@@ -375,6 +375,17 @@ function jdm_sessionize_session_wrapper_script() {
                 }
             });
         });
+
+        /* Make timeline cards and Sessionize sessions fully clickable */
+        document.querySelectorAll('.sz-session, .timeline-item').forEach(function(card) {
+            var link = card.querySelector('a');
+            if (!link) return;
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('a')) return;
+                link.click();
+            });
+        });
     });
     </script>
     <?php
