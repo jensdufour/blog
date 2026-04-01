@@ -380,7 +380,7 @@ header.wp-block-template-part {
 }
 
 .wp-block-post-content .sz-session:hover {
-  background: var(--code-bg);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
 }
 
 .wp-block-post-content .sz-item {
@@ -934,7 +934,7 @@ header.wp-block-template-part {
 }
 
 .timeline-item:hover {
-  background: var(--code-bg);
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
 }
 
 .timeline-item:last-child {
