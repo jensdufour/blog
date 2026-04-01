@@ -351,7 +351,7 @@ header.wp-block-template-part {
 .wp-block-post-content .sz-group__title::before {
   content: "";
   position: absolute;
-  left: calc(-2rem + 0.45rem + 1px);
+  left: calc(-2rem + 0.45rem + 1px - 3px);
   transform: translateX(-50%);
   top: 0.35rem;
   width: 10px;
@@ -376,11 +376,14 @@ header.wp-block-template-part {
   margin-left: -0.5rem;
   padding: 0.35rem 0.75rem 0.35rem 0.5rem;
   border-radius: 6px;
-  transition: background 0.2s ease;
+  border-left: 3px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .wp-block-post-content .sz-session:hover {
   background: color-mix(in srgb, var(--accent) 8%, transparent);
+  border-left-color: var(--accent);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 .wp-block-post-content .sz-item {
@@ -929,12 +932,15 @@ header.wp-block-template-part {
   margin-left: -0.5rem;
   padding-left: 0.5rem;
   border-radius: 6px;
-  transition: background 0.2s ease;
+  border-left: 3px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   cursor: default;
 }
 
 .timeline-item:hover {
   background: color-mix(in srgb, var(--accent) 8%, transparent);
+  border-left-color: var(--accent);
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--accent) 12%, transparent);
 }
 
 .timeline-item:last-child {
@@ -944,7 +950,7 @@ header.wp-block-template-part {
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: calc(-1.5rem + 0.45rem + 1px);
+  left: calc(-1.5rem + 0.45rem + 1px - 3px);
   transform: translateX(-50%);
   top: 0.35rem;
   width: 10px;
