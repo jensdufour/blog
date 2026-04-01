@@ -11,6 +11,24 @@ function jdm_setup() {
 }
 add_action('after_setup_theme', 'jdm_setup');
 
+/* Ensure the cookie consent checkbox appears on the comment form */
+function jdm_enable_comment_cookies_consent() {
+    update_option( 'show_comments_cookies_opt_in', 1 );
+}
+add_action( 'after_setup_theme', 'jdm_enable_comment_cookies_consent' );
+
+/* Add a privacy policy link to the comment form consent text */
+function jdm_comment_form_consent_text( $fields ) {
+    if ( isset( $fields['cookies'] ) ) {
+        $fields['cookies'] = '<p class="comment-form-cookies-consent">'
+            . '<input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" />'
+            . '<label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment. See our <a href="/privacy-policy">privacy policy</a>.</label>'
+            . '</p>';
+    }
+    return $fields;
+}
+add_filter( 'comment_form_default_fields', 'jdm_comment_form_consent_text' );
+
 /* Theme stylesheet is inlined via jdm_inline_theme_styles — no external CSS enqueue needed */
 
 function jdm_theme_toggle_script() {
@@ -177,25 +195,16 @@ function jdm_remove_jquery_migrate( $scripts ) {
 }
 add_action( 'wp_default_scripts', 'jdm_remove_jquery_migrate' );
 
-/* Delay Google Tag Manager to keep it off the critical rendering path.
-   Replaces GTM's script tag with a lightweight loader that fetches it
-   after the page becomes interactive (3s delay or requestIdleCallback). */
+/* Delay Google Tag Manager and gate it behind cookie consent.
+   GTM only loads after the user explicitly accepts analytics cookies. */
 function jdm_delay_gtm() {
     if ( is_admin() ) {
         return;
     }
-    /* Remove Site Kit's default GTM output and replace with delayed version */
     ob_start( function( $html ) {
-        /* Find and remove the gtag.js script tag */
+        /* Remove any existing GTM script injected by Site Kit */
         $pattern = '/<script[^>]*src=["\'][^"\']*googletagmanager\.com\/gtag\/js[^"\']*["\'][^>]*><\/script>/i';
-        if ( preg_match( $pattern, $html, $matches ) ) {
-            $html = str_replace( $matches[0], '', $html );
-            /* Inject a delayed loader before </body> */
-            $loader = '<script>setTimeout(function(){var s=document.createElement("script");s.src="' .
-                esc_url( 'https://www.googletagmanager.com/gtag/js?id=GT-TNF9L36X' ) .
-                '";s.async=true;document.head.appendChild(s)},3000);</script>';
-            $html = str_replace( '</body>', $loader . '</body>', $html );
-        }
+        $html = preg_replace( $pattern, '', $html );
         return $html;
     } );
 }
@@ -631,3 +640,57 @@ function jdm_back_to_top_script() {
     <?php
 }
 add_action( 'wp_footer', 'jdm_back_to_top_script' );
+
+/* ── Cookie consent banner ── */
+function jdm_cookie_consent_banner() {
+    if ( is_admin() ) {
+        return;
+    }
+    $gtm_url = esc_url( 'https://www.googletagmanager.com/gtag/js?id=GT-TNF9L36X' );
+    ?>
+    <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie consent">
+        <p class="cookie-banner-text">
+            This site uses cookies for analytics (Google Analytics) to understand how visitors use the site.
+            No cookies are set until you consent. Read the <a href="/privacy-policy">privacy policy</a> for details.
+        </p>
+        <div class="cookie-banner-actions">
+            <button class="cookie-btn-accept" id="cookieAccept">Accept</button>
+            <button class="cookie-btn-reject" id="cookieReject">Reject</button>
+        </div>
+    </div>
+    <script>
+    (function() {
+        var consent = localStorage.getItem('cookie_consent');
+        var banner = document.getElementById('cookieBanner');
+
+        function loadGTM() {
+            if (document.querySelector('script[src*="googletagmanager.com"]')) return;
+            var s = document.createElement('script');
+            s.src = '<?php echo $gtm_url; ?>';
+            s.async = true;
+            document.head.appendChild(s);
+        }
+
+        if (consent === 'accepted') {
+            loadGTM();
+        } else if (consent !== 'rejected') {
+            requestAnimationFrame(function() {
+                banner.classList.add('visible');
+            });
+        }
+
+        document.getElementById('cookieAccept').addEventListener('click', function() {
+            localStorage.setItem('cookie_consent', 'accepted');
+            banner.classList.remove('visible');
+            loadGTM();
+        });
+
+        document.getElementById('cookieReject').addEventListener('click', function() {
+            localStorage.setItem('cookie_consent', 'rejected');
+            banner.classList.remove('visible');
+        });
+    })();
+    </script>
+    <?php
+}
+add_action( 'wp_footer', 'jdm_cookie_consent_banner' );

@@ -6,7 +6,7 @@ meta_description: "Privacy policy for jensdufour.be, covering data collection, c
 focus_keyphrase: "privacy policy"
 ---
 
-**Last updated:** March 13, 2026
+**Last updated:** April 1, 2026
 
 This privacy policy explains how jensdufour.be ("the site") collects, uses, and protects your personal data when you visit.
 
@@ -14,62 +14,115 @@ This privacy policy explains how jensdufour.be ("the site") collects, uses, and 
 
 Our website address is: https://jensdufour.be. The site is operated by Jens Du Four, based in Belgium. For any privacy-related questions, you can reach me at [jensdufour@outlook.com](mailto:jensdufour@outlook.com).
 
-## Comments
+## What data we collect and why
 
-When visitors leave comments on the site we collect the data shown in the comments form, and also the visitor's IP address and browser user agent string to help spam detection.
+### Analytics (Google Analytics via Google Tag Manager)
 
-Visitor comments may be checked through an automated spam detection service provided by Akismet. The information collected typically includes the commenter's IP address, user agent, referrer, and site URL, along with other information directly provided by the commenter such as their name, username, email address, and the comment itself.
+This site uses Google Analytics (loaded via Google Tag Manager, ID `GT-TNF9L36X`) to understand how visitors use the site, such as which pages are visited, how long visitors stay, and which countries visitors come from. Google Analytics sets cookies on your device to collect this data.
 
-## Media
+**Legal basis:** Your explicit consent (GDPR Art. 6(1)(a)). Analytics cookies are only set after you click "Accept" on the cookie consent banner. If you reject or ignore the banner, no analytics cookies are set and no data is sent to Google.
 
-If you upload images to the website, you should avoid uploading images with embedded location data (EXIF GPS) included. Visitors to the website can download and extract any location data from images on the website.
+You can learn more about how Google processes data in the [Google Privacy Policy](https://policies.google.com/privacy).
 
-## Cookies
+### Comments
 
-If you leave a comment on our site you may opt-in to saving your name, email address and website in cookies. These are for your convenience so that you do not have to fill in your details again when you leave another comment. These cookies will last for one year.
+When visitors leave comments on the site, we collect the data shown in the comments form (name, email, website, comment text), as well as the visitor's IP address and browser user agent string to help with spam detection.
 
-If you visit our login page, we will set a temporary cookie to determine if your browser accepts cookies. This cookie contains no personal data and is discarded when you close your browser.
+**Legal basis:** Legitimate interest (GDPR Art. 6(1)(f)) for spam prevention; consent (GDPR Art. 6(1)(a)) for the optional cookie that stores your name, email, and website for future comments.
 
-When you log in, we will also set up several cookies to save your login information and your screen display choices. Login cookies last for two days, and screen options cookies last for a year. If you select "Remember Me", your login will persist for two weeks. If you log out of your account, the login cookies will be removed.
+### Spam detection (Akismet)
 
-If you edit or publish an article, an additional cookie will be saved in your browser. This cookie includes no personal data and simply indicates the post ID of the article you just edited. It expires after 1 day.
+Visitor comments are checked through [Akismet](https://akismet.com/), an automated spam detection service operated by Automattic. The information sent to Akismet typically includes the commenter's IP address, user agent, referrer, site URL, name, email address, and the comment content. You can read the [Akismet Privacy Policy](https://automattic.com/privacy/) for details on how they handle this data.
 
-## Embedded content from other websites
+**Legal basis:** Legitimate interest (GDPR Art. 6(1)(f)) in preventing spam.
 
-Articles on this site may include embedded content (e.g. videos, images, articles, etc.). Embedded content from other websites behaves in the exact same way as if the visitor has visited the other website.
+### Embedded content
 
-These websites may collect data about you, use cookies, embed additional third-party tracking, and monitor your interaction with that embedded content, including tracking your interaction with the embedded content if you have an account and are logged in to that website.
+Articles on this site may include embedded content from other websites (e.g. videos, images, scripts). In particular, the [Speaking](/speaking) page loads an embed from [Sessionize](https://sessionize.com/) to display upcoming and past speaking engagements. Embedded content from other websites behaves in the exact same way as if you visited that website directly. These websites may collect data about you, set cookies, and track your interaction with the embedded content.
+
+**Legal basis:** Legitimate interest (GDPR Art. 6(1)(f)) in displaying relevant content.
+
+### Contact and direct communication
+
+If you contact me via email, the personal data you provide (name, email address, message content) is used only to respond to your inquiry.
+
+**Legal basis:** Legitimate interest (GDPR Art. 6(1)(f)) in responding to communications.
+
+## Cookies and local storage
+
+### Cookie consent
+
+This site shows a cookie consent banner on your first visit. Analytics cookies (Google Analytics) are only placed after you explicitly accept. You can change your choice at any time by clearing your browser's local storage or cookies and revisiting the site.
+
+### Cookie inventory
+
+| Name | Provider | Purpose | Category | Duration |
+|------|----------|---------|----------|----------|
+| `_ga` | Google Analytics | Distinguishes unique visitors | Analytics (consent required) | 2 years |
+| `_ga_*` | Google Analytics | Stores session state | Analytics (consent required) | 2 years |
+| `comment_author_*` | WordPress | Stores commenter name | Functional (opt-in via checkbox) | 1 year |
+| `comment_author_email_*` | WordPress | Stores commenter email | Functional (opt-in via checkbox) | 1 year |
+| `comment_author_url_*` | WordPress | Stores commenter website | Functional (opt-in via checkbox) | 1 year |
+| `wordpress_test_cookie` | WordPress | Tests if browser accepts cookies | Strictly necessary | Session |
+| `wp-settings-*` | WordPress | Saves admin display preferences | Strictly necessary | 1 year |
+| `wordpress_logged_in_*` | WordPress | Identifies logged-in users | Strictly necessary | Session/2 weeks |
+
+### Local storage (not cookies)
+
+The following data is stored in your browser's local/session storage. These are strictly functional and do not track you across sites:
+
+| Key | Purpose | Storage type | Duration |
+|-----|---------|-------------|----------|
+| `theme` | Remembers your dark/light mode preference | localStorage | Persistent |
+| `cookie_consent` | Remembers your cookie banner choice | localStorage | Persistent |
+| `jdm_search_index` | Caches the search index for faster results | sessionStorage | 1 hour or until tab closes |
+| `jdm_search_index_ts` | Timestamp for the search index cache | sessionStorage | 1 hour or until tab closes |
 
 ## Who we share your data with
 
-If you request a password reset, your IP address will be included in the reset email.
+Your personal data is not sold, rented, or shared with third parties, except:
 
-Your personal data is not sold, rented, or shared with third parties, except where required by law or necessary for hosting the site (e.g., the hosting provider processing server logs).
+- **Google** (analytics data, only after your consent)
+- **Automattic / Akismet** (comment data for spam detection)
+- **Hosting provider** (server logs as part of standard web hosting)
+
+If you request a password reset, your IP address will be included in the reset email.
 
 ## How long we retain your data
 
-If you leave a comment, the comment and its metadata are retained indefinitely. This is so we can recognize and approve any follow-up comments automatically instead of holding them in a moderation queue.
+If you leave a comment, the comment and its metadata are retained indefinitely so we can recognize and approve follow-up comments automatically instead of holding them in a moderation queue.
 
 For users that register on our website (if any), we also store the personal information they provide in their user profile. All users can see, edit, or delete their personal information at any time (except they cannot change their username). Website administrators can also see and edit that information.
 
 Server logs are retained according to the hosting provider's standard retention periods. Any personal data from direct communication is kept only as long as necessary to handle your inquiry.
 
+Analytics data is retained according to Google's standard retention settings (default: 14 months).
+
 ## What rights you have over your data
 
-If you have an account on this site, or have left comments, you can request to receive an exported file of the personal data we hold about you, including any data you have provided to us. You can also request that we erase any personal data we hold about you. This does not include any data we are obliged to keep for administrative, legal, or security purposes.
+Under the General Data Protection Regulation (GDPR), you have the following rights:
 
-As a visitor from the European Economic Area, you additionally have the right to:
+- **Right of access** - request a copy of the personal data held about you
+- **Right to rectification** - request correction of inaccurate data
+- **Right to erasure** - request deletion of your personal data
+- **Right to restrict processing** - request that we limit how we use your data
+- **Right to data portability** - receive your data in a structured, machine-readable format
+- **Right to object** - object to processing based on legitimate interest
+- **Right to withdraw consent** - withdraw your consent for analytics at any time by clearing local storage or rejecting cookies
 
-- Access the personal data held about you
-- Request correction of inaccurate data
-- Object to or restrict processing of your data
-- Data portability
+If you have an account on this site, or have left comments, you can request an exported file of the personal data we hold about you. You can also request that we erase any personal data we hold about you. This does not include any data we are obliged to keep for administrative, legal, or security purposes.
 
 To exercise any of these rights, contact me at [jensdufour@outlook.com](mailto:jensdufour@outlook.com).
 
-## Where your data is sent
+## Right to lodge a complaint
 
-Visitor comments may be checked through an automated spam detection service.
+If you believe your personal data has been processed in violation of data protection law, you have the right to lodge a complaint with the Belgian Data Protection Authority (Gegevensbeschermingsautoriteit / Autorite de protection des donnees):
+
+**Gegevensbeschermingsautoriteit (GBA)**
+Drukpersstraat 35, 1000 Brussels
+Phone: +32 (0)2 274 48 00
+Email: contact@apd-gba.be
+Website: [https://www.gegevensbeschermingsautoriteit.be](https://www.gegevensbeschermingsautoriteit.be)
 
 ## Changes to this policy
 

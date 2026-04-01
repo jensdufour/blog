@@ -1073,3 +1073,89 @@ header.wp-block-template-part {
     left: 0.45rem;
   }
 }
+
+/* ── Cookie consent banner ── */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 300;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.1);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cookie-banner.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cookie-banner-text {
+  font-size: 0.85rem;
+  color: var(--text);
+  max-width: 40rem;
+  line-height: 1.5;
+}
+
+.cookie-banner-text a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.cookie-banner-actions button {
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  line-height: 1.4;
+}
+
+.cookie-btn-accept {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+}
+
+.cookie-btn-accept:hover {
+  background: color-mix(in srgb, var(--accent) 85%, #000);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+.cookie-btn-reject {
+  background: none;
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+
+.cookie-btn-reject:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+@media (max-width: 600px) {
+  .cookie-banner {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+}
