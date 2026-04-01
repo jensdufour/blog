@@ -116,49 +116,39 @@ a:hover {
   margin-top: 0.15rem;
 }
 
-/* ── Search toggle button ── */
-.search-toggle {
-  background: none;
+/* ── Header actions (combined button group) ── */
+.header-actions {
+  display: inline-flex;
   border: 1px solid var(--border);
   border-radius: 6px;
+  overflow: hidden;
+}
+
+.header-actions button {
+  background: none;
+  border: none;
   color: var(--muted);
   cursor: pointer;
   padding: 0.3rem 0.55rem;
   font-size: 1rem;
   line-height: 1;
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
+  transition: color 0.2s, background 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.search-toggle:hover {
+.header-actions button:hover {
   color: var(--text);
-  border-color: var(--muted);
   background: var(--code-bg);
 }
 
-.search-toggle svg {
+.header-actions .search-toggle {
+  border-right: 1px solid var(--border);
+}
+
+.header-actions .search-toggle svg {
   display: block;
-}
-
-/* ── Theme toggle button ── */
-.theme-toggle {
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--muted);
-  cursor: pointer;
-  padding: 0.3rem 0.55rem;
-  font-size: 1rem;
-  line-height: 1;
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
-}
-
-.theme-toggle:hover {
-  color: var(--text);
-  border-color: var(--muted);
-  background: var(--code-bg);
 }
 
 /* ── Images ── */
