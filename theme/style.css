@@ -925,10 +925,12 @@ header.wp-block-template-part {
   position: relative;
   padding-bottom: 2rem;
   padding-right: 0.75rem;
+  padding-top: 0.35rem;
   margin-left: -0.5rem;
   padding-left: 0.5rem;
   border-radius: 6px;
   transition: background 0.2s ease;
+  cursor: default;
 }
 
 .timeline-item:hover {
@@ -936,7 +938,7 @@ header.wp-block-template-part {
 }
 
 .timeline-item:last-child {
-  padding-bottom: 0;
+  padding-bottom: 0.35rem;
 }
 
 .timeline-item::before {

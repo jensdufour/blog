@@ -474,7 +474,7 @@ function jdm_search_modal() {
             results.innerHTML = '';
             activeIdx = -1;
             loadIndex();
-            requestAnimationFrame(function() { input.focus(); });
+            setTimeout(function() { input.focus(); }, 50);
         }
 
         function closeSearch() {
