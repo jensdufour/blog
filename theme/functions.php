@@ -363,14 +363,11 @@ function jdm_sessionize_session_wrapper_script() {
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.sz-group').forEach(function(group) {
             var children = Array.from(group.children);
-            var session = null;
             children.forEach(function(el) {
-                if (el.classList.contains('sz-group__title')) {
-                    session = document.createElement('div');
+                if (el.classList.contains('sz-item')) {
+                    var session = document.createElement('div');
                     session.className = 'sz-session';
                     el.before(session);
-                    session.appendChild(el);
-                } else if (el.classList.contains('sz-item') && session) {
                     session.appendChild(el);
                 }
             });

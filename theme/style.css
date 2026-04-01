@@ -363,12 +363,7 @@ header.wp-block-template-part {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.wp-block-post-content .sz-session:hover .sz-group__title::before {
-  transform: translateX(-50%) scale(1.4);
-  box-shadow: 0 0 0 2px var(--accent), 0 0 0 6px color-mix(in srgb, var(--accent) 25%, transparent);
-}
-
-.wp-block-post-content .sz-session:first-child .sz-group__title::before {
+.wp-block-post-content .sz-group__title:first-child::before {
   box-shadow: 0 0 0 2px var(--accent), 0 0 0 5px color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
