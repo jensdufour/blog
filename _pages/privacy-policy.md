@@ -64,8 +64,6 @@ This site shows a cookie consent banner on your first visit. Analytics cookies (
 | `comment_author_email_*` | WordPress | Stores commenter email | Functional (opt-in via checkbox) | 1 year |
 | `comment_author_url_*` | WordPress | Stores commenter website | Functional (opt-in via checkbox) | 1 year |
 | `wordpress_test_cookie` | WordPress | Tests if browser accepts cookies | Strictly necessary | Session |
-| `wp-settings-*` | WordPress | Saves admin display preferences | Strictly necessary | 1 year |
-| `wordpress_logged_in_*` | WordPress | Identifies logged-in users | Strictly necessary | Session/2 weeks |
 
 ### Local storage (not cookies)
 
@@ -86,13 +84,9 @@ Your personal data is not sold, rented, or shared with third parties, except:
 - **Automattic / Akismet** (comment data for spam detection)
 - **Hosting provider** (server logs as part of standard web hosting)
 
-If you request a password reset, your IP address will be included in the reset email.
-
 ## How long we retain your data
 
 If you leave a comment, the comment and its metadata are retained indefinitely so we can recognize and approve follow-up comments automatically instead of holding them in a moderation queue.
-
-For users that register on our website (if any), we also store the personal information they provide in their user profile. All users can see, edit, or delete their personal information at any time (except they cannot change their username). Website administrators can also see and edit that information.
 
 Server logs are retained according to the hosting provider's standard retention periods. Any personal data from direct communication is kept only as long as necessary to handle your inquiry.
 
@@ -110,7 +104,7 @@ Under the General Data Protection Regulation (GDPR), you have the following righ
 - **Right to object** - object to processing based on legitimate interest
 - **Right to withdraw consent** - withdraw your consent for analytics at any time by clearing local storage or rejecting cookies
 
-If you have an account on this site, or have left comments, you can request an exported file of the personal data we hold about you. You can also request that we erase any personal data we hold about you. This does not include any data we are obliged to keep for administrative, legal, or security purposes.
+If you have left comments, you can request an exported file of the personal data we hold about you. You can also request that we erase any personal data we hold about you. This does not include any data we are obliged to keep for administrative, legal, or security purposes.
 
 To exercise any of these rights, contact me at [jensdufour@outlook.com](mailto:jensdufour@outlook.com).
 
