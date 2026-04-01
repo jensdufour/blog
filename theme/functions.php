@@ -356,6 +356,140 @@ function jdm_toc_script() {
 }
 add_action( 'wp_footer', 'jdm_toc_script' );
 
+/* ── Search modal ── */
+function jdm_search_modal() {
+    ?>
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-modal" role="dialog" aria-label="Search posts">
+            <div class="search-modal-input-wrap">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input class="search-modal-input" id="searchInput" type="text" placeholder="Search posts..." autocomplete="off" />
+                <kbd class="search-modal-kbd">ESC</kbd>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+    <script>
+    (function() {
+        var overlay = document.getElementById('searchOverlay');
+        var input = document.getElementById('searchInput');
+        var results = document.getElementById('searchResults');
+        var activeIdx = -1;
+        var debounceTimer;
+        var apiBase = '<?php echo esc_url( rest_url( 'wp/v2/posts' ) ); ?>';
+
+        function openSearch() {
+            overlay.classList.add('open');
+            input.value = '';
+            results.innerHTML = '';
+            activeIdx = -1;
+            requestAnimationFrame(function() { input.focus(); });
+        }
+
+        function closeSearch() {
+            overlay.classList.remove('open');
+            input.value = '';
+            results.innerHTML = '';
+            activeIdx = -1;
+        }
+
+        /* Toggle button */
+        var btn = document.querySelector('.search-toggle');
+        if (btn) btn.addEventListener('click', openSearch);
+
+        /* Ctrl/Cmd + K shortcut */
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                if (overlay.classList.contains('open')) closeSearch();
+                else openSearch();
+            }
+            if (e.key === 'Escape' && overlay.classList.contains('open')) {
+                closeSearch();
+            }
+        });
+
+        /* Click outside to close */
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) closeSearch();
+        });
+
+        /* Format date */
+        function fmtDate(dateStr) {
+            var d = new Date(dateStr);
+            return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        /* Strip HTML tags */
+        function stripTags(html) {
+            var tmp = document.createElement('div');
+            tmp.innerHTML = html;
+            return tmp.textContent || '';
+        }
+
+        /* Render results */
+        function render(posts, query) {
+            if (!query) { results.innerHTML = ''; activeIdx = -1; return; }
+            if (posts.length === 0) {
+                results.innerHTML = '<div class="search-no-results">No posts found</div>';
+                activeIdx = -1;
+                return;
+            }
+            results.innerHTML = posts.map(function(p) {
+                var excerpt = stripTags(p.excerpt.rendered).substring(0, 160);
+                return '<a class="search-result-item" href="' + p.link + '">' +
+                    '<div class="search-result-title">' + stripTags(p.title.rendered) + '</div>' +
+                    '<div class="search-result-excerpt">' + excerpt + '</div>' +
+                    '<div class="search-result-date">' + fmtDate(p.date) + '</div>' +
+                    '</a>';
+            }).join('');
+            activeIdx = -1;
+        }
+
+        /* Highlight active item */
+        function updateActive() {
+            var items = results.querySelectorAll('.search-result-item');
+            items.forEach(function(el, i) {
+                el.classList.toggle('active', i === activeIdx);
+                if (i === activeIdx) el.scrollIntoView({ block: 'nearest' });
+            });
+        }
+
+        /* Keyboard navigation inside results */
+        input.addEventListener('keydown', function(e) {
+            var items = results.querySelectorAll('.search-result-item');
+            if (!items.length) return;
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                activeIdx = (activeIdx + 1) % items.length;
+                updateActive();
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                activeIdx = (activeIdx - 1 + items.length) % items.length;
+                updateActive();
+            } else if (e.key === 'Enter' && activeIdx >= 0) {
+                e.preventDefault();
+                items[activeIdx].click();
+            }
+        });
+
+        /* Debounced search */
+        input.addEventListener('input', function() {
+            var q = input.value.trim();
+            clearTimeout(debounceTimer);
+            if (q.length < 2) { results.innerHTML = ''; activeIdx = -1; return; }
+            debounceTimer = setTimeout(function() {
+                fetch(apiBase + '?search=' + encodeURIComponent(q) + '&per_page=8&_fields=id,title,excerpt,link,date')
+                    .then(function(r) { return r.json(); })
+                    .then(function(posts) { render(posts, q); });
+            }, 250);
+        });
+    })();
+    </script>
+    <?php
+}
+add_action( 'wp_footer', 'jdm_search_modal' );
+
 /* ── Back to Top button ── */
 function jdm_back_to_top_script() {
     ?>
