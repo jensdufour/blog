@@ -326,7 +326,15 @@ header.wp-block-template-part {
 .wp-block-post-content .sz-group {
   position: relative;
   padding-left: 2rem;
+  padding-right: 0.75rem;
   margin: 1.5rem 0;
+  margin-left: -0.5rem;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.wp-block-post-content .sz-group:hover {
+  background: var(--code-bg);
 }
 
 .wp-block-post-content .sz-group::before {
@@ -897,6 +905,15 @@ header.wp-block-template-part {
 .timeline-item {
   position: relative;
   padding-bottom: 2rem;
+  padding-right: 0.75rem;
+  margin-left: -0.5rem;
+  padding-left: 0.5rem;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.timeline-item:hover {
+  background: var(--code-bg);
 }
 
 .timeline-item:last-child {
