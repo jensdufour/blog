@@ -843,10 +843,15 @@ header.wp-block-template-part {
   overflow: hidden;
 }
 
-.search-result-date {
+.search-result-meta {
   font-size: 0.75rem;
   color: var(--muted);
   margin-top: 0.2rem;
+}
+
+.search-result-tags {
+  color: var(--accent);
+  opacity: 0.8;
 }
 
 .search-no-results {

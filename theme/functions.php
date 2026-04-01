@@ -356,6 +356,42 @@ function jdm_toc_script() {
 }
 add_action( 'wp_footer', 'jdm_toc_script' );
 
+/* ── Search index REST endpoint ── */
+function jdm_register_search_index_endpoint() {
+    register_rest_route( 'jdm/v1', '/search-index', [
+        'methods'             => 'GET',
+        'callback'            => 'jdm_search_index_callback',
+        'permission_callback' => '__return_true',
+    ] );
+}
+add_action( 'rest_api_init', 'jdm_register_search_index_endpoint' );
+
+function jdm_search_index_callback() {
+    $posts = get_posts( [
+        'post_type'      => 'post',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    ] );
+
+    $index = [];
+    foreach ( $posts as $p ) {
+        $tags = wp_get_post_tags( $p->ID, [ 'fields' => 'names' ] );
+        $index[] = [
+            'title'   => html_entity_decode( get_the_title( $p ), ENT_QUOTES, 'UTF-8' ),
+            'excerpt' => wp_trim_words( wp_strip_all_tags( $p->post_content ), 30, '...' ),
+            'tags'    => $tags,
+            'link'    => get_permalink( $p ),
+            'date'    => get_the_date( 'c', $p ),
+        ];
+    }
+
+    return new WP_REST_Response( $index, 200, [
+        'Cache-Control' => 'public, max-age=3600',
+    ] );
+}
+
 /* ── Search modal ── */
 function jdm_search_modal() {
     ?>
@@ -375,14 +411,33 @@ function jdm_search_modal() {
         var input = document.getElementById('searchInput');
         var results = document.getElementById('searchResults');
         var activeIdx = -1;
-        var debounceTimer;
-        var apiBase = '<?php echo esc_url( rest_url( 'wp/v2/posts' ) ); ?>';
+        var indexCache = null;
+        var indexUrl = '<?php echo esc_url( rest_url( 'jdm/v1/search-index' ) ); ?>';
+
+        function loadIndex() {
+            if (indexCache) return Promise.resolve(indexCache);
+            var cached = sessionStorage.getItem('jdm_search_index');
+            var cachedAt = sessionStorage.getItem('jdm_search_index_ts');
+            if (cached && cachedAt && (Date.now() - parseInt(cachedAt, 10)) < 3600000) {
+                indexCache = JSON.parse(cached);
+                return Promise.resolve(indexCache);
+            }
+            return fetch(indexUrl)
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    indexCache = data;
+                    sessionStorage.setItem('jdm_search_index', JSON.stringify(data));
+                    sessionStorage.setItem('jdm_search_index_ts', String(Date.now()));
+                    return data;
+                });
+        }
 
         function openSearch() {
             overlay.classList.add('open');
             input.value = '';
             results.innerHTML = '';
             activeIdx = -1;
+            loadIndex();
             requestAnimationFrame(function() { input.focus(); });
         }
 
@@ -420,11 +475,46 @@ function jdm_search_modal() {
             return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
         }
 
-        /* Strip HTML tags */
-        function stripTags(html) {
-            var tmp = document.createElement('div');
-            tmp.innerHTML = html;
-            return tmp.textContent || '';
+        /* Score a post against the query (higher = better match) */
+        function score(post, terms) {
+            var s = 0;
+            var titleLower = post.title.toLowerCase();
+            var excerptLower = post.excerpt.toLowerCase();
+            var tagsLower = post.tags.map(function(t) { return t.toLowerCase(); });
+
+            for (var i = 0; i < terms.length; i++) {
+                var t = terms[i];
+                /* Exact title match */
+                if (titleLower === t) { s += 100; continue; }
+                /* Title starts with term */
+                if (titleLower.indexOf(t) === 0) { s += 60; continue; }
+                /* Title contains term */
+                if (titleLower.indexOf(t) !== -1) { s += 40; continue; }
+                /* Tag exact match */
+                var tagMatch = false;
+                for (var j = 0; j < tagsLower.length; j++) {
+                    if (tagsLower[j] === t) { s += 35; tagMatch = true; break; }
+                    if (tagsLower[j].indexOf(t) !== -1) { s += 20; tagMatch = true; break; }
+                }
+                if (tagMatch) continue;
+                /* Excerpt contains term */
+                if (excerptLower.indexOf(t) !== -1) { s += 10; continue; }
+                /* No match for this term: penalize */
+                s -= 20;
+            }
+            return s;
+        }
+
+        /* Search the index and return ranked results */
+        function search(query) {
+            if (!indexCache) return [];
+            var terms = query.toLowerCase().split(/\s+/).filter(function(t) { return t.length > 0; });
+            if (!terms.length) return [];
+            var scored = indexCache.map(function(p) {
+                return { post: p, score: score(p, terms) };
+            }).filter(function(r) { return r.score > 0; });
+            scored.sort(function(a, b) { return b.score - a.score; });
+            return scored.slice(0, 8).map(function(r) { return r.post; });
         }
 
         /* Render results */
@@ -436,11 +526,11 @@ function jdm_search_modal() {
                 return;
             }
             results.innerHTML = posts.map(function(p) {
-                var excerpt = stripTags(p.excerpt.rendered).substring(0, 160);
+                var tags = p.tags.length ? '<span class="search-result-tags">' + p.tags.join(', ') + '</span>' : '';
                 return '<a class="search-result-item" href="' + p.link + '">' +
-                    '<div class="search-result-title">' + stripTags(p.title.rendered) + '</div>' +
-                    '<div class="search-result-excerpt">' + excerpt + '</div>' +
-                    '<div class="search-result-date">' + fmtDate(p.date) + '</div>' +
+                    '<div class="search-result-title">' + p.title + '</div>' +
+                    '<div class="search-result-excerpt">' + p.excerpt + '</div>' +
+                    '<div class="search-result-meta">' + fmtDate(p.date) + (tags ? ' &middot; ' + tags : '') + '</div>' +
                     '</a>';
             }).join('');
             activeIdx = -1;
@@ -473,16 +563,13 @@ function jdm_search_modal() {
             }
         });
 
-        /* Debounced search */
+        /* Instant client-side search on every keystroke */
         input.addEventListener('input', function() {
             var q = input.value.trim();
-            clearTimeout(debounceTimer);
             if (q.length < 2) { results.innerHTML = ''; activeIdx = -1; return; }
-            debounceTimer = setTimeout(function() {
-                fetch(apiBase + '?search=' + encodeURIComponent(q) + '&per_page=8&_fields=id,title,excerpt,link,date')
-                    .then(function(r) { return r.json(); })
-                    .then(function(posts) { render(posts, q); });
-            }, 250);
+            loadIndex().then(function() {
+                render(search(q), q);
+            });
         });
     })();
     </script>
