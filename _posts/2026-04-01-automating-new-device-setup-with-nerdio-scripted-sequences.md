@@ -85,8 +85,10 @@ Task Automation must be configured before you can create or run Scripted Sequenc
 
 1. Navigate to **NME** > **Settings** > **Nerdio Environment** > **Task Automation**.
 2. Click **Configure**.
-3. Enter a name and select a resource group for the Azure storage account that Nerdio Manager will create to use with the feature.
+3. Enter a name and select a resource group for the Azure storage account that Nerdio Manager will create.
 4. Click **Save** to complete the configuration.
+
+> **Warning:** If your NME deployment uses the **Enable Private Endpoints** scripted action, the storage account created here may have public network access disabled by default. The Nerdio Endpoint Worker on target devices needs to reach this storage account, so verify that public access is enabled or that a private endpoint is configured for it.
 
 ![Configuring Task Automation in the NME console.](../media/automating-new-device-setup-with-nerdio-scripted-sequences/automating-new-device-setup-with-nerdio-scripted-sequences-02.webp)
 
@@ -213,7 +215,7 @@ NME will push the tasks to the Nerdio Endpoint Worker on the device. Each task r
 
 ![Targeting a Windows 365 Cloud PC for sequence execution.](../media/automating-new-device-setup-with-nerdio-scripted-sequences/automating-new-device-setup-with-nerdio-scripted-sequences-07.webp)
 
-> **Tip:** Monitor progress in **NME** > **Logs**. Enhanced task logging in v7.6.0 provides better visibility into each step.
+> **Tip:** Monitor progress in **NME** > **Logs**.
 
 ## Step 8: Validate on the Device
 
@@ -234,16 +236,17 @@ Since the sequence writes a registry value on completion, you can create an Intu
 Create a PowerShell detection script that checks for the registry value:
 
 ```powershell
+$result = @{ DeveloperOnboarding = "NotCompleted" }
+
 try {
     $value = Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\LeafIT\NerdioSequences" -Name "DeveloperOnboarding" -ErrorAction Stop
     if ($value -eq "Completed") {
-        Write-Output '{"DeveloperOnboarding": "Completed"}'
-        exit 0
+        $result.DeveloperOnboarding = "Completed"
     }
 } catch {}
 
-Write-Output '{"DeveloperOnboarding": "NotCompleted"}'
-exit 1
+$result | ConvertTo-Json -Compress
+exit 0
 ```
 
 ### Compliance JSON
