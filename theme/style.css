@@ -358,8 +358,9 @@ header.wp-block-template-part {
   height: 10px;
   border-radius: 50%;
   background: var(--accent);
-  border: 2px solid var(--bg);
+  border: 3px solid var(--bg);
   box-shadow: 0 0 0 2px var(--accent);
+  z-index: 1;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -984,8 +985,9 @@ header.wp-block-template-part {
   height: 10px;
   border-radius: 50%;
   background: var(--accent);
-  border: 2px solid var(--bg);
+  border: 3px solid var(--bg);
   box-shadow: 0 0 0 2px var(--accent);
+  z-index: 1;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
