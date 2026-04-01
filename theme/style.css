@@ -351,7 +351,7 @@ header.wp-block-template-part {
 .wp-block-post-content .sz-group__title::before {
   content: "";
   position: absolute;
-  left: calc(-2rem + 0.45rem + 1px - 3px);
+  left: calc(-2rem + 0.45rem + 1px);
   transform: translateX(-50%);
   top: 0.35rem;
   width: 10px;
@@ -368,17 +368,31 @@ header.wp-block-template-part {
 }
 
 .wp-block-post-content .sz-session {
-  margin-left: -0.5rem;
-  padding: 0.35rem 0.75rem 0.35rem 0.5rem;
-  border-radius: 6px;
-  border-left: 3px solid transparent;
-  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  margin-left: calc(-2rem + 0.45rem);
+  padding: 0.35rem 0.75rem 0.35rem calc(2rem - 0.45rem);
+  border-radius: 0 6px 6px 0;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wp-block-post-content .sz-session::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: transparent;
+  transition: background 0.2s ease;
 }
 
 .wp-block-post-content .sz-session:hover {
   background: color-mix(in srgb, var(--accent) 8%, transparent);
-  border-left-color: var(--accent);
   box-shadow: 0 1px 4px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.wp-block-post-content .sz-session:hover::before {
+  background: var(--accent);
 }
 
 .wp-block-post-content .sz-item {
@@ -408,6 +422,11 @@ header.wp-block-template-part {
 @media (max-width: 600px) {
   .wp-block-post-content .sz-group {
     padding-left: 1.5rem;
+  }
+
+  .wp-block-post-content .sz-session {
+    margin-left: calc(-1.5rem + 0.45rem);
+    padding-left: calc(1.5rem - 0.45rem);
   }
 
   .wp-block-post-content .sz-group__title::before {
@@ -924,18 +943,31 @@ header.wp-block-template-part {
   padding-bottom: 2rem;
   padding-right: 0.75rem;
   padding-top: 0.35rem;
-  margin-left: -0.5rem;
-  padding-left: 0.5rem;
-  border-radius: 6px;
-  border-left: 3px solid transparent;
-  transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  margin-left: calc(-2rem + 0.45rem);
+  padding-left: calc(2rem - 0.45rem);
+  border-radius: 0 6px 6px 0;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
   cursor: default;
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: transparent;
+  transition: background 0.2s ease;
 }
 
 .timeline-item:hover {
   background: color-mix(in srgb, var(--accent) 8%, transparent);
-  border-left-color: var(--accent);
   box-shadow: 0 1px 4px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.timeline-item:hover::after {
+  background: var(--accent);
 }
 
 .timeline-item:last-child {
@@ -945,7 +977,7 @@ header.wp-block-template-part {
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: calc(-1.5rem + 0.45rem + 1px - 3px);
+  left: 1px;
   transform: translateX(-50%);
   top: 0.35rem;
   width: 10px;
@@ -1006,8 +1038,13 @@ header.wp-block-template-part {
     padding-left: 1.5rem;
   }
 
+  .timeline-item {
+    margin-left: calc(-1.5rem + 0.45rem);
+    padding-left: calc(1.5rem - 0.45rem);
+  }
+
   .timeline-item::before {
-    left: calc(-1rem + 0.45rem + 1px);
+    left: 1px;
     width: 8px;
     height: 8px;
   }
