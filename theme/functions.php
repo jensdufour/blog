@@ -356,6 +356,31 @@ function jdm_toc_script() {
 }
 add_action( 'wp_footer', 'jdm_toc_script' );
 
+/* ── Sessionize timeline: wrap each title + its items into a .sz-session div ── */
+function jdm_sessionize_session_wrapper_script() {
+    ?>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.sz-group').forEach(function(group) {
+            var children = Array.from(group.children);
+            var session = null;
+            children.forEach(function(el) {
+                if (el.classList.contains('sz-group__title')) {
+                    session = document.createElement('div');
+                    session.className = 'sz-session';
+                    el.before(session);
+                    session.appendChild(el);
+                } else if (el.classList.contains('sz-item') && session) {
+                    session.appendChild(el);
+                }
+            });
+        });
+    });
+    </script>
+    <?php
+}
+add_action( 'wp_footer', 'jdm_sessionize_session_wrapper_script' );
+
 /* ── Search index REST endpoint ── */
 function jdm_register_search_index_endpoint() {
     register_rest_route( 'jdm/v1', '/search-index', [
