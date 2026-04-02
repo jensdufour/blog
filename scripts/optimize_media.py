@@ -16,6 +16,7 @@ from PIL import Image
 ROOT_DIR = Path(__file__).resolve().parent.parent
 POSTS_DIR = ROOT_DIR / "_posts"
 MEDIA_DIR = ROOT_DIR / "media"
+THEME_ASSETS_DIR = ROOT_DIR / "theme" / "assets"
 
 CONVERTIBLE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".bmp"}
 POST_FILENAME_RE = re.compile(r"^\d{4}-\d{2}-\d{2}-(.+)\.md$")
@@ -72,6 +73,24 @@ def update_post_references(post_path: Path, slug: str, conversions: dict[str, st
     return False
 
 
+
+def optimize_theme_assets() -> int:
+    """Convert non-WebP images in theme/assets/ to WebP."""
+    if not THEME_ASSETS_DIR.exists():
+        return 0
+
+    converted = 0
+    for f in sorted(THEME_ASSETS_DIR.rglob("*")):
+        if not f.is_file() or f.suffix.lower() not in CONVERTIBLE_EXTENSIONS:
+            continue
+        webp_path = convert_to_webp(f)
+        if webp_path:
+            print(f"  {f.relative_to(THEME_ASSETS_DIR)} -> {webp_path.relative_to(THEME_ASSETS_DIR)}")
+            f.unlink()
+            converted += 1
+    return converted
+
+
 def main() -> None:
     if not MEDIA_DIR.exists():
         print("No media directory found.")
@@ -100,6 +119,10 @@ def main() -> None:
             if update_post_references(post_path, slug, conversions):
                 print(f"  Updated references in {post_path.name}")
                 total_posts_updated += 1
+
+    print("\nTheme assets:")
+    theme_converted = optimize_theme_assets()
+    total_converted += theme_converted
 
     if total_converted:
         print(f"\nConverted {total_converted} image(s), updated {total_posts_updated} post(s).")
